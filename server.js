@@ -11,7 +11,7 @@ app.get('/', function(req, res){
 });
 
 var clientId = 0;
-var playerArr = [];
+var playerArr = {};
 io.on('connection', function(socket) {
 	clientId++;
 
@@ -37,9 +37,12 @@ io.on('connection', function(socket) {
 
 
 	socket.on("addPlayer", function(data) {
-		playerArr.push(data.player)
-		console.log("added player: " + data.player)
-		console.log("size: " + playerArr.length)
+		playerArr[data.id] = data.player;
+
+		console.log("Current players:");
+		for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
+		  console.log(keys[i] + '|' + playerArr[keys[i]].list);
+		}
 	});
 });
 

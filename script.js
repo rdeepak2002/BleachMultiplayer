@@ -21,22 +21,22 @@ $(function() {
     if(delta > interval) {
       App.ctx.clearRect(0,0,cw,cw);
 
-      console.log(App.playerArr.length)
+      if(Object.keys(App.playerArr).length > 0) {
+        curPlayer = App.playerArr[App.playerId];
+        curPlayer.x = curPlayer.x + curPlayer.hVelocity;
 
-      curPlayer = App.playerArr[App.playerId];
+        if(curPlayer.hVelocity != 0) {
+          App.updatePlayer(App.playerId, curPlayer);
+        }
 
-      curPlayer.x = curPlayer.x + curPlayer.hVelocity;
+        App.drawSprites();
 
-      if(curPlayer.hVelocity != 0) {
-        App.updatePlayer(App.playerId, curPlayer)
+        console.log("your id is: " + App.playerId);
+      }
+      else {
+        console.log("loading...");
       }
 
-      //App.getPlayers()
-
-      App.drawSprites()
-
-      console.log("your id is: " + App.playerId)
-      
 
       lastTime = currentTime - (delta % interval);
     }
