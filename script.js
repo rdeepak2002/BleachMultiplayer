@@ -33,7 +33,7 @@
   /*
     Draw Events
   */
-  $('canvas').on('drag dragstart dragend', function(e) {
+  $('canvas').live('drag dragstart dragend', function(e) {
     var offset, type, x, y;
     type = e.handleObj.type;
     offset = $(this).offset();
