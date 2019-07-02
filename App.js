@@ -58,7 +58,8 @@ function init(app) {
 
     for(var key in app.playerArr) {
       player = app.playerArr[key];
-      app.ctx.drawImage(getImage(player.img), player.x, player.y);      
+
+      app.ctx.drawImage(getImage(player.img), player.x, player.y);
     }
   }
 };

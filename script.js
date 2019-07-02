@@ -56,20 +56,41 @@ $(function() {
       interval = speed * 4;
 
       if(delta < speed) {
-        curPlayer.img = "ichigoStand1";
+        if(curPlayer.facingLeft) {
+          curPlayer.img = "ichigoStand1Left";
+        }
+        else {
+          curPlayer.img = "ichigoStand1";
+        }
       }
       else if(delta < 2 * speed) {
-        curPlayer.img = "ichigoStand2";
+        if(curPlayer.facingLeft) {
+          curPlayer.img = "ichigoStand2Left";
+        }
+        else {
+          curPlayer.img = "ichigoStand2";
+        }
       }
       else if(delta < 3 * speed) {
-        curPlayer.img = "ichigoStand3";
+        if(curPlayer.facingLeft) {
+          curPlayer.img = "ichigoStand3Left";
+        }
+        else {
+          curPlayer.img = "ichigoStand3";
+        }
       }
       else if(delta < 4 * speed){
-        curPlayer.img = "ichigoStand4";
+        if(curPlayer.facingLeft) {
+          curPlayer.img = "ichigoStand4Left";
+        }
+        else {
+          curPlayer.img = "ichigoStand4";
+        }
       } 
     }
 
     if(curPlayer.hVelocity > 0) {
+      curPlayer.facingLeft = false;
       if(delta < speed) {
         curPlayer.img = "ichigoRun1";
       }
@@ -81,6 +102,22 @@ $(function() {
       }
       else if(delta < 4 * speed) {
         curPlayer.img = "ichigoRun4";
+      } 
+    }
+
+    if(curPlayer.hVelocity < 0) {
+      curPlayer.facingLeft = true;
+      if(delta < speed) {
+        curPlayer.img = "ichigoRun1Left";
+      }
+      else if(delta < 2 * speed) {
+        curPlayer.img = "ichigoRun2Left";
+      }
+      else if(delta < 3 * speed) {
+        curPlayer.img = "ichigoRun3Left";
+      }
+      else if(delta < 4 * speed) {
+        curPlayer.img = "ichigoRun4Left";
       } 
     }
   }

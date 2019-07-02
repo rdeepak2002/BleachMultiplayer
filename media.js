@@ -15,7 +15,15 @@ function preloadImages() {
 							"ichigoRun1" : loadImage("resources/ichigo/ichigoRun1.png"),
 							"ichigoRun2" : loadImage("resources/ichigo/ichigoRun2.png"),
 							"ichigoRun3" : loadImage("resources/ichigo/ichigoRun3.png"),
-							"ichigoRun4" : loadImage("resources/ichigo/ichigoRun4.png")
+							"ichigoRun4" : loadImage("resources/ichigo/ichigoRun4.png"),
+							"ichigoStand1Left" : loadImage("resources/ichigo/ichigoStand1Left.png"),
+							"ichigoStand2Left" : loadImage("resources/ichigo/ichigoStand2Left.png"),
+							"ichigoStand3Left" : loadImage("resources/ichigo/ichigoStand3Left.png"),
+							"ichigoStand4Left" : loadImage("resources/ichigo/ichigoStand4Left.png"),
+							"ichigoRun1Left" : loadImage("resources/ichigo/ichigoRun1Left.png"),
+							"ichigoRun2Left" : loadImage("resources/ichigo/ichigoRun2Left.png"),
+							"ichigoRun3Left" : loadImage("resources/ichigo/ichigoRun3Left.png"),
+							"ichigoRun4Left" : loadImage("resources/ichigo/ichigoRun4Left.png")
 					  };
 }
 

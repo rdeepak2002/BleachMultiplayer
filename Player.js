@@ -6,6 +6,7 @@ class Player {
 	animTimer = (new Date()).getTime();
 
 	img = "ichigoStand1";
+	facingLeft = false;
 	runAnim = []
 
 	getY() {
