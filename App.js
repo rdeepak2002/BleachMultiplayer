@@ -1,7 +1,7 @@
 function init(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.height = 4100;
-  app.canvas.width = 800;
+  app.canvas.height = 570;
+  app.canvas.width = 1000;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
   app.playerArr = {};
@@ -59,7 +59,9 @@ function init(app) {
     for(var key in app.playerArr) {
       player = app.playerArr[key];
 
-      app.ctx.drawImage(getImage(player.img), player.x, player.y);
+      var img = getImage(player.img);
+
+      app.ctx.drawImage(img, player.x, player.y, img.naturalWidth*3.5, img.naturalHeight*3.5);
     }
   }
 };
