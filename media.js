@@ -5,3 +5,16 @@ function loadImage(path) {
 
   return image
 }
+
+function preloadImages() {
+	images = {
+							"ichigoStandRight" : loadImage("resources/ichigo/ichigor.png")
+							
+					  };
+}
+
+function getImage(path) {
+	return images["ichigoStandRight"];
+}
+
+preloadImages();

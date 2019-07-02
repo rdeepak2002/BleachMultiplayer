@@ -3,7 +3,8 @@ class Player {
 	y = 100;
 	hVelocity = 0;
 
-	img = loadImage('ichigor.png');
+	img = "ichigoStandRight";
+	runAnim = []
 
 	getY() {
 		return this.y;

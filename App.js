@@ -1,6 +1,6 @@
 function init(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.height = 400;
+  app.canvas.height = 4100;
   app.canvas.width = 800;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
@@ -49,14 +49,15 @@ function init(app) {
   	app.playerArr = data.playerArr
   });
 
-  img = loadImage('ichigor.png');
-
   app.drawSprites = function() {
   	console.log(app.playerArr)
 
+  	app.ctx.font = "1rem Arial";
+		app.ctx.fillText("Player id: " + app.playerId, 10, 40);
+
     for(var key in app.playerArr) {
       player = app.playerArr[key];
-      app.ctx.drawImage(img, player.x, player.y);      
+      app.ctx.drawImage(getImage(player.img), player.x, player.y);      
     }
   }
 };
