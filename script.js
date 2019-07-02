@@ -1,38 +1,11 @@
-(function() {
-  var App;
-  App = {};
-  /*
-    Init 
-  */
-  App.init = function() {
-    App.canvas = document.createElement('canvas');
-    App.canvas.height = 400;
-    App.canvas.width = 800;
-    document.getElementsByTagName('article')[0].appendChild(App.canvas);
-    App.ctx = App.canvas.getContext("2d");
-    App.ctx.fillStyle = "solid";
-    App.ctx.strokeStyle = "#ECD018";
-    App.ctx.lineWidth = 5;
-    App.ctx.lineCap = "round";
-    App.socket = io();
-    App.socket.on('log', function(data) {
-      console.log(data);
-    });
-    App.socket.on('draw', function(data) {
-      return App.draw(data.x, data.y, data.type);
-    });
-    App.draw = function(x, y, type) {
-      if (type === "dragstart") {
-        App.ctx.beginPath();
-        return App.ctx.moveTo(x, y);
-      } else if (type === "drag") {
-        App.ctx.lineTo(x, y);
-        return App.ctx.stroke();
-      } else {
-        return App.ctx.closePath();
-      }
-    };
-  };
+$(function() {
+  var App = {};
+  init(App)
+
+  $(document).keypress(function(event){
+    alert(String.fromCharCode(event.which)); 
+  });
+
   /*
     Draw Events
   */
@@ -44,14 +17,52 @@
     e.offsetY = e.layerY - offset.top;
     x = e.offsetX;
     y = e.offsetY;
-    App.draw(x, y, type);
+    App.drawImage(x, y)
     App.socket.emit('drawClick', {
       x: x,
       y: y,
       type: type
     });
   });
-  $(function() {
-    return App.init();
-  });
-}).call(this);
+
+  cw = App.canvas.width,
+  ch = App.canvas.height,
+  cx = null,
+  fps = 30,
+  bX = 30,
+  bY = 30,
+  mX = 10,
+  mY = 20,
+  interval     =    1000/fps,
+  lastTime     =    (new Date()).getTime(),
+  currentTime  =    0,
+  delta = 0;
+
+  function gameLoop() {
+    window.requestAnimationFrame(gameLoop);
+    
+    currentTime = (new Date()).getTime();
+    delta = (currentTime-lastTime);
+
+    console.log("test")
+
+    if(delta > interval) {
+    
+        //App.ctx.clearRect(0,0,cw,cw);
+        
+        App.ctx.beginPath();
+        App.ctx.fillStyle = 'red';
+        App.ctx.arc(bX, bY, 20, 0, Math.PI * 360);
+        App.ctx.fill();
+        if(bX >= cw || bX <= 0) { mX*=-1; }
+        if(bY >= ch || bY <= 0) { mY*=-1; }
+        
+        bX+=mX;
+        bY+=mY;
+        
+        lastTime = currentTime - (delta % interval);
+    }
+  }  
+
+  gameLoop();
+});

@@ -13,7 +13,7 @@ app.get('/', function(req, res){
 io.on('connection', function(socket) {
 	io.emit('log', {hello: 'world'});
 	socket.on('drawClick', function(data) {
-		io.emit('draw', {
+		socket.broadcast.emit('draw', {
 			x: data.x,
 			y: data.y,
 			type: data.type
