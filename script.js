@@ -25,13 +25,12 @@ $(function() {
         curPlayer = App.playerArr[App.playerId];
         curPlayer.x = curPlayer.x + curPlayer.hVelocity;
 
-        if(curPlayer.hVelocity != 0) {
-          App.updatePlayer(App.playerId, curPlayer);
-        }
+        //if(curPlayer.hVelocity != 0) {
+        App.updatePlayer(App.playerId, curPlayer);
+        //}
 
+        animate();
         App.drawSprites();
-
-        console.log("your id is: " + App.playerId);
       }
       else {
         console.log("loading...");
@@ -42,16 +41,60 @@ $(function() {
     }
   }
 
-  // key events
+  // TODO: put animation in different class
+
+  function animate() {
+    var currentTime = (new Date()).getTime();
+    var delta = (currentTime-curPlayer.animTimer);
+    var speed = 100;
+    var interval = speed * 4;
+
+    curPlayer.animTimer = currentTime - (delta % interval);
+
+    if(curPlayer.hVelocity == 0) {
+      speed = 200;
+      interval = speed * 4;
+
+      if(delta < speed) {
+        curPlayer.img = "ichigoStand1";
+      }
+      else if(delta < 2 * speed) {
+        curPlayer.img = "ichigoStand2";
+      }
+      else if(delta < 3 * speed) {
+        curPlayer.img = "ichigoStand3";
+      }
+      else if(delta < 4 * speed){
+        curPlayer.img = "ichigoStand4";
+      } 
+    }
+
+    if(curPlayer.hVelocity > 0) {
+      if(delta < speed) {
+        curPlayer.img = "ichigoRun1";
+      }
+      else if(delta < 2 * speed) {
+        curPlayer.img = "ichigoRun2";
+      }
+      else if(delta < 3 * speed) {
+        curPlayer.img = "ichigoRun3";
+      }
+      else if(delta < 4 * speed) {
+        curPlayer.img = "ichigoRun4";
+      } 
+    }
+  }
+
+  // TODO: put key listener into different class
   $(document).keydown(function(event){
     key = String.fromCharCode(event.which);
 
     if(key == "D") {
-      curPlayer.hVelocity = 4;
+      curPlayer.hVelocity = curPlayer.runningSpeed;
     }
 
     else if(key == "A") {
-      curPlayer.hVelocity = -4;
+      curPlayer.hVelocity = -1*curPlayer.runningSpeed;
     }
   });  
 
@@ -65,7 +108,6 @@ $(function() {
       curPlayer.hVelocity = 0;
     }
   });  
-
 
   gameLoop();
 });

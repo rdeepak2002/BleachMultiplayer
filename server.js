@@ -13,7 +13,7 @@ app.get('/', function(req, res){
 var clientId = 0;
 var playerArr = {};
 io.on('connection', function(socket) {
-	clientId++;
+	clientId = socket.id;
 
 	socket.emit('helloPlayer',{ 
   	num: clientId
@@ -39,11 +39,25 @@ io.on('connection', function(socket) {
 	socket.on("addPlayer", function(data) {
 		playerArr[data.id] = data.player;
 
-		console.log("Current players:");
+    printCurrentPlayers();
+	});
+
+	socket.on('disconnect', function () {
+		console.log(socket.id);
+		delete playerArr[socket.id];
+    socket.broadcast.emit("removePlayer", {
+    	id: socket.id
+    });
+
+    printCurrentPlayers();
+  });
+
+  function printCurrentPlayers() {
+  	console.log("\nCurrent players:");
 		for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
 		  console.log(keys[i] + '|' + playerArr[keys[i]].list);
 		}
-	});
+  }
 });
 
 http.listen(port, function() {

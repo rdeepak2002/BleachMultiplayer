@@ -31,12 +31,15 @@ function init(app) {
   }
 
   app.socket.on("updateResponse", function(data) {			// broadcast
-
   	app.playerArr[data.id] = data.player;
   });
 
+  app.socket.on("removePlayer", function(data) {			// broadcast
+  	delete app.playerArr[data.id];
+  });
+
   app.socket.on("helloPlayer", function(data) {		// emit
-  	app.playerId = data.num - 1;
+  	app.playerId = data.num;
   	app.addPlayer();
   	app.getPlayers();
   });
@@ -50,8 +53,6 @@ function init(app) {
   });
 
   app.drawSprites = function() {
-  	console.log(app.playerArr)
-
   	app.ctx.font = "1rem Arial";
 		app.ctx.fillText("Player id: " + app.playerId, 10, 40);
 

@@ -2,8 +2,10 @@ class Player {
 	x = 10;
 	y = 100;
 	hVelocity = 0;
+	runningSpeed = 6;
+	animTimer = (new Date()).getTime();
 
-	img = "ichigoStandRight";
+	img = "ichigoStand1";
 	runAnim = []
 
 	getY() {

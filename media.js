@@ -8,13 +8,19 @@ function loadImage(path) {
 
 function preloadImages() {
 	images = {
-							"ichigoStandRight" : loadImage("resources/ichigo/ichigor.png")
-							
+							"ichigoStand1" : loadImage("resources/ichigo/ichigoStand1.png"),
+							"ichigoStand2" : loadImage("resources/ichigo/ichigoStand2.png"),
+							"ichigoStand3" : loadImage("resources/ichigo/ichigoStand3.png"),
+							"ichigoStand4" : loadImage("resources/ichigo/ichigoStand4.png"),
+							"ichigoRun1" : loadImage("resources/ichigo/ichigoRun1.png"),
+							"ichigoRun2" : loadImage("resources/ichigo/ichigoRun2.png"),
+							"ichigoRun3" : loadImage("resources/ichigo/ichigoRun3.png"),
+							"ichigoRun4" : loadImage("resources/ichigo/ichigoRun4.png")
 					  };
 }
 
-function getImage(path) {
-	return images["ichigoStandRight"];
+function getImage(pose) {
+	return images[pose];
 }
 
 preloadImages();
