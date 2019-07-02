@@ -14,7 +14,10 @@
     App.ctx.strokeStyle = "#ECD018";
     App.ctx.lineWidth = 5;
     App.ctx.lineCap = "round";
-    App.socket = io.connect('bleachonline.herokuapp.com' + ':4000');
+    App.socket = io.connect('https://bleachonline.herokuapp.com:4000');
+    App.socket.on('log', function(data) {
+      console.log(data);
+    });
     App.socket.on('draw', function(data) {
       return App.draw(data.x, data.y, data.type);
     });

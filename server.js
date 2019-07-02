@@ -16,6 +16,7 @@ app.listen(app.get('port'));
   var io;
   io = require('socket.io').listen(4000);
   io.sockets.on('connection', function(socket) {
+  	socket.emit('log', {hello: 'world'});
     socket.on('drawClick', function(data) {
       socket.broadcast.emit('draw', {
         x: data.x,
