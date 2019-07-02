@@ -10,17 +10,39 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/game.html');
 });
 
+var clientId = 0;
+var playerArr = [];
 io.on('connection', function(socket) {
-	io.emit('log', {hello: 'world'});
-	socket.on('drawClick', function(data) {
-		socket.broadcast.emit('draw', {
-			x: data.x,
-			y: data.y,
-			type: data.type
+	clientId++;
+
+	socket.emit('helloPlayer',{ 
+  	num: clientId
+  });
+
+	socket.broadcast.emit('newPlayer');
+
+	socket.on("updatePlayer", function(data) {
+		playerArr[data.id] = data.player;
+		socket.broadcast.emit("updateResponse", {
+			id: data.id,
+			player: data.player
 		});
+	});
+
+	socket.on("getPlayers", function(data) {
+		io.emit("playerResponse", {
+			playerArr: playerArr
+		});
+	});
+
+
+	socket.on("addPlayer", function(data) {
+		playerArr.push(data.player)
+		console.log("added player: " + data.player)
+		console.log("size: " + playerArr.length)
 	});
 });
 
-http.listen(port, function(){
-  console.log('listening on *:' + port);
+http.listen(port, function() {
+  console.log('listening on:' + port);
 });
