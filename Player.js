@@ -1,6 +1,6 @@
 class Player {
 	x = 10;
-	y = 300; 		// 270
+	y = 270; 		// 270
 	hVelocity = 0;
 	vVelocity = 0;
 	runningSpeed = 12;
