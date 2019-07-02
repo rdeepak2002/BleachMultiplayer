@@ -15,7 +15,8 @@
     App.ctx.lineWidth = 5;
     App.ctx.lineCap = "round";
     //App.socket = io.connect('http://bleachonline.herokuapp.com:4000');
-    App.socket = io.connect('http://bleachonline.herokuapp.com:4000');
+    //App.socket = io.connect('http://bleachonline.herokuapp.com:4000');
+    App.socket = io();
     App.socket.on('log', function(data) {
       console.log(data);
     });
