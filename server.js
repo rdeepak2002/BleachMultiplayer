@@ -16,9 +16,13 @@ app.get('/play', function(req, res){
 });
 
 var clientId = 0;
+var roomNo = 1;
+var numberConnected = 0;
 var playerArr = {};
 io.on('connection', function(socket) {
 	clientId = socket.id;
+	numberConnected++;
+	roomNo++;
 
 	socket.emit('helloPlayer',{ 
   	num: clientId
@@ -26,7 +30,11 @@ io.on('connection', function(socket) {
 
 	socket.broadcast.emit('newPlayer');
 
-	socket.on("updatePlayer", function(data) {
+	socket.join("room-"+roomNo);
+
+ 	io.sockets.in("room-"+roomNo).emit('connectToRoom', "You are in room no. "+roomNo);
+
+	socket.on("updatePlayer", function(data) {		// add room specific code:  io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
 		playerArr[data.id] = data.player;
 		socket.broadcast.emit("updateResponse", {
 			id: data.id,
@@ -37,18 +45,6 @@ io.on('connection', function(socket) {
 	socket.on("attackPlayer", function(data) {
 		damage = data.damage;
 		playerArr[data.id].health -= damage;
-		// if(data.facingLeft == true) {			knockback
-		// 	playerArr[data.id].x -= 50;
-		// }
-		// else {
-		// 	playerArr[data.id].x += 50;
-		// }
-    // if(playerArr[data.id].x < playerArr[data.id].minX) {
-    //   playerArr[data.id].x = playerArr[data.id].minX;
-    // }
-    // if(playerArr[data.id].x > playerArr[data.id].maxX) {
-    //   playerArr[data.id].x = playerArr[data.id].maxX;
-    // }
 
 		if (playerArr[data.id].health < 0) {
 			playerArr[data.id].health = 0;
@@ -66,7 +62,6 @@ io.on('connection', function(socket) {
 		});
 	});
 
-
 	socket.on("addPlayer", function(data) {
 		playerArr[data.id] = data.player;
 
@@ -74,7 +69,7 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('disconnect', function () {
-		console.log(socket.id);
+		numberConnected--;
 		delete playerArr[socket.id];
     socket.broadcast.emit("removePlayer", {
     	id: socket.id
@@ -84,7 +79,7 @@ io.on('connection', function(socket) {
   });
 
   function printCurrentPlayers() {
-  	console.log("\nCurrent players:");
+  	console.log("\n\nCurrent players:");
 		for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
 		  console.log(keys[i] + " | " + playerArr[keys[i]].username);
 		}

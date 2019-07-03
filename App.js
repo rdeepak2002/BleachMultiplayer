@@ -75,6 +75,10 @@ function init(app) {
   	app.playerArr = data.playerArr
   });
 
+  app.socket.on('connectToRoom',function(data) {
+     console.log(data)
+  });
+
   app.drawSprites = function(curPlayer) {
     for(var key in app.playerArr) {
       player = app.playerArr[key];
