@@ -74,7 +74,21 @@ function preloadImages() {
 							"ichigoStrongAttack6Left" : loadImage("resources/ichigo/ichigoStrongAttack6Left.png"),
 							"ichigoStrongAttack7Left" : loadImage("resources/ichigo/ichigoStrongAttack7Left.png"),
 							"ichigoStrongAttack8Left" : loadImage("resources/ichigo/ichigoStrongAttack8Left.png"),
-							"ichigoStrongAttack9Left" : loadImage("resources/ichigo/ichigoStrongAttack9Left.png")
+							"ichigoStrongAttack9Left" : loadImage("resources/ichigo/ichigoStrongAttack9Left.png"),
+
+							"ichigoDead1" : loadImage("resources/ichigo/ichigoDeath1.png"),
+							"ichigoDead2" : loadImage("resources/ichigo/ichigoDeath2.png"),
+							"ichigoDead3" : loadImage("resources/ichigo/ichigoDeath3.png"),
+							"ichigoDead4" : loadImage("resources/ichigo/ichigoDeath4.png"),
+							"ichigoDead5" : loadImage("resources/ichigo/ichigoDeath5.png"),
+							"ichigoDead6" : loadImage("resources/ichigo/ichigoDeath6.png"),
+
+							"ichigoDead1Left" : loadImage("resources/ichigo/ichigoDeath1Left.png"),
+							"ichigoDead2Left" : loadImage("resources/ichigo/ichigoDeath2Left.png"),
+							"ichigoDead3Left" : loadImage("resources/ichigo/ichigoDeath3Left.png"),
+							"ichigoDead4Left" : loadImage("resources/ichigo/ichigoDeath4Left.png"),
+							"ichigoDead5Left" : loadImage("resources/ichigo/ichigoDeath5Left.png"),
+							"ichigoDead6Left" : loadImage("resources/ichigo/ichigoDeath6Left.png")
 					 };
 }
 

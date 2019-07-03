@@ -49,8 +49,11 @@ $(function() {
         App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
 
         App.updatePlayer(App.playerId, curPlayer);
+
         animate(curPlayer);
         checkPlayerAttack(curPlayer, App.playerArr);
+        updatePlayerState(curPlayer);
+
         App.drawSprites(curPlayer);
         App.drawGui(curPlayer);
       }
@@ -66,6 +69,12 @@ $(function() {
   }
 
   // TODO: put animation in different class
+
+  function updatePlayerState(player) {
+    if(player.health == 0) {
+      player.dead = true;
+    }
+  }
 
 
   function checkPlayerAttack(player, playerArr) {
@@ -130,7 +139,36 @@ $(function() {
     var speed = 100;
     var interval = speed * 4;
 
-    if(player.y != player.groundY) {          // jumping
+    if(player.dead == true) {                      // dead
+      player.yOffset = 0;
+      player.Attacking = false;
+
+      var numFrames = 6;
+      speed = 150;
+      interval = speed * numFrames;
+
+      curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+      if(curFrame > numFrames) {
+        curFrame = numFrames;
+      }
+
+      if(curFrame == 5) {
+        player.yOffset = -30;
+      }
+
+      if(curFrame >= 6) {
+        player.yOffset = -50;
+      }
+
+      var newImage = "ichigoDead" + curFrame;
+
+      if(player.facingLeft)
+        newImage = newImage + "Left";
+
+      player.img = newImage;
+    }
+    else if(player.y != player.groundY) {          // jumping
       player.Attacking = false;
       player.yOffset = -30;
 
@@ -231,7 +269,9 @@ $(function() {
       }
     }
 
-    player.animTimer = currentTime - (delta % interval);
+    if(player.img != player.deadImg && player.img != player.deadImg + "Left") {   // only animate if alive
+      player.animTimer = currentTime - (delta % interval);
+    }
   }
 
   function manageKeyEvents(player) {

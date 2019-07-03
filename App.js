@@ -55,7 +55,6 @@ function init(app) {
   app.socket.on("attackResponse", function(data) {			// broadcast
   	app.playerArr[data.id].health = data.newHealth;
   	app.playerArr[data.id].x = data.newX;
-  	console.log("received damage!");
   });
 
   app.socket.on("removePlayer", function(data) {			// broadcast
@@ -97,7 +96,7 @@ function init(app) {
   	  	app.ctx.fillStyle = "rgb(255, 255, 255)";
   			app.ctx.fillText(player.username, xOffset + player.x, yOffset + player.y);
 
-  			if(curPlayer.playerId != player.playerId) {
+  			if(curPlayer.playerId != player.playerId && player.dead == false) {
 		  		app.ctx.fillStyle = "rgb(0, 0, 0)";
 	  			app.ctx.fillRect(player.x, player.y, 150, 10)
 	  	  	app.ctx.fillStyle = "rgb(255, 0, 0)";

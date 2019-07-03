@@ -12,14 +12,16 @@ class Player {
 	fallingSpeed = 0.7;
 	fallingAccel = 0.6;
 	fallingSpeedOrig = 0.7;
-	maxHealth = 1000;
+	maxHealth = 100;
 	health = this.maxHealth;
 	playerId = 0;
 	username = "";
 	animTimer = (new Date()).getTime();
 	attackTimer = (new Date()).getTime();
 	img = "ichigoStand1";
+	deadImg = "ichigoDead6";
 	facingLeft = false;
 	attacking = false;
+	dead = false;
 	runAnim = [];
 }
