@@ -34,6 +34,19 @@ io.on('connection', function(socket) {
 		});
 	});
 
+	socket.on("attackPlayer", function(data) {
+		console.log(data.id);
+		damage = data.damage;
+		playerArr[data.id].health -= damage;
+		if (playerArr[data.id].health < 0) {
+			playerArr[data.id].health = 0;
+		}
+		socket.broadcast.emit("attackResponse", {
+			id: data.id,
+			newHealth: playerArr[data.id].health
+		});
+	});
+
 	socket.on("getPlayers", function(data) {
 		io.emit("playerResponse", {
 			playerArr: playerArr

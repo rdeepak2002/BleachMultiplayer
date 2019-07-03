@@ -54,7 +54,27 @@ function preloadImages() {
 							"ichigoJump2Left" : loadImage("resources/ichigo/ichigoJump2Left.png"),
 							"ichigoJump3Left" : loadImage("resources/ichigo/ichigoJump3Left.png"),
 							"ichigoJump4Left" : loadImage("resources/ichigo/ichigoJump4Left.png"),
-							"ichigoJump5Left" : loadImage("resources/ichigo/ichigoJump5Left.png")
+							"ichigoJump5Left" : loadImage("resources/ichigo/ichigoJump5Left.png"),
+
+							"ichigoStrongAttack1" : loadImage("resources/ichigo/ichigoStrongAttack1.png"),
+							"ichigoStrongAttack2" : loadImage("resources/ichigo/ichigoStrongAttack2.png"),
+							"ichigoStrongAttack3" : loadImage("resources/ichigo/ichigoStrongAttack3.png"),
+							"ichigoStrongAttack4" : loadImage("resources/ichigo/ichigoStrongAttack4.png"),
+							"ichigoStrongAttack5" : loadImage("resources/ichigo/ichigoStrongAttack5.png"),
+							"ichigoStrongAttack6" : loadImage("resources/ichigo/ichigoStrongAttack6.png"),
+							"ichigoStrongAttack7" : loadImage("resources/ichigo/ichigoStrongAttack7.png"),
+							"ichigoStrongAttack8" : loadImage("resources/ichigo/ichigoStrongAttack8.png"),
+							"ichigoStrongAttack9" : loadImage("resources/ichigo/ichigoStrongAttack9.png"),
+
+							"ichigoStrongAttack1Left" : loadImage("resources/ichigo/ichigoStrongAttack1Left.png"),
+							"ichigoStrongAttack2Left" : loadImage("resources/ichigo/ichigoStrongAttack2Left.png"),
+							"ichigoStrongAttack3Left" : loadImage("resources/ichigo/ichigoStrongAttack3Left.png"),
+							"ichigoStrongAttack4Left" : loadImage("resources/ichigo/ichigoStrongAttack4Left.png"),
+							"ichigoStrongAttack5Left" : loadImage("resources/ichigo/ichigoStrongAttack5Left.png"),
+							"ichigoStrongAttack6Left" : loadImage("resources/ichigo/ichigoStrongAttack6Left.png"),
+							"ichigoStrongAttack7Left" : loadImage("resources/ichigo/ichigoStrongAttack7Left.png"),
+							"ichigoStrongAttack8Left" : loadImage("resources/ichigo/ichigoStrongAttack8Left.png"),
+							"ichigoStrongAttack9Left" : loadImage("resources/ichigo/ichigoStrongAttack9Left.png")
 					 };
 }
 

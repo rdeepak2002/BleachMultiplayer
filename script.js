@@ -9,7 +9,6 @@ $(function() {
   var lastTime = (new Date()).getTime();
   var currentTime = 0;
   var delta = 0;
-  var playerArr;
   var curPlayer;
 
   function gameLoop() {
@@ -46,10 +45,14 @@ $(function() {
           curPlayer.x = 830;
         }
 
+        manageKeyEvents(curPlayer);
         App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
+
         App.updatePlayer(App.playerId, curPlayer);
-        animate();
-        App.drawSprites();
+        animate(curPlayer);
+        checkPlayerAttack(curPlayer, App.playerArr);
+        App.drawSprites(curPlayer);
+        App.drawGui(curPlayer);
       }
       else {
         App.ctx.font = "5rem Arial";
@@ -64,31 +67,114 @@ $(function() {
 
   // TODO: put animation in different class
 
-  function animate() {
+
+  function checkPlayerAttack(player, playerArr) {
+    var currentTime = (new Date()).getTime();
+    var delta = (currentTime-curPlayer.attackTimer);
+
+    if(player.attacking == true) {
+      player.hVelocity = 0;
+
+      for(var key in App.playerArr) {
+        otherPlayer = App.playerArr[key];
+
+        if(key != player.playerId) {
+          var otherPlayerRect = {};
+          var attackingRect = {};
+
+          if(otherPlayer.facingLeft == false) {
+            otherPlayerRect = {x: otherPlayer.x+35, y: otherPlayer.y+39, width: 70, height: 180};
+          }
+          else {
+            otherPlayerRect = {x: otherPlayer.x+65, y: otherPlayer.y+39, width: 70, height: 180};
+          }
+
+          if(player.facingLeft == false) {
+            attackingRect = {x: player.x+90, y: player.y+30, width: 190, height: 150};
+          }
+          else {
+            attackingRect = {x: player.x, y: player.y+39, width: 130, height: 150};
+          }
+          
+          // draw collision rectangles:
+          // App.ctx.fillStyle = "rgb(255, 255, 255)";
+          // App.ctx.fillRect(otherPlayerRect.x, otherPlayerRect.y, otherPlayerRect.width, otherPlayerRect.height);  
+          // App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
+
+          if(checkCollide(attackingRect, otherPlayerRect) == true) {
+            App.attackPlayer(otherPlayer.playerId, 10);
+          }
+        }
+      }
+    }
+    else {
+      curPlayer.attackTimer = (new Date()).getTime();
+    }
+  }
+
+  function checkCollide(rect1, rect2) {
+    if (rect1.x < rect2.x + rect2.width &&
+       rect1.x + rect1.width > rect2.x &&
+       rect1.y < rect2.y + rect2.height &&
+       rect1.y + rect1.height > rect2.y) {
+        return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  function animate(player) {
     var currentTime = (new Date()).getTime();
     var delta = (currentTime-curPlayer.animTimer);
     var speed = 100;
     var interval = speed * 4;
 
-    if(curPlayer.y != curPlayer.groundY) {
-      curPlayer.yOffset = 0;
+    if(player.y != player.groundY) {          // jumping
+      player.Attacking = false;
+      player.yOffset = -30;
 
-      var numFrames = 5;
-      speed = 300;
+      var numFrames = 100;
+      speed = 200;
       interval = speed * numFrames;
 
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
+      if(curFrame > 4) {
+        curFrame = 4;
+      }
+
       var newImage = "ichigoJump" + curFrame;
 
-      if(curPlayer.facingLeft)
+      if(player.facingLeft)
         newImage = newImage + "Left";
 
-      curPlayer.img = newImage;
+      player.img = newImage;
     }
-    else {
-      if(curPlayer.hVelocity == 0) {
-        curPlayer.yOffset = 0;
+    else if(player.attacking == true) {       // attacking
+      player.yOffset = 30;
+
+      var numFrames = 10;
+      speed = 50;
+      interval = speed * numFrames;
+
+      curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+      if(curFrame > numFrames-1) {
+        player.attacking = false;         // UNCOMMENT THIS!
+        curFrame = numFrames-1;
+      }
+
+      var newImage = "ichigoStrongAttack" + curFrame;
+
+      if(player.facingLeft)
+        newImage = newImage + "Left";
+
+      player.img = newImage;
+    }
+    else {                                    // standing or running
+      if(player.hVelocity == 0) {
+        player.yOffset = 0;
 
         var numFrames = 9;
         speed = 100;
@@ -102,14 +188,14 @@ $(function() {
 
         var newImage = "ichigoStand" + curFrame;
 
-        if(curPlayer.facingLeft)
+        if(player.facingLeft)
           newImage = newImage + "Left";
 
-        curPlayer.img = newImage;
+        player.img = newImage;
       }
-      else if(curPlayer.hVelocity > 0) {
-        curPlayer.facingLeft = false;
-        curPlayer.yOffset = 40;
+      else if(player.hVelocity > 0) {
+        player.facingLeft = false;
+        player.yOffset = 40;
 
         var numFrames = 6;
         speed = 100;
@@ -123,11 +209,11 @@ $(function() {
 
         var newImage = "ichigoRun" + curFrame;
 
-        curPlayer.img = newImage;
+        player.img = newImage;
       }
-      else if(curPlayer.hVelocity < 0) {
-        curPlayer.facingLeft = true;
-        curPlayer.yOffset = 40;
+      else if(player.hVelocity < 0) {
+        player.facingLeft = true;
+        player.yOffset = 40;
 
         var numFrames = 6;
         speed = 100;
@@ -141,40 +227,66 @@ $(function() {
 
         var newImage = "ichigoRun" + curFrame + "Left";
 
-        curPlayer.img = newImage;
+        player.img = newImage;
       }
     }
 
-    curPlayer.animTimer = currentTime - (delta % interval);
+    player.animTimer = currentTime - (delta % interval);
   }
 
-  // TODO: put key listener into different class
-  $(document).keydown(function(event){
-    key = String.fromCharCode(event.which);
+  function manageKeyEvents(player) {
+    $(document).keydown(function(event){
+      key = String.fromCharCode(event.which);
+      key = String.fromCharCode(event.keyCode);
 
-    if(key == "D" || key == "d") {
-      curPlayer.hVelocity = curPlayer.runningSpeed;
-    }
-    else if(key == "A" || key == "a") {
-      curPlayer.hVelocity = -1*curPlayer.runningSpeed;
-    }
-  });  
-
-  $(document).keyup(function(event){
-    key = String.fromCharCode(event.which);
-
-    if(key == "D" || key == "d") {
-      curPlayer.hVelocity = 0;
-    }
-    if(key == "A" || key == "a") {
-      curPlayer.hVelocity = 0;
-    }
-    if(key == "W" || key == "w") {
-      if(curPlayer.y == curPlayer.groundY) {
-        curPlayer.vVelocity = curPlayer.jumpingSpeed;
+      if(key == "D" || key == "d") {
+        if(player.attacking == false)
+          player.hVelocity = player.runningSpeed;
+        else
+          player.hVelocity = 0;
       }
-    }
-  });  
+      else if(key == "A" || key == "a") {
+        if(player.attacking == false)
+          player.hVelocity = -1*player.runningSpeed;
+        else
+          player.hVelocity = 0;
+      }
+    });  
+
+    $(document).keyup(function(event){
+      key = String.fromCharCode(event.which);
+      key = String.fromCharCode(event.keyCode);
+
+      if(key == "D" || key == "d") {
+        player.animTimer = currentTime;    
+        player.hVelocity = 0;
+      }
+      if(key == "A" || key == "a") {
+        player.animTimer = currentTime;    
+        player.hVelocity = 0;
+      }
+      if(key == "W" || key == "w") {
+        if(player.y == player.groundY) {
+          player.animTimer = currentTime;    
+          player.vVelocity = player.jumpingSpeed;
+        }
+      }
+      if ((event.keyCode || event.which) == 37) {   
+        player.facingLeft = true;
+        if(player.attacking == false && player.y==player.groundY) {
+          player.attacking = true;
+          player.animTimer = currentTime;    
+        }
+      }
+      if ((event.keyCode || event.which) == 39) {           // right arrow
+        player.facingLeft = false;
+        if(player.attacking == false && player.y==player.groundY) {
+          player.attacking = true;
+          player.animTimer = currentTime;    
+        }
+      }
+    });  
+  }
 
   gameLoop();
 });
