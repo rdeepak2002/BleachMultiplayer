@@ -54,7 +54,7 @@ $(function() {
       else {
         App.ctx.font = "5rem Arial";
         App.ctx.fillStyle = "rgb(0, 0, 0)";
-        App.ctx.fillText("LOADING...", 10, 40);
+        App.ctx.fillText("LOADING...", 10, 70);
         console.log("loading...");
       }
 
