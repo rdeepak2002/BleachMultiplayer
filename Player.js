@@ -1,5 +1,7 @@
 class Player {
 	x = 10;
+	minX = -60;
+	maxX = 830;
 	groundY = 290;
 	y = this.groundY;
 	yOffset = 0;

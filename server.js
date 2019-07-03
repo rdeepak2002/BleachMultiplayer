@@ -35,15 +35,28 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on("attackPlayer", function(data) {
-		console.log(data.id);
 		damage = data.damage;
 		playerArr[data.id].health -= damage;
+		// if(data.facingLeft == true) {			knockback
+		// 	playerArr[data.id].x -= 50;
+		// }
+		// else {
+		// 	playerArr[data.id].x += 50;
+		// }
+    // if(playerArr[data.id].x < playerArr[data.id].minX) {
+    //   playerArr[data.id].x = playerArr[data.id].minX;
+    // }
+    // if(playerArr[data.id].x > playerArr[data.id].maxX) {
+    //   playerArr[data.id].x = playerArr[data.id].maxX;
+    // }
+
 		if (playerArr[data.id].health < 0) {
 			playerArr[data.id].health = 0;
 		}
 		io.emit("attackResponse", {
 			id: data.id,
-			newHealth: playerArr[data.id].health
+			newHealth: playerArr[data.id].health,
+			newX: playerArr[data.id].x
 		});
 	});
 

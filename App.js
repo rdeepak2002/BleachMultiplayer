@@ -20,10 +20,11 @@ function init(app) {
     });
   }
 
-  app.attackPlayer = function(id, damage) {
+  app.attackPlayer = function(id, damage, facingLeft) {
 	  app.socket.emit('attackPlayer', {
 	   	id: id,
-      damage: damage
+      damage: damage,
+      facingLeft: facingLeft
     });
   }
 
@@ -53,6 +54,7 @@ function init(app) {
 
   app.socket.on("attackResponse", function(data) {			// broadcast
   	app.playerArr[data.id].health = data.newHealth;
+  	app.playerArr[data.id].x = data.newX;
   	console.log("received damage!");
   });
 
@@ -113,7 +115,7 @@ function init(app) {
 
 		app.ctx.fillStyle = "rgb(0, 0, 0)";
 		app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight)
-		
+
   	app.ctx.fillStyle = "rgb(255, 0, 0)";
 		app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight)	
 	}

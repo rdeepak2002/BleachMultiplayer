@@ -37,12 +37,12 @@ $(function() {
           curPlayer.fallingSpeed=curPlayer.fallingSpeedOrig;
         }
 
-        if(curPlayer.x < -60) {
-          curPlayer.x = -60;
+        if(curPlayer.x < curPlayer.minX) {
+          curPlayer.x = curPlayer.minX;
         }
 
-        if(curPlayer.x > 830) {
-          curPlayer.x = 830;
+        if(curPlayer.x > curPlayer.maxX) {
+          curPlayer.x = curPlayer.maxX;
         }
 
         manageKeyEvents(curPlayer);
@@ -102,7 +102,7 @@ $(function() {
           // App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
 
           if(checkCollide(attackingRect, otherPlayerRect) == true) {
-            App.attackPlayer(otherPlayer.playerId, 10);
+            App.attackPlayer(otherPlayer.playerId, 10, player.facingLeft);
           }
         }
       }
