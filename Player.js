@@ -10,6 +10,8 @@ class Player {
 	fallingSpeed = 0.7;
 	fallingAccel = 0.6;
 	fallingSpeedOrig = 0.7;
+	playerId = 0;
+	username = "";
 	animTimer = (new Date()).getTime();
 	img = "ichigoStand1";
 	facingLeft = false;

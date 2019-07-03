@@ -21,7 +21,16 @@ function init(app) {
   }
 
   app.addPlayer = function() {
-  	newPlayer = new Player()
+  	newPlayer = new Player();
+  	newPlayer.playerId = app.playerId;
+
+  	username = getCookie("username");
+
+  	if(username == undefined || username == "") {
+  		username = "error getting username";
+  	}
+
+  	newPlayer.username = username;
 
    	app.socket.emit('addPlayer', {
    		id: app.playerId,
@@ -54,9 +63,6 @@ function init(app) {
   });
 
   app.drawSprites = function() {
-  	app.ctx.font = "1rem Arial";
-		app.ctx.fillText("Player id: " + app.playerId, 10, 40);
-
     for(var key in app.playerArr) {
       player = app.playerArr[key];
 
@@ -67,6 +73,14 @@ function init(app) {
       }
       else {
 	      app.ctx.drawImage(img, player.x, player.y + player.yOffset, img.naturalWidth*2, img.naturalHeight*2);
+
+      	var xOffset = 50;
+      	var yOffset = 230;
+  	  	app.ctx.font = "1rem Arial";
+  	  	app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+      	app.ctx.fillRect(xOffset + player.x-5, yOffset + player.y-15, 10*player.username.length+7, 20);
+  	  	app.ctx.fillStyle = "rgb(255, 255, 255)";
+  			app.ctx.fillText(player.username, xOffset + player.x, yOffset + player.y);
       }
     }
   }

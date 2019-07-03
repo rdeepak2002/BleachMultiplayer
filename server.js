@@ -7,6 +7,11 @@ var port = process.env.PORT || 8080;
 app.use(express.static(__dirname))
 
 app.get('/', function(req, res){
+  res.sendFile(__dirname + '/home.html');
+});
+
+
+app.get('/play', function(req, res){
   res.sendFile(__dirname + '/game.html');
 });
 
@@ -55,7 +60,7 @@ io.on('connection', function(socket) {
   function printCurrentPlayers() {
   	console.log("\nCurrent players:");
 		for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
-		  console.log(keys[i] + '|' + playerArr[keys[i]].list);
+		  console.log(keys[i] + " | " + playerArr[keys[i]].username);
 		}
   }
 });
@@ -63,3 +68,4 @@ io.on('connection', function(socket) {
 http.listen(port, function() {
   console.log('listening on:' + port);
 });
+
