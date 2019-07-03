@@ -2,6 +2,7 @@ function init(app) {
   app.canvas = document.createElement("canvas");
   app.canvas.height = 570;
   app.canvas.width = 1000;
+  app.canvas.scaleY = -app.canvas.height;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
   app.playerArr = {};
@@ -61,7 +62,12 @@ function init(app) {
 
       var img = getImage(player.img);
 
-      app.ctx.drawImage(img, player.x, player.y, img.naturalWidth*3.5, img.naturalHeight*3.5);
+      if(img == undefined) {
+      	console.log("error: cannot find image " + player.img);
+      }
+      else {
+	      app.ctx.drawImage(img, player.x, player.y + player.yOffset, img.naturalWidth*2, img.naturalHeight*2);
+      }
     }
   }
 };

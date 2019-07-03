@@ -1,6 +1,8 @@
 class Player {
 	x = 10;
-	y = 270; 		// 270
+	groundY = 290;
+	y = this.groundY;
+	yOffset = 0;
 	hVelocity = 0;
 	vVelocity = 0;
 	runningSpeed = 12;

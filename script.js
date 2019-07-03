@@ -29,12 +29,12 @@ $(function() {
 
         curPlayer.y = curPlayer.y - curPlayer.vVelocity;
 
-        if(curPlayer.y < 270) {
+        if(curPlayer.y < curPlayer.groundY) {
           curPlayer.vVelocity -= curPlayer.fallingSpeed;curPlayer.fallingSpeed;
           curPlayer.fallingSpeed += curPlayer.fallingAccel;
         }
-        else if (curPlayer.y > 270){
-          curPlayer.y = 270;
+        else if (curPlayer.y > curPlayer.groundY){
+          curPlayer.y = curPlayer.groundY;
           curPlayer.vVelocity = 0;
           curPlayer.fallingSpeed=curPlayer.fallingSpeedOrig;
         }
@@ -46,9 +46,6 @@ $(function() {
         if(curPlayer.x > 830) {
           curPlayer.x = 830;
         }
-
-
-        console.log(curPlayer.vVelocity)
 
         App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
         App.updatePlayer(App.playerId, curPlayer);
@@ -72,88 +69,78 @@ $(function() {
     var speed = 100;
     var interval = speed * 4;
 
-    if(curPlayer.y != 270) {
-      speed = 300;
-      interval = speed * 3;
+    if(curPlayer.y != curPlayer.groundY) {
+      curPlayer.yOffset = 0;
 
-      if(delta < speed) {
-        if(curPlayer.facingLeft)
-          curPlayer.img = "ichigoJump1Left";
-        else
-          curPlayer.img = "ichigoJump1";
-      }
-      else if(delta < 2 * speed) {
-        if(curPlayer.facingLeft)
-          curPlayer.img = "ichigoJump2Left";
-        else
-          curPlayer.img = "ichigoJump2";
-      }
-      else if(delta < 3 * speed) {
-        if(curPlayer.facingLeft)
-          curPlayer.img = "ichigoJump3Left";
-        else
-          curPlayer.img = "ichigoJump3";
-      }
+      var numFrames = 5;
+      speed = 300;
+      interval = speed * numFrames;
+
+      curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+      var newImage = "ichigoJump" + curFrame;
+
+      if(curPlayer.facingLeft)
+        newImage = newImage + "Left";
+
+      curPlayer.img = newImage;
     }
     else {
       if(curPlayer.hVelocity == 0) {
-        speed = 200;
-        interval = speed * 4;
+        curPlayer.yOffset = 0;
 
-        if(delta < speed) {
-          if(curPlayer.facingLeft)
-            curPlayer.img = "ichigoStand1Left";
-          else
-            curPlayer.img = "ichigoStand1";
+        var numFrames = 9;
+        speed = 100;
+        interval = speed * numFrames;
+
+        curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+        if(curFrame > numFrames) {
+          curFrame = numFrames;
         }
-        else if(delta < 2 * speed) {
-          if(curPlayer.facingLeft) 
-            curPlayer.img = "ichigoStand2Left";
-          else
-            curPlayer.img = "ichigoStand2";
-        }
-        else if(delta < 3 * speed) {
-          if(curPlayer.facingLeft) 
-            curPlayer.img = "ichigoStand3Left";
-          else 
-            curPlayer.img = "ichigoStand3";
-        }
-        else if(delta < 4 * speed){
-          if(curPlayer.facingLeft) 
-            curPlayer.img = "ichigoStand4Left";
-          else 
-            curPlayer.img = "ichigoStand4";
-        } 
+
+        var newImage = "ichigoStand" + curFrame;
+
+        if(curPlayer.facingLeft)
+          newImage = newImage + "Left";
+
+        curPlayer.img = newImage;
       }
       else if(curPlayer.hVelocity > 0) {
         curPlayer.facingLeft = false;
-        if(delta < speed) {
-          curPlayer.img = "ichigoRun1";
+        curPlayer.yOffset = 40;
+
+        var numFrames = 6;
+        speed = 100;
+        interval = speed * numFrames;
+
+        curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+        if(curFrame > numFrames) {
+          curFrame = numFrames;
         }
-        else if(delta < 2 * speed) {
-          curPlayer.img = "ichigoRun2";
-        }
-        else if(delta < 3 * speed) {
-          curPlayer.img = "ichigoRun3";
-        }
-        else if(delta < 4 * speed) {
-          curPlayer.img = "ichigoRun4";
-        } 
+
+        var newImage = "ichigoRun" + curFrame;
+
+        curPlayer.img = newImage;
       }
       else if(curPlayer.hVelocity < 0) {
         curPlayer.facingLeft = true;
-        if(delta < speed) {
-          curPlayer.img = "ichigoRun1Left";
+        curPlayer.yOffset = 40;
+
+        var numFrames = 6;
+        speed = 100;
+        interval = speed * numFrames;
+
+        curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+        if(curFrame > numFrames) {
+          curFrame = numFrames;
         }
-        else if(delta < 2 * speed) {
-          curPlayer.img = "ichigoRun2Left";
-        }
-        else if(delta < 3 * speed) {
-          curPlayer.img = "ichigoRun3Left";
-        }
-        else if(delta < 4 * speed) {
-          curPlayer.img = "ichigoRun4Left";
-        } 
+
+        var newImage = "ichigoRun" + curFrame + "Left";
+
+        curPlayer.img = newImage;
       }
     }
 
@@ -164,10 +151,10 @@ $(function() {
   $(document).keydown(function(event){
     key = String.fromCharCode(event.which);
 
-    if(key == "D") {
+    if(key == "D" || key == "d") {
       curPlayer.hVelocity = curPlayer.runningSpeed;
     }
-    else if(key == "A") {
+    else if(key == "A" || key == "a") {
       curPlayer.hVelocity = -1*curPlayer.runningSpeed;
     }
   });  
@@ -175,14 +162,16 @@ $(function() {
   $(document).keyup(function(event){
     key = String.fromCharCode(event.which);
 
-    if(key == "D") {
+    if(key == "D" || key == "d") {
       curPlayer.hVelocity = 0;
     }
-    if(key == "A") {
+    if(key == "A" || key == "a") {
       curPlayer.hVelocity = 0;
     }
-    if(key == "W") {
-      curPlayer.vVelocity = curPlayer.jumpingSpeed;
+    if(key == "W" || key == "w") {
+      if(curPlayer.y == curPlayer.groundY) {
+        curPlayer.vVelocity = curPlayer.jumpingSpeed;
+      }
     }
   });  
 
