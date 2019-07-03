@@ -41,7 +41,7 @@ io.on('connection', function(socket) {
 		if (playerArr[data.id].health < 0) {
 			playerArr[data.id].health = 0;
 		}
-		socket.broadcast.emit("attackResponse", {
+		io.emit("attackResponse", {
 			id: data.id,
 			newHealth: playerArr[data.id].health
 		});
