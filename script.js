@@ -48,11 +48,12 @@ $(function() {
         manageKeyEvents(curPlayer);
         App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
 
-        App.updatePlayer(App.playerId, curPlayer);
-
         animate(curPlayer);
-        checkPlayerAttack(curPlayer, App.playerArr);
         updatePlayerState(curPlayer);
+        if(curPlayer.dead == false)
+          checkPlayerAttack(curPlayer, App.playerArr);
+
+        App.updatePlayer(App.playerId, curPlayer);
 
         App.drawSprites(curPlayer);
         App.drawGui(curPlayer);
@@ -280,13 +281,13 @@ $(function() {
       key = String.fromCharCode(event.keyCode);
 
       if(key == "D" || key == "d") {
-        if(player.attacking == false)
+        if(player.attacking == false && player.dead == false)
           player.hVelocity = player.runningSpeed;
         else
           player.hVelocity = 0;
       }
       else if(key == "A" || key == "a") {
-        if(player.attacking == false)
+        if(player.attacking == false && player.dead == false)
           player.hVelocity = -1*player.runningSpeed;
         else
           player.hVelocity = 0;
@@ -298,27 +299,31 @@ $(function() {
       key = String.fromCharCode(event.keyCode);
 
       if(key == "D" || key == "d") {
-        player.animTimer = currentTime;    
-        player.hVelocity = 0;
+        if(player.dead == false) {
+          player.animTimer = currentTime;    
+          player.hVelocity = 0;
+        }
       }
       if(key == "A" || key == "a") {
-        player.animTimer = currentTime;    
-        player.hVelocity = 0;
+        if(player.dead == false) {
+          player.animTimer = currentTime;    
+          player.hVelocity = 0;
+        }
       }
       if(key == "W" || key == "w") {
-        if(player.y == player.groundY) {
+        if(player.y == player.groundY && player.dead == false) {
           player.animTimer = currentTime;    
           player.vVelocity = player.jumpingSpeed;
         }
       }
-      if ((event.keyCode || event.which) == 37) {   
+      if ((event.keyCode || event.which) == 37 && player.dead == false) {   
         player.facingLeft = true;
         if(player.attacking == false && player.y==player.groundY) {
           player.attacking = true;
           player.animTimer = currentTime;    
         }
       }
-      if ((event.keyCode || event.which) == 39) {           // right arrow
+      if ((event.keyCode || event.which) == 39 && player.dead == false) {           // right arrow
         player.facingLeft = false;
         if(player.attacking == false && player.y==player.groundY) {
           player.attacking = true;
