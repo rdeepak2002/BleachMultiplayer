@@ -24,7 +24,6 @@ $(function() {
       if(Object.keys(App.playerArr).length > 0) {
         curPlayer = App.playerArr[App.playerId];
 
-
         curPlayer.x = curPlayer.x + curPlayer.hVelocity;
 
         curPlayer.y = curPlayer.y - curPlayer.vVelocity;
@@ -53,9 +52,11 @@ $(function() {
         App.drawSprites();
       }
       else {
+        App.ctx.font = "5rem Arial";
+        App.ctx.fillStyle = "rgb(0, 0, 0)";
+        App.ctx.fillText("LOADING...", 10, 10);
         console.log("loading...");
       }
-
 
       lastTime = currentTime - (delta % interval);
     }
