@@ -24,7 +24,7 @@ io.on('connection', function(socket) {
 	numberConnected++;
 	roomNo++;
 
-	console.log("CLIENT ADDED " + clientId);
+	console.log("CLIENT CONNECTED " + clientId);
 
 	socket.emit('helloPlayer',{ 
   	num: clientId

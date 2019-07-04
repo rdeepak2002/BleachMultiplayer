@@ -33,6 +33,8 @@ function init(app) {
   	newPlayer = new Player();
   	newPlayer.playerId = app.playerId;
 
+    $("#logs").append("<p>going to get cookie now </p>");
+
   	username = getCookie("username");
 
   	if(username == undefined || username == "") {
@@ -51,6 +53,13 @@ function init(app) {
     app.playerArr[app.playerId] = newPlayer;
   }
 
+  app.socket.on("helloPlayer", function(data) {   // emit
+    $("#logs").append("<p>received hello player</p>");
+    app.playerId = data.num;
+    app.addPlayer();
+    app.getPlayers();
+  });
+
   app.socket.on("updateResponse", function(data) {			// broadcast
   	app.playerArr[data.id] = data.player;
   });
@@ -62,13 +71,6 @@ function init(app) {
 
   app.socket.on("removePlayer", function(data) {			// broadcast
   	delete app.playerArr[data.id];
-  });
-
-  app.socket.on("helloPlayer", function(data) {		// emit
-    $("#logs").append("<p>received hello player</p>");
-  	app.playerId = data.num;
-  	app.addPlayer();
-  	app.getPlayers();
   });
 
   app.socket.on("newPlayer", function(data) {			// broadcast
