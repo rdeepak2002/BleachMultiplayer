@@ -1,9 +1,13 @@
 function loadImage(path) {
 	var image = new Image();   // Create new img element
 
+	image.onload = function () {
+	  console.log("loaded image");
+	}
+
   image.src = path; // Set source path
 
-  return image
+  return image;
 }
 
 function preloadImages() {
