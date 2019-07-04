@@ -137,8 +137,8 @@ function updateMedia() {
 	$(document).bind("click keydown keyup touchstart", onStartInteraction);
 }
 
-document.getElementById("body").ontouchend = (e) => {
-	e.preventDefault();
-};
+// document.getElementById("body").ontouchend = (e) => {
+// 	e.preventDefault();
+// };
 
 
