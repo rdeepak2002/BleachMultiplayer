@@ -125,7 +125,7 @@ function playSong(song) {
       console.log("playing");
     }).catch(error => {
     	console.log("retrying to play music");
-
+    	$("#logs").append("<p>Retrying to play music</p>");
     	sleep(500).then(() => {
     		playSong(song);			
     	})

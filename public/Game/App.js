@@ -30,8 +30,6 @@ function init(app) {
   }
 
   app.addPlayer = function() {
-    $("#logs").append("<p>Creating Player Class</p>");
-
   	newPlayer = new Player();
   	newPlayer.playerId = app.playerId;
 
