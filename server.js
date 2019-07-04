@@ -72,6 +72,7 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('disconnect', function () {
+		console.log("player disconnected");
 		numberConnected--;
 		delete playerArr[socket.id];
     socket.broadcast.emit("removePlayer", {

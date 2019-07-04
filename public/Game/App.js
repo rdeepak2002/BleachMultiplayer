@@ -41,6 +41,8 @@ function init(app) {
 
   	newPlayer.username = username;
 
+    $("#logs").append("<p>set username to: " + username + "</p>");
+
    	app.socket.emit('addPlayer', {
    		id: app.playerId,
       player: newPlayer
@@ -70,6 +72,7 @@ function init(app) {
   });
 
   app.socket.on("newPlayer", function(data) {			// broadcast
+    $("#logs").append("<p>new player joined</p>");
   	console.log("player joined")
   });
 
