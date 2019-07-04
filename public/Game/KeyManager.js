@@ -31,24 +31,24 @@ function manageKeyEvents(player) {
   }
 
   if( isMobile.any() ) {
+    $(".jumpBtn").click(function(){
+      jump();
+    });
+
+    $(".attackBtn").click(function(){
+      attack();
+    });
+
     if(joyStickDirection == "right") {
       moveRight();
     }
-    else if(joyStickDirection == "left") {
+    if(joyStickDirection == "left") {
       moveLeft();
     }
-    else if(joyStickDirection == "none") {
+    if(joyStickDirection == "none") {
       player.hVelocity = 0;
     }
   }
-
-  $(".attackBtn").on("tap",function(){     // touch events
-    attack();
-  });
-
-  $(".jumpBtn").on("tap",function(){     // touch events
-    jump();
-  });
 
   $(document).keydown(function(event){
     key = String.fromCharCode(event.which);
