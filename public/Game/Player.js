@@ -5,7 +5,9 @@ let Player = class {
 		this.maxX = 1080;
 		this.groundY = 320;
 		this.y = this.groundY;
+		this.teleportDistance = 400;
 		this.yOffset = 0;
+		this.xOffset = 0;
 		this.hVelocity = 0;
 		this.vVelocity = 0;
 		this.runningSpeed = 12;
@@ -26,5 +28,7 @@ let Player = class {
 		this.attacking = false;
 		this.dead = false;
 		this.musicPlayed = false;
+		this.teleporting = false;
+		this.guarding = false;
 	}
 }

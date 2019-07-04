@@ -4,6 +4,9 @@ function animate(player, App) {
   var speed = 100;
   var interval = speed * 4;
 
+  player.xOffset = 0;
+  player.yOffset = 0;
+
   if(player.dead == true) {                      // dead
     player.yOffset = 0;
     player.Attacking = false;
@@ -27,6 +30,59 @@ function animate(player, App) {
     }
 
     var newImage = "ichigoDead" + curFrame;
+
+    if(player.facingLeft)
+      newImage = newImage + "Left";
+
+    player.img = newImage;
+  }
+  else if(player.guarding == true) {
+    player.yOffset = 32;
+
+    if(player.facingLeft == true)
+      player.xOffset = 40;
+    else
+      player.xOffset = -50;
+
+    var numFrames = 2;
+    speed = 1000;
+    interval = speed * numFrames;
+
+    curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+    if(curFrame > numFrames-1) {
+      curFrame = numFrames-1;
+      player.guarding = false;
+    }
+
+    var newImage = "ichigoGuard" + curFrame;
+
+    if(player.facingLeft)
+      newImage = newImage + "Left";
+
+    player.img = newImage;
+  }
+  else if(player.teleporting == true) {
+    player.yOffset = 0;
+
+    var numFrames = 4;
+    speed = 150;
+    interval = speed * numFrames;
+
+    curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+    if(curFrame > numFrames-1) {
+      curFrame = numFrames-1;
+
+      if(player.facingLeft)
+        player.x -= player.teleportDistance;
+      else
+        player.x += player.teleportDistance;
+
+      player.teleporting = false;
+    }
+
+    var newImage = "ichigoTeleport" + curFrame;
 
     if(player.facingLeft)
       newImage = newImage + "Left";

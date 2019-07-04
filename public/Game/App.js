@@ -92,7 +92,7 @@ function init(app) {
       	console.log("error: cannot find image " + player.img);
       }
       else {
-	      app.ctx.drawImage(img, player.x, player.y + player.yOffset, img.naturalWidth*2, img.naturalHeight*2);
+	      app.ctx.drawImage(img, player.x + player.xOffset, player.y + player.yOffset, img.naturalWidth*2, img.naturalHeight*2);
 
       	var xOffset = 50;
       	var yOffset = 230;

@@ -3,7 +3,9 @@ function updatePlayerState(player, dt) {
     player.dead = true;
   }
 
-  player.x = player.x + player.hVelocity*(dt/30);
+  if(player.teleporting == false && player.attacking == false && player.guarding == false) {
+    player.x = player.x + player.hVelocity*(dt/30);
+  }
 
   player.y = player.y - player.vVelocity*(dt/30);
 
@@ -32,8 +34,6 @@ function checkPlayerAttack(player, playerArr, App) {
   var delta = (currentTime-player.attackTimer);
 
   if(player.attacking == true) {
-    player.hVelocity = 0;
-
     for(var key in App.playerArr) {
       otherPlayer = App.playerArr[key];
 
@@ -61,7 +61,9 @@ function checkPlayerAttack(player, playerArr, App) {
         // App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
 
         if(checkCollide(attackingRect, otherPlayerRect) == true) {
-          App.attackPlayer(otherPlayer.playerId, player.attack, player.facingLeft);
+          if(otherPlayer.guarding == false || otherPlayer.facingLeft == player.facingLeft) {
+            App.attackPlayer(otherPlayer.playerId, player.attack, player.facingLeft);
+          }
         }
       }
     }

@@ -100,6 +100,18 @@ function preloadMedia() {
 							"ichigoDead5Left" : loadImage("resources/ichigo/ichigoDeath5Left.png"),
 							"ichigoDead6Left" : loadImage("resources/ichigo/ichigoDeath6Left.png"),
 
+							"ichigoTeleport1" : loadImage("resources/ichigo/ichigoTeleport1.png"),
+							"ichigoTeleport2" : loadImage("resources/ichigo/ichigoTeleport2.png"),
+							"ichigoTeleport3" : loadImage("resources/ichigo/ichigoTeleport3.png"),
+
+							"ichigoTeleport1Left" : loadImage("resources/ichigo/ichigoTeleport1Left.png"),
+							"ichigoTeleport2Left" : loadImage("resources/ichigo/ichigoTeleport2Left.png"),
+							"ichigoTeleport3Left" : loadImage("resources/ichigo/ichigoTeleport3Left.png"),
+
+							"ichigoGuard1" : loadImage("resources/ichigo/ichigoGuard1.png"),
+
+							"ichigoGuard1Left" : loadImage("resources/ichigo/ichigoGuard1Left.png"),
+
 							"gameOverText"		: loadImage("resources/gameover.png")
 					 };
 }
