@@ -63,6 +63,7 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on("addPlayer", function(data) {
+		console.log("adding player!");
 		playerArr[data.id] = data.player;
 
     printCurrentPlayers();
