@@ -7,12 +7,12 @@ var port = process.env.PORT || 8080;
 app.use(express.static(__dirname))
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/home.html');
+  res.sendFile(__dirname + '/public/Home/home.html');
 });
 
 
 app.get('/play', function(req, res){
-  res.sendFile(__dirname + '/game.html');
+  res.sendFile(__dirname + '/public/Game/game.html');
 });
 
 var clientId = 0;

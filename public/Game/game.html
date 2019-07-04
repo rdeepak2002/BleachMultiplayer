@@ -1,15 +1,17 @@
+<!DOCTYPE HTML>
 <html lang="en-US">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="alternate" href="//drrr.com/feed.xml" type="application/atom+xml">
+    <meta charset="UTF-8">
 
     <title>Bleach Online</title>
 
-    <link rel="stylesheet" href="//drrr.com/css/app.css?v=20190313.13.01">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+    <link rel="stylesheet" href="/public/Styles/style.css" />
 
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -30,35 +32,15 @@
   </head>
 
   <body>
+    <article><!-- our canvas will be inserted here--></article>
 
-  <div id="body">
-    <div class="home-wrap">
-
-      <div>
-        <img src="resources/logo.png" height="auto" class="center"></div>
-      </div> 
-
-      <form action="" autocomplete="off">
-        <div class="login-form field" id="t_form">
-          <div class="home-name">
-            <label class="noSelect" for="form-name">Username:</label>
-            <input type="text" id="form-name" name="name" size="10" maxlength="40" class="home-name-input" required="">
-          </div>
-
-          <div class="home-submit">
-            <input onclick="createCookie()" type="button" name="login" value="PLAY" class="submit-input home-submit-input">
-          </div>
-        </div>
-
-        <div id="home-extra" class="home-extra">
-      </form>
-
-    </div>
-  </div>
-
-  <script type="text/javascript" src="formHandle.js"></script>
-
-
+    <script type="text/javascript" src="/public/Game/Media.js"></script>
+    <script type="text/javascript" src="/public/Game/App.js"></script>
+    <script type="text/javascript" src="/public/Game/Player.js"></script>
+    <script type="text/javascript" src="/public/Game/PlayerManager.js"></script>
+    <script type="text/javascript" src="/public/Game/Animator.js"></script>
+    <script type="text/javascript" src="/public/Game/KeyManager.js"></script>
+    <script type="text/javascript" src="/public/Game/Main.js"></script>
 
   </body>
 </html>
