@@ -9,7 +9,7 @@ function init(app) {
   app.socket = io();
   app.playerId = 0;
 
-  playSong("battleMusic1");
+  //playSong("battleMusic1");
 
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');
@@ -41,6 +41,8 @@ function init(app) {
   	}
 
   	newPlayer.username = username;
+
+    app.ctx.fillText("ADDING PLAYER...", 10, 70);
 
    	app.socket.emit('addPlayer', {
    		id: app.playerId,
