@@ -104,8 +104,6 @@ function preloadMedia() {
 					 };
 }
 
-
-
 function getImage(pose) {
 	return images[pose];
 }
@@ -138,5 +136,9 @@ function updateMedia() {
 
 	$(document).bind("click keydown keyup touchstart", onStartInteraction);
 }
+
+document.getElementById("body").ontouchend = (e) => {
+	e.preventDefault();
+};
 
 
