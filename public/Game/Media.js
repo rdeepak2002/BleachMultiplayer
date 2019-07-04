@@ -17,7 +17,7 @@ function loadImage(path) {
 
 function preloadMedia() {
 	audio = 	{
-							//"battleMusic1" : loadAudio("resources/battleMusic1.mp3")
+							"battleMusic1" : loadAudio("resources/battleMusic1.mp3")
 						}
 
 	images = {
