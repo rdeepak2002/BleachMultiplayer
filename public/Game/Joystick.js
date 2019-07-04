@@ -5,9 +5,10 @@ var sampleJoystick = {
     mode: 'static',
     position: {
       left: '15%',
-      top: '75%'
+      top: '60%'
     },
     zone: document.getElementById("zone_joystick"),
+    lockX: true,
     size: radius*2,
     color: 'white'
 };
