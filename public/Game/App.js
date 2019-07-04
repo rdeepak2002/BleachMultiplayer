@@ -8,7 +8,27 @@ function init(app) {
   app.socket = io();
   app.playerId = 0;
 
-  playSong("battleMusic1");
+  //playSong("battleMusic1");
+
+  var maudio = document.getElementById('myaudio');
+
+  var soundSprite = [
+    {start: 0, end: 3000},
+    {start: 3500, end: 6789}
+  ];
+
+    maudio.play();
+    playSoundFile(0);
+
+  function playSoundFile(idx) {
+    maudio.currentPosition = soundSprite[idx].start;
+    var x = setInterval(function() {
+      if(maudio.currentPosition >= soundSprite[idx].end) {
+        maudio.pause(); // There is no stop() in HTML5
+        clearInterval(x);
+      }
+    }, 50);
+  }
 
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');
