@@ -1,10 +1,10 @@
-var radius = 100;
+var radius = 50;
 var joyStickDirection = "none";
 
 var sampleJoystick = {
     mode: 'static',
     position: {
-      left: '50%',
+      left: '25%',
       top: '50%'
     },
     size: radius*2,
