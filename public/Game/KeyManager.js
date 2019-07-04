@@ -57,15 +57,15 @@ function manageKeyEvents(player) {
     key = String.fromCharCode(event.which);
     key = String.fromCharCode(event.keyCode);
 
-    if(player.musicPlayed == false) {           // on any key pressed play music
-      player.musicPlayed = true;
+    // if(player.musicPlayed == false) {           // on any key pressed play music
+    //   player.musicPlayed = true;
 
-      var sound = new Howl({
-        src: ['/resources/battleMusic1.mp3']
-      });
+    //   var sound = new Howl({
+    //     src: ['/resources/battleMusic1.mp3']
+    //   });
 
-      sound.play();
-    }
+    //   sound.play();
+    // }
 
     if(key == "D" || key == "d") {
       moveRight();

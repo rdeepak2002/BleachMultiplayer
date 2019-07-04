@@ -1,8 +1,3 @@
-function loadAudio(path) {
-	var audio = new Audio(path);
-	return audio;
-}
-
 function loadImage(path) {
 	var image = new Image();   // Create new img element
 
@@ -16,9 +11,9 @@ function loadImage(path) {
 }
 
 function preloadMedia() {
-	audio = 	{
-							"battleMusic1" : loadAudio("resources/battleMusic1.mp3")
-						}
+	sounds.load([
+	  					"/resources/battleMusic1.mp3"
+	]);
 
 	images = {
 							"testLevel" : loadImage("resources/testLevel.png"),
@@ -109,19 +104,6 @@ function preloadMedia() {
 					 };
 }
 
-function getAudio(song) {
-	return audio[song];
-}
-
-function checkReadyState(audio) {
-	if (audio.readyState === 4) {
-		return true;
-	}
-}
-
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
-}
 
 
 function getImage(pose) {
@@ -135,3 +117,26 @@ function getCookie(name) {
 }
 
 preloadMedia();
+
+var soundsLoaded = false;
+
+sounds.whenLoaded = updateMedia;
+
+function setup() {
+	console.log("sounds loaded!");
+	soundsLoaded = true;
+}
+
+function updateMedia() {
+	function onStartInteraction(e) {
+    if(player.musicPlayed == false) {
+        var bgMusic = sounds["/resources/battleMusic1.mp3"];
+        bgMusic.play();
+        player.musicPlayed = true;
+    }
+	}
+
+	$(document).bind("click keydown keyup touchstart", onStartInteraction);
+}
+
+
