@@ -1,9 +1,15 @@
+html {
+  height: 100%;
+}
+
 input {
 	outline: none;
 }
 
 body {
+  height:100%;
 	background: rgb(0, 0, 0);
+  overflow: hidden;
 }
 	
 canvas {
