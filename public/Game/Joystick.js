@@ -8,7 +8,7 @@ var sampleJoystick = {
       top: '45%'
     },
     zone: document.getElementById("zone_joystick"),
-    lockX: true,
+    //lockX: true,
     size: radius*2,
     color: 'white'
 };
