@@ -1,6 +1,20 @@
 function manageKeyEvents(player) {
   var currentTime = (new Date()).getTime();
 
+  $(".leftBtn").on("taphold",function(){     // touch events
+    if(player.attacking == false && player.dead == false)
+      player.hVelocity = -1*player.runningSpeed;
+    else
+      player.hVelocity = 0;
+  });
+
+  $(".rightBtn").on("taphold",function(){     // touch events
+    if(player.attacking == false && player.dead == false)
+      player.hVelocity = player.runningSpeed;
+    else
+      player.hVelocity = 0;
+  });
+
   $(document).keydown(function(event){
     key = String.fromCharCode(event.which);
     key = String.fromCharCode(event.keyCode);
