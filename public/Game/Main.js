@@ -11,6 +11,12 @@ $(function() {
   var delta = 0;
   var curPlayer;
 
+  var sound = new Howl({
+    src: ['/resources/battleMusic1.mp3']
+  });
+
+  sound.play();
+
   function gameLoop() {
     window.requestAnimationFrame(gameLoop);
 
@@ -35,6 +41,7 @@ $(function() {
 
         App.drawSprites(curPlayer);
         App.drawGui(curPlayer);
+
       }
       else {
         App.ctx.font = "5rem Arial";

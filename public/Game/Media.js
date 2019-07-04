@@ -113,25 +113,16 @@ function getAudio(song) {
 	return audio[song];
 }
 
+function checkReadyState(audio) {
+	if (audio.readyState === 4) {
+		return true;
+	}
+}
+
 const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
-function playSong(song) {
-	var promise = getAudio(song).play();
-
-	if (promise !== undefined) {
-    promise.then(_ => {
-      console.log("playing");
-    }).catch(error => {
-    	console.log("retrying to play music");
-    	$("#logs").append("<p>Retrying to play music</p>");
-    	sleep(500).then(() => {
-    		playSong(song);			
-    	})
-    });
-	}
-}
 
 function getImage(pose) {
 	return images[pose];
