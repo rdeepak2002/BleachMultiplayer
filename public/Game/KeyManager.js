@@ -38,7 +38,7 @@ function manageKeyEvents(player) {
     $(".attackBtn").click(function(){
       if(player.dead == false) {
         attack();
-        $(".attackBtn").hide();
+        //$(".attackBtn").hide();
       }
     });
 
