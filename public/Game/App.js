@@ -63,6 +63,7 @@ function init(app) {
   });
 
   app.socket.on("helloPlayer", function(data) {		// emit
+    $("#logs").append("<p>received hello player</p>");
   	app.playerId = data.num;
   	app.addPlayer();
   	app.getPlayers();
