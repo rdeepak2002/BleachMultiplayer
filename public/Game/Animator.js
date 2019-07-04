@@ -65,6 +65,7 @@ function animate(player, App) {
 
     if(curFrame > numFrames-1) {
       player.attacking = false;         // UNCOMMENT THIS!
+      $(".attackBtn").show();
       curFrame = numFrames-1;
     }
 

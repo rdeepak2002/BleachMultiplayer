@@ -16,7 +16,7 @@ function manageKeyEvents(player) {
   }
 
   function attack() {
-    if(player.attacking == false && player.y==player.groundY) {
+    if(player.y==player.groundY) {
       player.attackTimer = currentTime;
       player.animTimer = currentTime; 
       player.attacking = true;
@@ -36,7 +36,10 @@ function manageKeyEvents(player) {
     });
 
     $(".attackBtn").click(function(){
-      attack();
+      if(player.dead == false) {
+        attack();
+        $(".attackBtn").hide();
+      }
     });
 
     if(joyStickDirection == "right") {
@@ -92,13 +95,17 @@ function manageKeyEvents(player) {
     if(key == "W" || key == "w") {
       jump();
     }
-    if ((event.keyCode || event.which) == 37 && player.dead == false) {   
-      player.facingLeft = true;
-      attack();
+    if ((event.keyCode || event.which) == 37) {  
+      if(player.dead == false && player.attacking == false) {
+        player.facingLeft = true;
+        attack();       
+      } 
     }
-    if ((event.keyCode || event.which) == 39 && player.dead == false) {           // right arrow
-      player.facingLeft = false;
-      attack();
+    if ((event.keyCode || event.which) == 39) {           // right arrow
+      if(player.dead == false && player.attacking == false) {
+        player.facingLeft = false;
+        attack();
+      }
     }
   });  
 }
