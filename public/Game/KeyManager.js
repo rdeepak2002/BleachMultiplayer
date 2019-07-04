@@ -17,6 +17,7 @@ function manageKeyEvents(player) {
 
   function attack() {
     if(player.attacking == false && player.y==player.groundY) {
+      player.attackTimer = currentTime;
       player.animTimer = currentTime; 
       player.attacking = true;
     }
