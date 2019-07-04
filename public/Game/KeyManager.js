@@ -26,7 +26,7 @@ function manageKeyEvents(player) {
 
     if(key == "D" || key == "d") {
       if(player.dead == false) {
-        player.animTimer = currentTime;    
+        player.animTimer = currentTime;
         player.hVelocity = 0;
       }
     }

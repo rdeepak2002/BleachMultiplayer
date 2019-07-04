@@ -9,6 +9,8 @@ function init(app) {
   app.socket = io();
   app.playerId = 0;
 
+  playSong("battleMusic1");
+
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');
   }

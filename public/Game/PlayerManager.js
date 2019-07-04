@@ -3,8 +3,6 @@ function updatePlayerState(player, dt) {
     player.dead = true;
   }
 
-  console.log(dt)
-
   player.x = player.x + player.hVelocity*(dt/30);
 
   player.y = player.y - player.vVelocity*(dt/30);

@@ -1,3 +1,8 @@
+function loadAudio(path) {
+	var audio = new Audio(path);
+	return audio;
+}
+
 function loadImage(path) {
 	var image = new Image();   // Create new img element
 
@@ -10,7 +15,11 @@ function loadImage(path) {
   return image;
 }
 
-function preloadImages() {
+function preloadMedia() {
+	audio = 	{
+							"battleMusic1" : loadAudio("resources/battleMusic1.mp3")
+						}
+
 	images = {
 							"testLevel" : loadImage("resources/testLevel.png"),
 
@@ -100,6 +109,22 @@ function preloadImages() {
 					 };
 }
 
+function getAudio(song) {
+	return audio[song];
+}
+
+function playSong(song) {
+	var promise = getAudio(song).play();
+
+	if (promise !== undefined) {
+	    promise.then(_ => {
+	      console.log("playing");
+	    }).catch(error => {
+	    	console.log("error playing music");
+	    });
+	}
+}
+
 function getImage(pose) {
 	return images[pose];
 }
@@ -110,4 +135,4 @@ function getCookie(name) {
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
-preloadImages();
+preloadMedia();
