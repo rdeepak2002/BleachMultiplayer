@@ -92,7 +92,9 @@ function preloadImages() {
 							"ichigoDead3Left" : loadImage("resources/ichigo/ichigoDeath3Left.png"),
 							"ichigoDead4Left" : loadImage("resources/ichigo/ichigoDeath4Left.png"),
 							"ichigoDead5Left" : loadImage("resources/ichigo/ichigoDeath5Left.png"),
-							"ichigoDead6Left" : loadImage("resources/ichigo/ichigoDeath6Left.png")
+							"ichigoDead6Left" : loadImage("resources/ichigo/ichigoDeath6Left.png"),
+
+							"gameOverText"		: loadImage("resources/gameover.png")
 					 };
 }
 

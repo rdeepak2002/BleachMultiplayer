@@ -1,11 +1,13 @@
-function updatePlayerState(player) {
+function updatePlayerState(player, dt) {
   if(player.health == 0) {
     player.dead = true;
   }
 
-  player.x = player.x + player.hVelocity;
+  console.log(dt)
 
-  player.y = player.y - player.vVelocity;
+  player.x = player.x + player.hVelocity*(dt/30);
+
+  player.y = player.y - player.vVelocity*(dt/30);
 
   if(player.y < player.groundY) {
     player.vVelocity -= player.fallingSpeed;player.fallingSpeed;
@@ -61,7 +63,7 @@ function checkPlayerAttack(player, playerArr, App) {
         // App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
 
         if(checkCollide(attackingRect, otherPlayerRect) == true) {
-          App.attackPlayer(otherPlayer.playerId, 10, player.facingLeft);
+          App.attackPlayer(otherPlayer.playerId, player.attack, player.facingLeft);
         }
       }
     }

@@ -4,7 +4,7 @@ $(function() {
 
   var cw = App.canvas.width;
   var ch = App.canvas.height;
-  var fps = 30;
+  var fps =60;
   var interval = 1000/fps;
   var lastTime = (new Date()).getTime();
   var currentTime = 0;
@@ -26,8 +26,8 @@ $(function() {
         manageKeyEvents(curPlayer);
         App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
 
-        animate(curPlayer);
-        updatePlayerState(curPlayer);
+        animate(curPlayer, App);
+        updatePlayerState(curPlayer, delta);
         if(curPlayer.dead == false)
           checkPlayerAttack(curPlayer, App.playerArr, App);
 

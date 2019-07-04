@@ -1,7 +1,7 @@
 function init(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.height = 570;
-  app.canvas.width = 1000;
+  app.canvas.height = 600;
+  app.canvas.width = 1200;
   app.canvas.scaleY = -app.canvas.height;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
@@ -111,15 +111,23 @@ function init(app) {
   }
 
   app.drawGui = function(curPlayer) {
-  	var healthBarX = 10;
-  	var healthBarY = 10;
-  	var healthBarHeight = 30;
-  	var healthBarWidth = 500;
+    if(curPlayer.dead == true) {
+      var img = getImage("gameOverText");
+      var imgWidth = img.naturalWidth*2;
+      var imgHeight = img.naturalHeight*2
+      app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
+    }
+    else {
+      var healthBarX = 10;
+      var healthBarY = 10;
+      var healthBarHeight = 30;
+      var healthBarWidth = 500;
 
-		app.ctx.fillStyle = "rgb(0, 0, 0)";
-		app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight)
+      app.ctx.fillStyle = "rgb(0, 0, 0)";
+      app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight)
 
-  	app.ctx.fillStyle = "rgb(255, 0, 0)";
-		app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight)	
+      app.ctx.fillStyle = "rgb(255, 0, 0)";
+      app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight)  
+    }
 	}
 };

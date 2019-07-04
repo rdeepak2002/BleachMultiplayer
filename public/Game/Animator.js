@@ -1,4 +1,4 @@
-function animate(player) {
+function animate(player, App) {
   var currentTime = (new Date()).getTime();
   var delta = (currentTime-player.animTimer);
   var speed = 100;
