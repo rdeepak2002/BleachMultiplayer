@@ -30,10 +30,10 @@ function init(app) {
   }
 
   app.addPlayer = function() {
+    $("#logs").append("<p>Creating Player Class</p>");
+
   	newPlayer = new Player();
   	newPlayer.playerId = app.playerId;
-
-    $("#logs").append("<p>going to get cookie now </p>");
 
   	username = getCookie("username");
 
