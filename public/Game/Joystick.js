@@ -7,6 +7,7 @@ var sampleJoystick = {
       left: '15%',
       top: '45%'
     },
+    zone: document.getElementById("zone_joystick"),
     size: radius*2,
     color: 'white'
 };
