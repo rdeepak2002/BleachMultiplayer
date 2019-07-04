@@ -4,11 +4,11 @@ var joyStickDirection = "none";
 var sampleJoystick = {
     mode: 'static',
     position: {
-      left: '25%',
-      top: '50%'
+      left: '15%',
+      top: '45%'
     },
     size: radius*2,
-    color: 'black'
+    color: 'white'
 };
 
 var joystick;
@@ -31,6 +31,7 @@ var isMobile = {
         return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
     },
     any: function() {
+        //return true;
         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     }
 };
@@ -58,4 +59,7 @@ if( isMobile.any() ) {
   }).on('pressure', function(evt, data) {
     position=data;
   });
+}
+else {
+  $( "#mobileBtns" ).remove();
 }

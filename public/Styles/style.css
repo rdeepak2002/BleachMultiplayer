@@ -39,6 +39,23 @@ canvas {
   color: rgb(255, 255, 255);
 }
 
+.mobileBtn {
+  width: 5rem;
+  height: 5rem;
+}
+
+.attackBtn {
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+}
+
+.jumpBtn {
+  position: absolute;
+  top: 16rem;
+  right: 7rem;
+}
+
 @media all and (max-width: 600px) and (orientation:landscape) 
 {
   canvas {

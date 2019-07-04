@@ -1,20 +1,6 @@
 function manageKeyEvents(player) {
   var currentTime = (new Date()).getTime();
 
-  // $(".leftBtn").on("taphold",function(){     // touch events
-  //   if(player.attacking == false && player.dead == false)
-  //     player.hVelocity = -1*player.runningSpeed;
-  //   else
-  //     player.hVelocity = 0;
-  // });
-
-  // $(".rightBtn").on("taphold",function(){     // touch events
-  //   if(player.attacking == false && player.dead == false)
-  //     player.hVelocity = player.runningSpeed;
-  //   else
-  //     player.hVelocity = 0;
-  // });
-
   function moveRight() {
     if(player.attacking == false && player.dead == false)
         player.hVelocity = player.runningSpeed;
@@ -29,6 +15,20 @@ function manageKeyEvents(player) {
         player.hVelocity = 0;
   }
 
+  function attack() {
+    if(player.attacking == false && player.y==player.groundY) {
+      player.animTimer = currentTime; 
+      player.attacking = true;
+    }
+  }
+
+  function jump() {
+    if(player.y == player.groundY && player.dead == false) {
+      player.animTimer = currentTime;    
+      player.vVelocity = player.jumpingSpeed;
+    }
+  }
+
   if( isMobile.any() ) {
     if(joyStickDirection == "right") {
       moveRight();
@@ -40,6 +40,14 @@ function manageKeyEvents(player) {
       player.hVelocity = 0;
     }
   }
+
+  $(".attackBtn").on("tap",function(){     // touch events
+    attack();
+  });
+
+  $(".jumpBtn").on("tap",function(){     // touch events
+    jump();
+  });
 
   $(document).keydown(function(event){
     key = String.fromCharCode(event.which);
@@ -81,24 +89,15 @@ function manageKeyEvents(player) {
       }
     }
     if(key == "W" || key == "w") {
-      if(player.y == player.groundY && player.dead == false) {
-        player.animTimer = currentTime;    
-        player.vVelocity = player.jumpingSpeed;
-      }
+      jump();
     }
     if ((event.keyCode || event.which) == 37 && player.dead == false) {   
       player.facingLeft = true;
-      if(player.attacking == false && player.y==player.groundY) {
-        player.animTimer = currentTime; 
-        player.attacking = true;
-      }
+      attack();
     }
     if ((event.keyCode || event.which) == 39 && player.dead == false) {           // right arrow
       player.facingLeft = false;
-      if(player.attacking == false && player.y==player.groundY) {
-        player.animTimer = currentTime; 
-        player.attacking = true;   
-      }
+      attack();
     }
   });  
 }
