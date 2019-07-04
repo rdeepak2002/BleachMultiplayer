@@ -113,15 +113,23 @@ function getAudio(song) {
 	return audio[song];
 }
 
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 function playSong(song) {
 	var promise = getAudio(song).play();
 
 	if (promise !== undefined) {
-	    promise.then(_ => {
-	      console.log("playing");
-	    }).catch(error => {
-	    	console.log("error playing music");
-	    });
+    promise.then(_ => {
+      console.log("playing");
+    }).catch(error => {
+    	console.log("retrying to play music");
+
+    	sleep(500).then(() => {
+    		playSong(song);			
+    	})
+    });
 	}
 }
 
