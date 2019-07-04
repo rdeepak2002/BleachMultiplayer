@@ -9,10 +9,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
     <link rel="stylesheet" href="/public/Styles/style.css" />
 
@@ -38,13 +40,25 @@
 
     <article><!-- our canvas will be inserted here--></article>
 
-    <div class="leftBtn">
+<!--     <div id="zone_joystick"></div>
+
+    <script type="text/javascript">
+        var options = {
+            zone: document.getElementById('zone_joystick')
+        };
+        var manager = nipplejs.create(options);
+    </script> -->
+
+    Joystick:
+    <div id="zone_joystick">
+    </div>
+<!--     <div class="leftBtn">
         <p>LEFT</p>
     </div>
 
     <div class="rightBtn">
         <p>RIGHT</p>
-    </div>
+    </div> -->
     
     <div class="debug" style="visibility: hidden">
         <p>Logs:</p>
@@ -57,6 +71,7 @@
     <script type="text/javascript" src="/public/Game/Player.js"></script>
     <script type="text/javascript" src="/public/Game/PlayerManager.js"></script>
     <script type="text/javascript" src="/public/Game/Animator.js"></script>
+    <script type="text/javascript" src="/public/Game/Joystick.js"></script>
     <script type="text/javascript" src="/public/Game/KeyManager.js"></script>
     <script type="text/javascript" src="/public/Game/Main.js"></script>
 

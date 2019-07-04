@@ -1,19 +1,45 @@
 function manageKeyEvents(player) {
   var currentTime = (new Date()).getTime();
 
-  $(".leftBtn").on("taphold",function(){     // touch events
-    if(player.attacking == false && player.dead == false)
-      player.hVelocity = -1*player.runningSpeed;
-    else
-      player.hVelocity = 0;
-  });
+  // $(".leftBtn").on("taphold",function(){     // touch events
+  //   if(player.attacking == false && player.dead == false)
+  //     player.hVelocity = -1*player.runningSpeed;
+  //   else
+  //     player.hVelocity = 0;
+  // });
 
-  $(".rightBtn").on("taphold",function(){     // touch events
+  // $(".rightBtn").on("taphold",function(){     // touch events
+  //   if(player.attacking == false && player.dead == false)
+  //     player.hVelocity = player.runningSpeed;
+  //   else
+  //     player.hVelocity = 0;
+  // });
+
+  function moveRight() {
     if(player.attacking == false && player.dead == false)
-      player.hVelocity = player.runningSpeed;
-    else
-      player.hVelocity = 0;
-  });
+        player.hVelocity = player.runningSpeed;
+      else
+        player.hVelocity = 0;
+  }
+
+  function moveLeft() {
+    if(player.attacking == false && player.dead == false)
+        player.hVelocity = -1*player.runningSpeed;
+      else
+        player.hVelocity = 0;
+  }
+
+  console.log(joyStickDirection);
+
+  if(joyStickDirection == "right") {
+    moveRight();
+  }
+  else if(joyStickDirection == "left") {
+    moveLeft();
+  }
+  else if(joyStickDirection == "none") {
+    player.hVelocity = 0;
+  }
 
   $(document).keydown(function(event){
     key = String.fromCharCode(event.which);
@@ -30,16 +56,10 @@ function manageKeyEvents(player) {
     }
 
     if(key == "D" || key == "d") {
-      if(player.attacking == false && player.dead == false)
-        player.hVelocity = player.runningSpeed;
-      else
-        player.hVelocity = 0;
+      moveRight();
     }
     else if(key == "A" || key == "a") {
-      if(player.attacking == false && player.dead == false)
-        player.hVelocity = -1*player.runningSpeed;
-      else
-        player.hVelocity = 0;
+      moveLeft();
     }
   });  
 
