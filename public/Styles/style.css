@@ -7,8 +7,8 @@ body {
 }
 	
 canvas {
-	background: rgb(255, 255, 255);
-	width: 100%;
+  width: 100%;
+  background: rgb(255, 255, 255);
 }
 
 .center {

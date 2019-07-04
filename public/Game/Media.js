@@ -14,6 +14,8 @@ function preloadImages() {
 	images = {
 							"testLevel" : loadImage("resources/testLevel.png"),
 
+							"ichigoHealthBarIcon" : loadImage("resources/ichigo/ichigoHealthBarIcon.png"),
+
 							"ichigoStand1" : loadImage("resources/ichigo/ichigoStand1.png"),
 							"ichigoStand2" : loadImage("resources/ichigo/ichigoStand2.png"),
 							"ichigoStand3" : loadImage("resources/ichigo/ichigoStand3.png"),

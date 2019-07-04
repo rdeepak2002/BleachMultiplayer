@@ -94,17 +94,28 @@ function init(app) {
       	var xOffset = 50;
       	var yOffset = 230;
 
+        var username = player.username;
+
   	  	app.ctx.font = "1rem Arial";
   	  	app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-      	app.ctx.fillRect(xOffset + player.x-5, yOffset + player.y-15, 10*player.username.length+7, 20);
+      	app.ctx.roundRect(xOffset + player.x-5, yOffset + player.y-15, 10*username.length+7, 20, 20).fill();
   	  	app.ctx.fillStyle = "rgb(255, 255, 255)";
-  			app.ctx.fillText(player.username, xOffset + player.x, yOffset + player.y);
 
-  			if(curPlayer.playerId != player.playerId && player.dead == false) {
-		  		app.ctx.fillStyle = "rgb(0, 0, 0)";
-	  			app.ctx.fillRect(player.x, player.y, 150, 10)
+  			app.ctx.fillText(username, xOffset + player.x, yOffset + player.y);
+
+  			if(curPlayer.playerId != player.playerId && player.dead == false && player.health != player.maxHealth) {
+          var outline = 2;
+          var healthBarWidth = 150;
+          var healthBarHeight = 10;
+
+          app.ctx.fillStyle = "rgb(250, 250, 210)";
+          app.ctx.roundRect(player.x - outline, player.y - outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20).fill();
+          
+		  		app.ctx.fillStyle = "rgba(0, 0, 0)";
+	  			app.ctx.roundRect(player.x, player.y, healthBarWidth, healthBarHeight, 20).fill();
+
 	  	  	app.ctx.fillStyle = "rgb(255, 0, 0)";
-	  			app.ctx.fillRect(player.x, player.y, 150*(player.health / player.maxHealth), 10)	
+	  			app.ctx.roundRect(player.x, player.y, healthBarWidth*(player.health / player.maxHealth), healthBarHeight, 20).fill();
   			}
       }
     }
@@ -118,16 +129,24 @@ function init(app) {
       app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
     }
     else {
-      var healthBarX = 10;
-      var healthBarY = 10;
+      var healthBarX = 20;
+      var healthBarOffset = 38;
+      var healthBarY = 20;
       var healthBarHeight = 30;
       var healthBarWidth = 500;
+      var outline = 3;
 
-      app.ctx.fillStyle = "rgb(0, 0, 0)";
-      app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight)
+      var img = getImage("ichigoHealthBarIcon");
+
+      app.ctx.fillStyle = "rgb(240,230,140)";
+      app.ctx.roundRect(healthBarX + healthBarOffset-outline, healthBarY-outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20).fill();
+      
+      app.ctx.fillStyle = "rgba(0, 0, 0)";
+      app.ctx.roundRect(healthBarX + healthBarOffset, healthBarY, healthBarWidth, healthBarHeight, 20).fill();
 
       app.ctx.fillStyle = "rgb(255, 0, 0)";
-      app.ctx.fillRect(healthBarX, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight)  
+      app.ctx.roundRect(healthBarX + healthBarOffset, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight, 20).fill();  
+      app.ctx.drawImage(img, healthBarX-5, healthBarY-outline, img.naturalWidth*2, healthBarHeight+outline*2);
     }
 	}
 };
