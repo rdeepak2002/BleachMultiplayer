@@ -33,4 +33,10 @@ canvas {
   color: rgb(255, 255, 255);
 }
 
-
+@media all and (max-width: 600px) and (orientation:landscape) 
+{
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+}
