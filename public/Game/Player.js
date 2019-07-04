@@ -25,5 +25,6 @@ let Player = class {
 		this.facingLeft = false;
 		this.attacking = false;
 		this.dead = false;
+		this.musicPlayed = false;
 	}
 }

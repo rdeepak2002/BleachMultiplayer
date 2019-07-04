@@ -8,9 +8,6 @@ function init(app) {
   app.socket = io();
   app.playerId = 0;
 
-  //audio_manager.play();
-
-
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');
   }

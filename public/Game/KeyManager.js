@@ -5,6 +5,16 @@ function manageKeyEvents(player) {
     key = String.fromCharCode(event.which);
     key = String.fromCharCode(event.keyCode);
 
+    if(player.musicPlayed == false) {           // on any key pressed play music
+      player.musicPlayed = true;
+
+      var sound = new Howl({
+        src: ['/resources/battleMusic1.mp3']
+      });
+
+      sound.play();
+    }
+
     if(key == "D" || key == "d") {
       if(player.attacking == false && player.dead == false)
         player.hVelocity = player.runningSpeed;
