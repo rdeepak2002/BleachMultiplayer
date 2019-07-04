@@ -5,7 +5,7 @@ var sampleJoystick = {
     mode: 'static',
     position: {
       left: '15%',
-      top: '45%'
+      top: '75%'
     },
     zone: document.getElementById("zone_joystick"),
     size: radius*2,
