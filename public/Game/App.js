@@ -64,10 +64,6 @@ function init(app) {
   });
 
   app.socket.on("helloPlayer", function(data) {		// emit
-    app.ctx.font = "5rem Arial";
-    app.ctx.fillStyle = "rgb(0, 0, 0)";
-    app.ctx.fillText("HELLO", 10, 70);
-
   	app.playerId = data.num;
   	app.addPlayer();
   	app.getPlayers();
