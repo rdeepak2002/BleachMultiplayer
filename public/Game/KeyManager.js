@@ -29,16 +29,16 @@ function manageKeyEvents(player) {
         player.hVelocity = 0;
   }
 
-  console.log(joyStickDirection);
-
-  if(joyStickDirection == "right") {
-    moveRight();
-  }
-  else if(joyStickDirection == "left") {
-    moveLeft();
-  }
-  else if(joyStickDirection == "none") {
-    player.hVelocity = 0;
+  if( isMobile.any() ) {
+    if(joyStickDirection == "right") {
+      moveRight();
+    }
+    else if(joyStickDirection == "left") {
+      moveLeft();
+    }
+    else if(joyStickDirection == "none") {
+      player.hVelocity = 0;
+    }
   }
 
   $(document).keydown(function(event){
