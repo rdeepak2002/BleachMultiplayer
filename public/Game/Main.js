@@ -4,7 +4,7 @@ $(function() {
 
   var cw = App.canvas.width;
   var ch = App.canvas.height;
-  var fps =60;
+  var fps = 30;
   var interval = 1000/fps;
   var lastTime = (new Date()).getTime();
   var currentTime = 0;

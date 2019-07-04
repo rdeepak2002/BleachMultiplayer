@@ -2,7 +2,6 @@ function init(app) {
   app.canvas = document.createElement("canvas");
   app.canvas.height = 600;
   app.canvas.width = 1200;
-  app.canvas.scaleY = -app.canvas.height;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
   app.playerArr = {};

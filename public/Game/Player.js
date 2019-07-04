@@ -8,9 +8,9 @@ class Player {
 	hVelocity = 0;
 	vVelocity = 0;
 	runningSpeed = 12;
-	jumpingSpeed = 40;
-	fallingSpeed = 0.4;
-	fallingAccel = 0.2;
+	jumpingSpeed = 30;
+	fallingSpeed = 0.7;
+	fallingAccel = 0.3;
 	attack = 10;
 	fallingSpeedOrig = this.fallingSpeed;
 	maxHealth = 1000;
