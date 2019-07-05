@@ -1,4 +1,4 @@
-function manageKeyEvents(player) {            // wasd to move, arrow keys to attack, shift to teleport
+function manageKeyEvents(player, app) {            // wasd to move, arrow keys to attack, shift to teleport
   var currentTime = (new Date()).getTime();
 
   function moveRight() {
@@ -100,21 +100,30 @@ function manageKeyEvents(player) {            // wasd to move, arrow keys to att
       }
     }
     if(key == "E" || key == "e") {
-      if(player.dead == false && player.attacking == false) {
-        if(player.guarding == false) {
-          player.animTimer = currentTime; 
-          player.guarding = true;
+      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
+        player.animTimer = currentTime; 
+        player.guarding = true;
+      }
+    }
+    if(key == "Q" || key == "q") {
+      if(player.firedShot == false && player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
+        var getsugaXOffset = app.canvas.width/2 + player.centerOffset;
+        if(player.facingLeft == false) {
+          getsugaXOffset += 100;
         }
+        app.createSprite(player.x + getsugaXOffset, player.y, player);
+        player.firedShot = true;
+        attack();
       }
     }
     if ((event.keyCode || event.which) == 37) {  
-      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
+      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
         player.facingLeft = true;
         attack();       
       } 
     }
     if ((event.keyCode || event.which) == 39) {           // right arrow
-      if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false) {
+      if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false && player.y == player.groundY) {
         player.facingLeft = false;
         attack();
       }

@@ -8,7 +8,7 @@ window.onblur = function () {
   isTabActive = false; 
 }; 
 
-// test
-setInterval(function () { 
-  console.log(window.isTabActive ? 'active' : 'inactive'); 
-}, 1000);
+// // test
+// setInterval(function () { 
+//   console.log(window.isTabActive ? 'active' : 'inactive'); 
+// }, 1000);

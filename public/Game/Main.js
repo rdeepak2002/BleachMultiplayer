@@ -23,7 +23,7 @@ $(function() {
       if(Object.keys(App.playerArr).length > 0) {
         curPlayer = App.playerArr[App.playerId];
 
-        manageKeyEvents(curPlayer);
+        manageKeyEvents(curPlayer, App);
 
         var levelBg = getImage("level1Bg");
         var levelFg = getImage("level1Fg");
@@ -42,14 +42,16 @@ $(function() {
 
         animate(curPlayer, App);
         updatePlayerState(curPlayer, delta);
+
         if(curPlayer.dead == false)
           checkPlayerAttack(curPlayer, App.playerArr, App);
+
+        updateSprites(App, curPlayer, delta);
 
         App.updatePlayer(App.playerId, curPlayer);
 
         App.drawSprites(curPlayer);
         App.drawGui(curPlayer);
-
       }
       else {
         App.ctx.font = "5rem Arial";

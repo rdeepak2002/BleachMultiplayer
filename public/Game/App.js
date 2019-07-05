@@ -1,11 +1,12 @@
 function init(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.width = window.innerWidth;
-  //app.canvas.width = 1200;
+  //app.canvas.width = window.innerWidth;
+  app.canvas.width = 1200;
   app.canvas.height = 800;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
   app.playerArr = {};
+  app.spriteArr = {};
   app.socket = io();
   app.playerId = 0;
   app.ip = "";
@@ -15,10 +16,21 @@ function init(app) {
    	app.socket.emit('getPlayers');
   }
 
+  app.getSprites = function() {
+    app.socket.emit('getSprites');
+  }
+
   app.updatePlayer = function(id, player) {
 	  app.socket.emit('updatePlayer', {
 	   	id: id,
       player: player
+    });
+  }
+
+  app.updateSprite = function(id, sprite) {
+    app.socket.emit('updateSprite', {
+      id: id,
+      sprite: sprite
     });
   }
 
@@ -55,6 +67,26 @@ function init(app) {
     app.playerArr[app.playerId] = newPlayer;
   }
 
+  app.createSprite = function(x, y, player) {
+    newSprite = new Sprite(app.playerId);
+    newSprite.x = x;
+    newSprite.y = y;
+    newSprite.width = getImage(newSprite.img).naturalWidth;
+    newSprite.height = getImage(newSprite.img).naturalHeight;
+
+    if(player.facingLeft && newSprite.hVelocity > 0) {
+      newSprite.hVelocity = newSprite.negHVelocity;
+      newSprite.img = "getsuga1Left"
+    } 
+
+    app.socket.emit('addSprite', {
+      id: app.playerId,
+      sprite: newSprite
+    });
+
+    app.spriteArr[app.playerId] = newSprite;
+  }
+
   app.socket.on("helloPlayer", function(data) {   // emit
     $("#logs").append("<p>received hello player</p>");
     app.playerId = data.num;
@@ -62,10 +94,20 @@ function init(app) {
 
     app.addPlayer();
     app.getPlayers();
+    app.getSprites();
   });
 
   app.socket.on("updateResponse", function(data) {			// broadcast
   	app.playerArr[data.id] = data.player;
+  });
+
+  app.socket.on("updateSpriteResponse", function(data) {      // broadcast
+    app.spriteArr[data.id] = data.sprite;
+  });
+
+  app.socket.on("spriteResponse", function(data) {      // broadcast
+    app.spriteArr[data.id] = data.sprite;
+    console.log("got sprite from " + data.id);
   });
 
   app.socket.on("attackResponse", function(data) {			// broadcast
@@ -75,6 +117,7 @@ function init(app) {
 
   app.socket.on("removePlayer", function(data) {			// broadcast
   	delete app.playerArr[data.id];
+    delete app.spriteArr[data.id];
   });
 
   app.socket.on("newPlayer", function(data) {			// broadcast
@@ -84,6 +127,10 @@ function init(app) {
 
   app.socket.on("playerResponse", function(data) {
   	app.playerArr = data.playerArr
+  });
+
+  app.socket.on("getSpriteResponse", function(data) {
+    app.spriteArr = data.spriteArr
   });
 
   app.socket.on('connectToRoom',function(data) {
@@ -173,3 +220,15 @@ function init(app) {
     }
 	}
 };
+
+function checkCollide(rect1, rect2) {
+  if (rect1.x < rect2.x + rect2.width &&
+     rect1.x + rect1.width > rect2.x &&
+     rect1.y < rect2.y + rect2.height &&
+     rect1.y + rect1.height > rect2.y) {
+      return true;
+  }
+  else {
+    return false;
+  }
+}

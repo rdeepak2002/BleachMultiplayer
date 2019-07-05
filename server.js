@@ -19,6 +19,7 @@ var clientId = 0;
 var roomNo = 1;
 var numberConnected = 0;
 var playerArr = {};
+var spriteArr = {};
 io.on('connection', function(socket) {
 	var address = socket.request.connection.remoteAddress;
 	clientId = socket.id;
@@ -46,6 +47,14 @@ io.on('connection', function(socket) {
 		});
 	});
 
+	socket.on("updateSprite", function(data) {		// add room specific code:  io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
+		spriteArr[data.id] = data.sprite;
+		socket.broadcast.emit("updateSpriteResponse", {
+			id: data.id,
+			sprite: data.sprite
+		});
+	});
+
 	socket.on("attackPlayer", function(data) {
 		damage = data.damage;
 		playerArr[data.id].health -= damage;
@@ -66,11 +75,29 @@ io.on('connection', function(socket) {
 		});
 	});
 
+	socket.on("getSprites", function(data) {
+		io.emit("getSpriteResponse", {
+			spriteArr: spriteArr
+		});
+	});
+
 	socket.on("addPlayer", function(data) {
 		console.log("adding player!");
 		playerArr[data.id] = data.player;
 
     printCurrentPlayers();
+	});
+
+	socket.on("addSprite", function(data) {
+		console.log("adding sprite!");
+		spriteArr[data.id] = data.sprite;
+
+		socket.broadcast.emit("spriteResponse", {
+			id: data.id,
+			sprite: data.sprite
+		});
+
+    printCurrentSprites();
 	});
 
 	socket.on('disconnect', function () {
@@ -85,10 +112,16 @@ io.on('connection', function(socket) {
   });
 
   function printCurrentPlayers() {
-  	console.log("\n\nCurrent players:");
+  	console.log("Current players:");
 		for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
 		  console.log("id:" + keys[i] + " | username: " + playerArr[keys[i]].username + " | ip: " + playerArr[keys[i]].ip);
-		  console.log("\n\n");
+		}
+  }
+
+  function printCurrentSprites() {
+  	console.log("Current sprites:");
+		for (var i = 0, keys = Object.keys(spriteArr), ii = keys.length; i < ii; i++) {
+		  console.log("id:" + keys[i]);
 		}
   }
 });

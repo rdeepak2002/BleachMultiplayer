@@ -17,6 +17,9 @@ function preloadMedia() {
 							"level1Bg" : loadImage("resources/level1Bg.png"),
 							"level1Fg" : loadImage("resources/level1Fg.png"),
 
+							"getsuga1" : loadImage("resources/ichigo/getsuga1.png"),
+							"getsuga1Left" : loadImage("resources/ichigo/getsuga1Left.png"),
+
 							"ichigoHealthBarIcon" : loadImage("resources/ichigo/ichigoHealthBarIcon.png"),
 
 							"ichigoStand1" : loadImage("resources/ichigo/ichigoStand1.png"),
