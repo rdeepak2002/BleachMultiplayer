@@ -1,5 +1,7 @@
 let Player = class {
 	constructor() {
+		this.playerId = 0;
+		this.ip = "";
 		this.x = 0;
 		this.minX = -1000;
 		this.maxX = 1080;
@@ -19,7 +21,6 @@ let Player = class {
 		this.fallingSpeedOrig = this.fallingSpeed;
 		this.maxHealth = 1000;
 		this.health = this.maxHealth;
-		this.playerId = 0;
 		this.username = "";
 		this.animTimer = (new Date()).getTime();
 		this.img = "ichigoStand1";

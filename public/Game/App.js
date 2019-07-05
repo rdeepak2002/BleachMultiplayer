@@ -8,6 +8,7 @@ function init(app) {
   app.playerArr = {};
   app.socket = io();
   app.playerId = 0;
+  app.ip = "";
   app.showCollisionBox = false;
 
   app.getPlayers = function() {
@@ -32,6 +33,7 @@ function init(app) {
   app.addPlayer = function() {
   	newPlayer = new Player();
   	newPlayer.playerId = app.playerId;
+    newPlayer.ip = app.ip;
 
   	username = getCookie("username");
 
@@ -54,6 +56,8 @@ function init(app) {
   app.socket.on("helloPlayer", function(data) {   // emit
     $("#logs").append("<p>received hello player</p>");
     app.playerId = data.num;
+    app.ip = data.ip;
+
     app.addPlayer();
     app.getPlayers();
   });

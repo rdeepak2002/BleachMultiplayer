@@ -20,14 +20,16 @@ var roomNo = 1;
 var numberConnected = 0;
 var playerArr = {};
 io.on('connection', function(socket) {
+	var address = socket.handshake.address;
 	clientId = socket.id;
 	numberConnected++;
 	roomNo++;
 
 	console.log("CLIENT CONNECTED " + clientId);
 
-	socket.emit('helloPlayer',{ 
-  	num: clientId
+	socket.emit('helloPlayer', { 
+  	num: clientId,
+  	ip: address
   });
 
 	socket.broadcast.emit('newPlayer');
@@ -85,7 +87,8 @@ io.on('connection', function(socket) {
   function printCurrentPlayers() {
   	console.log("\n\nCurrent players:");
 		for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
-		  console.log(keys[i] + " | " + playerArr[keys[i]].username);
+		  console.log("id:" + keys[i] + " | username: " + playerArr[keys[i]].username + " | ip: " + playerArr[keys[i]].ip);
+		  console.log("\n\n");
 		}
   }
 });
