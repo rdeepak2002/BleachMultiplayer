@@ -1,12 +1,14 @@
 function init(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.width = 1200;
+  app.canvas.width = window.innerWidth;
+  //app.canvas.width = 1200;
   app.canvas.height = 800;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
   app.playerArr = {};
   app.socket = io();
   app.playerId = 0;
+  app.showCollisionBox = false;
 
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');

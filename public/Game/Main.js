@@ -25,7 +25,11 @@ $(function() {
 
         manageKeyEvents(curPlayer);
 
-        App.ctx.drawImage(getImage("testLevel"), 0-curPlayer.x, 0, App.canvas.width, App.canvas.height);
+        var levelBg = getImage("testLevel");
+
+        var scale = App.canvas.height / getImage("testLevel").naturalHeight;
+
+        App.ctx.drawImage(levelBg, 0-curPlayer.x-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
 
         animate(curPlayer, App);
         updatePlayerState(curPlayer, delta);

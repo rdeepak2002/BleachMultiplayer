@@ -62,9 +62,11 @@ function checkPlayerAttack(player, playerArr, App) {
         }
         
         // draw collision rectangles:
-        App.ctx.fillStyle = "rgb(255, 255, 255)";
-        App.ctx.fillRect(otherPlayerRect.x, otherPlayerRect.y, otherPlayerRect.width, otherPlayerRect.height);  
-        App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
+        if(App.showCollisionBox == true) {
+          App.ctx.fillStyle = "rgb(255, 255, 255)";
+          App.ctx.fillRect(otherPlayerRect.x, otherPlayerRect.y, otherPlayerRect.width, otherPlayerRect.height);  
+          App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
+        }
 
         if(checkCollide(attackingRect, otherPlayerRect) == true) {
           if(otherPlayer.guarding == false || otherPlayer.facingLeft == player.facingLeft) {
