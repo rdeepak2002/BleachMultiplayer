@@ -30,9 +30,6 @@ function updatePlayerState(player, dt) {
 
 
 function checkPlayerAttack(player, playerArr, App) {
-  var currentTime = (new Date()).getTime();
-  var delta = (currentTime-player.attackTimer);
-
   if(player.attacking == true) {
     for(var key in App.playerArr) {
       otherPlayer = App.playerArr[key];
@@ -70,14 +67,17 @@ function checkPlayerAttack(player, playerArr, App) {
 
         if(checkCollide(attackingRect, otherPlayerRect) == true) {
           if(otherPlayer.guarding == false || otherPlayer.facingLeft == player.facingLeft) {
-            App.attackPlayer(otherPlayer.playerId, player.attack, player.facingLeft);
+            if(player.hasHurt == false) {
+              App.attackPlayer(otherPlayer.playerId, player.attack, player.facingLeft);
+              player.hasHurt = true;
+            }
           }
         }
       }
     }
   }
   else {
-    player.attackTimer = (new Date()).getTime();
+    player.hasHurt = false;
   }
 }
 

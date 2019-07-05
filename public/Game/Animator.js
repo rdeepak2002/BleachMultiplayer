@@ -66,7 +66,7 @@ function animate(player, App) {
     player.yOffset = 0;
 
     var numFrames = 4;
-    speed = 150;
+    speed = 100;
     interval = speed * numFrames;
 
     curFrame = Math.round((numFrames-1)/(interval/delta))+1;

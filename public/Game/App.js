@@ -8,7 +8,7 @@ function init(app) {
   app.playerArr = {};
   app.socket = io();
   app.playerId = 0;
-  app.showCollisionBox = true;
+  app.showCollisionBox = false;
 
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');
