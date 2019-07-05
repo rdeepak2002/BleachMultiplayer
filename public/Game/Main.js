@@ -24,7 +24,8 @@ $(function() {
         curPlayer = App.playerArr[App.playerId];
 
         manageKeyEvents(curPlayer);
-        App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
+
+        App.ctx.drawImage(getImage("testLevel"), 0-curPlayer.x, 0, App.canvas.width, App.canvas.height);
 
         animate(curPlayer, App);
         updatePlayerState(curPlayer, delta);

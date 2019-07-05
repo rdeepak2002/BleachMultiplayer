@@ -41,24 +41,30 @@ function checkPlayerAttack(player, playerArr, App) {
         var otherPlayerRect = {};
         var attackingRect = {};
 
+        // for other player:
+        otherPlayerX = App.canvas.width/2 - getImage(otherPlayer.img).naturalWidth + otherPlayer.x - player.x;
+
+        // for current player:
+        playerRealX = App.canvas.width/2 - getImage(player.img).naturalWidth;
+
         if(otherPlayer.facingLeft == false) {
-          otherPlayerRect = {x: otherPlayer.x+35, y: otherPlayer.y+39, width: 70, height: 180};
+          otherPlayerRect = {x: otherPlayerX+35, y: otherPlayer.y+39, width: 70, height: 180};
         }
         else {
-          otherPlayerRect = {x: otherPlayer.x+65, y: otherPlayer.y+39, width: 70, height: 180};
+          otherPlayerRect = {x: otherPlayerX+65, y: otherPlayer.y+39, width: 70, height: 180};
         }
 
         if(player.facingLeft == false) {
-          attackingRect = {x: player.x+90, y: player.y+30, width: 190, height: 150};
+          attackingRect = {x: playerRealX+90, y: player.y+30, width: 190, height: 150};
         }
         else {
-          attackingRect = {x: player.x, y: player.y+39, width: 130, height: 150};
+          attackingRect = {x: playerRealX, y: player.y+39, width: 130, height: 150};
         }
         
         // draw collision rectangles:
-        // App.ctx.fillStyle = "rgb(255, 255, 255)";
-        // App.ctx.fillRect(otherPlayerRect.x, otherPlayerRect.y, otherPlayerRect.width, otherPlayerRect.height);  
-        // App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
+        App.ctx.fillStyle = "rgb(255, 255, 255)";
+        App.ctx.fillRect(otherPlayerRect.x, otherPlayerRect.y, otherPlayerRect.width, otherPlayerRect.height);  
+        App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
 
         if(checkCollide(attackingRect, otherPlayerRect) == true) {
           if(otherPlayer.guarding == false || otherPlayer.facingLeft == player.facingLeft) {

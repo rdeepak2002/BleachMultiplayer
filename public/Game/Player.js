@@ -1,9 +1,9 @@
 let Player = class {
 	constructor() {
-		this.x = 10;
-		this.minX = -60;
+		this.x = 0;
+		this.minX = -1000;
 		this.maxX = 1080;
-		this.groundY = 320;
+		this.groundY = 500;
 		this.y = this.groundY;
 		this.teleportDistance = 400;
 		this.yOffset = 0;

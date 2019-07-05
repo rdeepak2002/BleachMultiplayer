@@ -1,7 +1,7 @@
 function init(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.height = 600;
   app.canvas.width = 1200;
+  app.canvas.height = 800;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
   app.playerArr = {};
@@ -92,7 +92,19 @@ function init(app) {
       	console.log("error: cannot find image " + player.img);
       }
       else {
-	      app.ctx.drawImage(img, player.x + player.xOffset, player.y + player.yOffset, img.naturalWidth*2, img.naturalHeight*2);
+        var realX;
+        var realY;
+
+        if(curPlayer.playerId != player.playerId) {
+          realX = app.canvas.width/2 - img.naturalWidth + player.x - curPlayer.x;
+          realY = player.y;
+          app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
+        }
+        else {
+          realX = app.canvas.width/2 - getImage(curPlayer.img).naturalWidth;
+          realY = player.y;
+          app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
+        }
 
       	var xOffset = 50;
       	var yOffset = 230;
@@ -101,10 +113,10 @@ function init(app) {
 
   	  	app.ctx.font = "1rem Arial";
   	  	app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-      	app.ctx.roundRect(xOffset + player.x-5, yOffset + player.y-15, 10*username.length+7, 20, 20).fill();
+      	app.ctx.roundRect(xOffset + realX-5, yOffset + realY-15, 10*username.length+7, 20, 20).fill();
   	  	app.ctx.fillStyle = "rgb(255, 255, 255)";
 
-  			app.ctx.fillText(username, xOffset + player.x, yOffset + player.y);
+  			app.ctx.fillText(username, xOffset + realX, yOffset + realY);
 
   			if(curPlayer.playerId != player.playerId && player.dead == false && player.health != player.maxHealth) {
           var outline = 2;
@@ -112,13 +124,13 @@ function init(app) {
           var healthBarHeight = 10;
 
           app.ctx.fillStyle = "rgb(250, 250, 210)";
-          app.ctx.roundRect(player.x - outline, player.y - outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20).fill();
+          app.ctx.roundRect(realX - outline, realY - outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20).fill();
           
 		  		app.ctx.fillStyle = "rgba(0, 0, 0)";
-	  			app.ctx.roundRect(player.x, player.y, healthBarWidth, healthBarHeight, 20).fill();
+	  			app.ctx.roundRect(realX, realY, healthBarWidth, healthBarHeight, 20).fill();
 
 	  	  	app.ctx.fillStyle = "rgb(255, 0, 0)";
-	  			app.ctx.roundRect(player.x, player.y, healthBarWidth*(player.health / player.maxHealth), healthBarHeight, 20).fill();
+	  			app.ctx.roundRect(realX, realY, healthBarWidth*(player.health / player.maxHealth), healthBarHeight, 20).fill();
   			}
       }
     }
