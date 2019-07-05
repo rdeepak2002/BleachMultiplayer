@@ -25,11 +25,20 @@ $(function() {
 
         manageKeyEvents(curPlayer);
 
-        var levelBg = getImage("testLevel");
+        var levelBg = getImage("level1Bg");
+        var levelFg = getImage("level1Fg");
 
-        var scale = App.canvas.height / getImage("testLevel").naturalHeight;
+        var scale = App.canvas.height / getImage("level1Bg").naturalHeight;
 
-        App.ctx.drawImage(levelBg, 0-curPlayer.x-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+        var paralaxSpeed = 10;
+
+        App.ctx.drawImage(levelBg, 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+
+        App.ctx.drawImage(levelBg, 1*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+
+        App.ctx.drawImage(levelBg, 2*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+
+        App.ctx.drawImage(levelFg, 0-curPlayer.x-levelFg.naturalWidth/2, -560, levelFg.naturalWidth * scale*1.7, App.canvas.height*1.7);
 
         animate(curPlayer, App);
         updatePlayerState(curPlayer, delta);

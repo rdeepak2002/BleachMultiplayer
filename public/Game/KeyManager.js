@@ -32,7 +32,9 @@ function manageKeyEvents(player) {            // wasd to move, arrow keys to att
 
   if( isMobile.any() ) {
     $(".jumpBtn").click(function(){
-      jump();
+      if(player.attacking == false) {
+        jump();
+      }
     });
 
     $(".attackBtn").click(function(){
@@ -93,7 +95,9 @@ function manageKeyEvents(player) {            // wasd to move, arrow keys to att
       }
     }
     if(key == "W" || key == "w") {
-      jump();
+      if(player.attacking == false) {
+        jump();
+      }
     }
     if(key == "E" || key == "e") {
       if(player.dead == false && player.attacking == false) {

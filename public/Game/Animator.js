@@ -125,6 +125,36 @@ function animate(player, App) {
       curFrame = numFrames-1;
     }
 
+    if(player.facingLeft == false) {
+      if(curFrame == 1) {
+        player.xOffset = -30;
+      }
+      else if(curFrame == 2) {
+        player.xOffset = -10;
+      }
+      else if(curFrame == 3) {
+        player.xOffset = 85;
+      }
+      else if(curFrame == 4) {
+        player.xOffset = 90;
+      }
+      else if(curFrame == 5) {
+        player.xOffset = 0;
+      }
+      else if(curFrame == 6) {
+        player.xOffset = 0;
+      }
+      else if(curFrame == 7) {
+        player.xOffset = -20;
+      }
+      else if(curFrame == 8) {
+        player.xOffset = -20;
+      }
+      else if(curFrame == 9) {
+        player.xOffset = -20;
+      }
+    }
+
     var newImage = "ichigoStrongAttack" + curFrame;
 
     if(player.facingLeft) {
