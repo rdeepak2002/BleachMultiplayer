@@ -49,4 +49,10 @@ $(function() {
   }
 
   gameLoop();
+
+  setInterval(function () {         // if off tab, use setTimeout to update player state
+    if(isTabActive == false) {
+      setTimeout(gameLoop, interval);
+    }
+  }, interval);
 });

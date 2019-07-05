@@ -121,14 +121,15 @@ function animate(player, App) {
 
     if(curFrame > numFrames-1) {
       player.attacking = false;         // UNCOMMENT THIS!
-      $(".attackBtn").show();
+      //$(".attackBtn").show();
       curFrame = numFrames-1;
     }
 
     var newImage = "ichigoStrongAttack" + curFrame;
 
-    if(player.facingLeft)
+    if(player.facingLeft) {
       newImage = newImage + "Left";
+    }
 
     player.img = newImage;
   }
