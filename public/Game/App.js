@@ -8,7 +8,7 @@ function init(app) {
   app.playerArr = {};
   app.socket = io();
   app.playerId = 0;
-  app.showCollisionBox = false;
+  app.showCollisionBox = true;
 
   app.getPlayers = function() {
    	app.socket.emit('getPlayers');
@@ -98,12 +98,12 @@ function init(app) {
         var realY;
 
         if(curPlayer.playerId != player.playerId) {
-          realX = app.canvas.width/2 - 2*img.naturalWidth + player.x - curPlayer.x;
+          realX = app.canvas.width/2 + player.x - curPlayer.x + player.centerOffset;
           realY = player.y;
           app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
         }
         else {
-          realX = app.canvas.width/2 - 2*img.naturalWidth;
+          realX = app.canvas.width/2 + player.centerOffset;
           realY = player.y;
           app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
         }
@@ -142,7 +142,7 @@ function init(app) {
     if(curPlayer.dead == true) {
       var img = getImage("gameOverText");
       var imgWidth = img.naturalWidth*2;
-      var imgHeight = img.naturalHeight*2
+      var imgHeight = img.naturalHeight*2;
       app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
     }
     else {

@@ -6,6 +6,7 @@ let Player = class {
 		this.groundY = 530;
 		this.y = this.groundY;
 		this.teleportDistance = 400;
+		this.centerOffset = -220;
 		this.yOffset = 0;
 		this.xOffset = 0;
 		this.hVelocity = 0;

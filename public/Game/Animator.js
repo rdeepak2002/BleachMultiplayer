@@ -125,33 +125,33 @@ function animate(player, App) {
       curFrame = numFrames-1;
     }
 
-    if(player.facingLeft == false) {
+    if(player.facingLeft == true) {
       if(curFrame == 1) {
-        player.xOffset = -30;
+        player.xOffset = 30;
       }
       else if(curFrame == 2) {
-        player.xOffset = -10;
+        player.xOffset = 0;
       }
       else if(curFrame == 3) {
-        player.xOffset = 85;
+        player.xOffset = -90;
       }
       else if(curFrame == 4) {
-        player.xOffset = 90;
+        player.xOffset = -100;
       }
       else if(curFrame == 5) {
         player.xOffset = 0;
       }
       else if(curFrame == 6) {
-        player.xOffset = 0;
+        player.xOffset = 20;
       }
       else if(curFrame == 7) {
-        player.xOffset = -20;
+        player.xOffset = 20;
       }
       else if(curFrame == 8) {
-        player.xOffset = -20;
+        player.xOffset = 20;
       }
       else if(curFrame == 9) {
-        player.xOffset = -20;
+        player.xOffset = 20;
       }
     }
 

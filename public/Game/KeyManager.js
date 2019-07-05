@@ -83,13 +83,13 @@ function manageKeyEvents(player) {            // wasd to move, arrow keys to att
     key = String.fromCharCode(event.keyCode);
 
     if(key == "D" || key == "d") {
-      if(player.dead == false) {
+      if(player.dead == false && player.attacking == false) {
         player.animTimer = currentTime;
         player.hVelocity = 0;
       }
     }
     if(key == "A" || key == "a") {
-      if(player.dead == false) {
+      if(player.dead == false && player.attacking == false) {
         player.animTimer = currentTime;    
         player.hVelocity = 0;
       }

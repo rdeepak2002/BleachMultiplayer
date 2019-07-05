@@ -42,10 +42,10 @@ function checkPlayerAttack(player, playerArr, App) {
         var attackingRect = {};
 
         // for other player:
-        otherPlayerX = App.canvas.width/2 - 2*getImage(otherPlayer.img).naturalWidth + otherPlayer.x - player.x;
+        otherPlayerX = App.canvas.width/2 + otherPlayer.x - player.x + otherPlayer.centerOffset;
 
         // for current player:
-        playerRealX = App.canvas.width/2 - 2*getImage(player.img).naturalWidth;
+        playerRealX = App.canvas.width/2 + player.centerOffset;
 
         if(otherPlayer.facingLeft == false) {
           otherPlayerRect = {x: otherPlayerX+35, y: otherPlayer.y+39, width: 70, height: 180};
@@ -58,7 +58,7 @@ function checkPlayerAttack(player, playerArr, App) {
           attackingRect = {x: playerRealX+90, y: player.y+30, width: 190, height: 150};
         }
         else {
-          attackingRect = {x: playerRealX, y: player.y+39, width: 130, height: 150};
+          attackingRect = {x: playerRealX-90, y: player.y+30, width: 190, height: 150};
         }
         
         // draw collision rectangles:
