@@ -26,9 +26,6 @@ $(function() {
         manageKeyEvents(curPlayer);
         App.ctx.drawImage(getImage("testLevel"), 0, 0, App.canvas.width, App.canvas.height);
 
-        if(soundsLoaded == true)
-          updateMedia();
-
         animate(curPlayer, App);
         updatePlayerState(curPlayer, delta);
         if(curPlayer.dead == false)

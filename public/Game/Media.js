@@ -11,10 +11,6 @@ function loadImage(path) {
 }
 
 function preloadMedia() {
-	sounds.load([
-	  					"/resources/battleMusic1.mp3"
-	]);
-
 	images = {
 							"testLevel" : loadImage("resources/testLevel.png"),
 
@@ -127,30 +123,3 @@ function getCookie(name) {
 }
 
 preloadMedia();
-
-var soundsLoaded = false;
-
-sounds.whenLoaded = updateMedia;
-
-function setup() {
-	console.log("sounds loaded!");
-	soundsLoaded = true;
-}
-
-function updateMedia() {
-	function onStartInteraction(e) {
-    if(player.musicPlayed == false) {
-        var bgMusic = sounds["/resources/battleMusic1.mp3"];
-        bgMusic.play();
-        player.musicPlayed = true;
-    }
-	}
-
-	$(document).bind("click keydown keyup touchstart", onStartInteraction);
-}
-
-// document.getElementById("body").ontouchend = (e) => {
-// 	e.preventDefault();
-// };
-
-

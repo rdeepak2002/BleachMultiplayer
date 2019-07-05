@@ -11,8 +11,6 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
     
-<!--     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
- -->    
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
@@ -39,6 +37,12 @@
   </head>
 
   <body id="body">
+
+    <div style="display:none">
+        <iframe src="/resources/silence.mp3" allow="autoplay" id="audio"></iframe>
+
+        <audio id="player" autoplay controls><source src="/resources/battleMusic1.mp3" type="audio/mp3"></audio>
+    </div>
 
     <article><!-- canvas will be inserted here--></article>
 
