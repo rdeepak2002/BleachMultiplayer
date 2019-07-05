@@ -35,6 +35,8 @@ function init(app) {
   	newPlayer.playerId = app.playerId;
     newPlayer.ip = app.ip;
 
+    console.log("your ip: " + app.ip);
+
   	username = getCookie("username");
 
   	if(username == undefined || username == "") {
