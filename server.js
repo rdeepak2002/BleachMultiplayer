@@ -20,7 +20,7 @@ var roomNo = 1;
 var numberConnected = 0;
 var playerArr = {};
 io.on('connection', function(socket) {
-	var address = socket.handshake.address;
+	var address = socket.request.connection.remoteAddress;
 	clientId = socket.id;
 	numberConnected++;
 	roomNo++;
