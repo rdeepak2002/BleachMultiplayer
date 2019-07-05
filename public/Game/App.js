@@ -98,12 +98,12 @@ function init(app) {
         var realY;
 
         if(curPlayer.playerId != player.playerId) {
-          realX = app.canvas.width/2 - img.naturalWidth + player.x - curPlayer.x;
+          realX = app.canvas.width/2 - 2*img.naturalWidth + player.x - curPlayer.x;
           realY = player.y;
           app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
         }
         else {
-          realX = app.canvas.width/2 - getImage(curPlayer.img).naturalWidth;
+          realX = app.canvas.width/2 - 2*img.naturalWidth;
           realY = player.y;
           app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
         }

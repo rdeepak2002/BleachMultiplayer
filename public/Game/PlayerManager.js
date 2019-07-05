@@ -42,10 +42,10 @@ function checkPlayerAttack(player, playerArr, App) {
         var attackingRect = {};
 
         // for other player:
-        otherPlayerX = App.canvas.width/2 - getImage(otherPlayer.img).naturalWidth + otherPlayer.x - player.x;
+        otherPlayerX = App.canvas.width/2 - 2*getImage(otherPlayer.img).naturalWidth + otherPlayer.x - player.x;
 
         // for current player:
-        playerRealX = App.canvas.width/2 - getImage(player.img).naturalWidth;
+        playerRealX = App.canvas.width/2 - 2*getImage(player.img).naturalWidth;
 
         if(otherPlayer.facingLeft == false) {
           otherPlayerRect = {x: otherPlayerX+35, y: otherPlayer.y+39, width: 70, height: 180};
