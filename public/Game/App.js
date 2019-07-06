@@ -207,13 +207,13 @@ function init(app) {
       var healthBarX = 40;
       var healthBarOffset = 38;
       var healthBarY = 20;
-      var healthBarHeight = 30;
+      var healthBarHeight = 15;
       var healthBarWidth = 500;
 
       var spiritBarX = 40;
       var spiritBarOffset = 38;
-      var spiritBarY = 50+outline;
-      var spiritBarHeight = 30;
+      var spiritBarY = 35+outline*2;
+      var spiritBarHeight = 15;
       var spiritBarWidth = 500;
 
       var img = getImage("ichigoHealthBarIcon");
@@ -221,17 +221,17 @@ function init(app) {
 
       var black = "rgb(0,0,0)";
       var outlineColor = "rgb(40,40,40)";
-      var red = "rgb(255, 0, 0)";
-      var blue = "rgb(0, 0, 255)";
+      var red = "rgb(0, 255, 255)";
+      var blue = "rgb(51, 255, 51)";
 
       app.ctx.fillStyle = outlineColor;
-      app.ctx.sharpRectDown(healthBarX + healthBarOffset-outline, healthBarY-outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20+outline).fill();
+      app.ctx.sharpRectDown(healthBarX + healthBarOffset-outline, healthBarY-outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20+outline*2).fill();
       
       app.ctx.fillStyle = black;
       app.ctx.sharpRectDown(healthBarX + healthBarOffset, healthBarY, healthBarWidth, healthBarHeight, 20).fill();
 
       app.ctx.fillStyle = outlineColor;
-      app.ctx.sharpRectUp(spiritBarX + spiritBarOffset-outline, spiritBarY-outline, spiritBarWidth + outline*2, spiritBarHeight+outline*2, 20+outline).fill();
+      app.ctx.sharpRectUp(spiritBarX + spiritBarOffset-outline, spiritBarY-outline, spiritBarWidth + outline*2, spiritBarHeight+outline*2, 20+outline*2).fill();
       
       app.ctx.fillStyle = black;
       app.ctx.sharpRectUp(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth, spiritBarHeight, 20).fill();
@@ -242,8 +242,8 @@ function init(app) {
       app.ctx.fillStyle = blue;
       app.ctx.sharpRectUp(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth*(curPlayer.spiritEnergy / curPlayer.maxSpiritEnergy), spiritBarHeight, 20).fill();
 
-      app.ctx.drawImage(img, healthBarX-13, healthBarY-outline, img.naturalWidth*2, healthBarHeight+outline*2);
-      app.ctx.drawImage(img2, spiritBarX-13, spiritBarY-outline, img.naturalWidth*2, spiritBarHeight+outline*2);
+      app.ctx.drawImage(img, healthBarX+12, healthBarY-outline, img.naturalWidth, healthBarHeight+outline*2);
+      app.ctx.drawImage(img2, spiritBarX+12, spiritBarY-outline, img.naturalWidth, spiritBarHeight+outline*2);
     }
 	}
 };
