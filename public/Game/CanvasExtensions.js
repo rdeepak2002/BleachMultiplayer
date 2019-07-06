@@ -10,3 +10,23 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
     this.closePath();
     return this;
 } 
+
+CanvasRenderingContext2D.prototype.sharpRectUp = function (x, y, w, h, edge) {
+    this.beginPath();
+    this.moveTo(x, y);
+    this.lineTo(x+w+edge, y);
+    this.lineTo(x+w, y+h);
+    this.lineTo(x, y+h);
+    this.closePath();
+    return this;
+} 
+
+CanvasRenderingContext2D.prototype.sharpRectDown = function (x, y, w, h, edge) {
+    this.beginPath();
+    this.moveTo(x, y);
+    this.lineTo(x+w, y);
+    this.lineTo(x+w+edge, y+h);
+    this.lineTo(x, y+h);
+    this.closePath();
+    return this;
+} 

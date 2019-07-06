@@ -23,7 +23,7 @@ function updatePlayerState(player, dt) {
     player.vVelocity -= player.fallingSpeed;player.fallingSpeed;
     player.fallingSpeed += player.fallingAccel;
   }
-  else if (player.y > player.groundY){
+  else if (player.y > player.groundY) {
     player.y = player.groundY;
     player.vVelocity = 0;
     player.fallingSpeed=player.fallingSpeedOrig;
