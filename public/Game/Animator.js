@@ -44,16 +44,18 @@ function animate(player, App) {
     else
       player.xOffset = -50;
 
-    var numFrames = 2;
-    speed = 1000;
-    interval = speed * numFrames;
+    //var numFrames = 2;
+    //speed = 100;
+    //interval = speed * numFrames;
 
-    curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+    //curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
-    if(curFrame > numFrames-1) {
-      curFrame = numFrames-1;
-      player.guarding = false;
-    }
+    // if(curFrame > numFrames-1) {
+    //   curFrame = numFrames-1;
+    //   player.guarding = false;
+    // }
+
+    curFrame = 1;
 
     var newImage = "ichigoGuard" + curFrame;
 

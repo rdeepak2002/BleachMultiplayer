@@ -11,11 +11,11 @@ let Sprite = class {
 		this.attack = 100;
 		this.animTimer = (new Date()).getTime();
 		this.img = "getsuga1";
-		this.width = 100;
-		this.height = 100;
-		this.maxWidth = 500;
-		this.maxHeight = 400;
-		this.growthSpeed = 4;
+		this.width = 1;
+		this.height = 1;
+		this.maxWidth = 350;
+		this.maxHeight = 350;
+		this.growthSpeed = 20;
 		this.facingLeft = false;
 		this.visible = true;
 	}

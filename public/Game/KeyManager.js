@@ -67,6 +67,13 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
     else if(key == "A" || key == "a") {
       moveLeft();
     }
+
+    if(key == "E" || key == "e") {
+      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
+        player.animTimer = currentTime; 
+        player.guarding = true;
+      }
+    }
   });  
 
   $(document).keyup(function(event){
@@ -81,6 +88,7 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
         player.hVelocity = 0;
       }
     }
+
     if(key == "A" || key == "a") {
       if(player.dead == false && player.attacking == false) {
         if(player.y == player.groundY)
@@ -88,16 +96,15 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
         player.hVelocity = 0;
       }
     }
+
     if(key == "W" || key == "w") {
       if(player.attacking == false) {
         jump();
       }
     }
+
     if(key == "E" || key == "e") {
-      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
-        player.animTimer = currentTime; 
-        player.guarding = true;
-      }
+      player.guarding = false;
     }
 
     if(key == "Q" || key == "q") {
@@ -107,9 +114,12 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
           getsugaXOffset += 100;
         }
 
-        console.log(console.log(qCount) + ": creating sprite from " + player.x);
-        if(qCount != 0 && player.x != 0)
-          app.createSprite(player.x + getsugaXOffset, player.y, player)  
+        if(qCount != 0 && player.x != 0) {
+          if(player.spiritEnergy >= player.spiritAttackCost) {
+            app.createSprite(player.x + getsugaXOffset, player.y, player)  
+            player.spiritEnergy -= player.spiritAttackCost;
+          }
+        }
         qCount++;
         attack();
       }

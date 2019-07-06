@@ -3,6 +3,16 @@ function updatePlayerState(player, dt) {
     player.dead = true;
   }
 
+  player.spiritEnergy += 8;
+
+  if(player.spiritEnergy < 10) {
+    player.spritEnergy = 10;
+  }
+
+  if(player.spiritEnergy > player.maxSpiritEnergy) {
+    player.spiritEnergy = player.maxSpiritEnergy;
+  }
+
   if(player.dead == false && player.teleporting == false && player.attacking == false && player.guarding == false) {
     player.x = player.x + player.hVelocity*(dt/30);
   }

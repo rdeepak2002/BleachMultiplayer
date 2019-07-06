@@ -71,8 +71,10 @@ function init(app) {
     newSprite = new Sprite(app.playerId);
     newSprite.x = x;
     newSprite.y = y;
-    newSprite.width = getImage(newSprite.img).naturalWidth;
-    newSprite.height = getImage(newSprite.img).naturalHeight;
+
+    var scale = newSprite.height/getImage(newSprite.img).naturalHeight;
+    newSprite.width = getImage(newSprite.img).naturalWidth * scale;
+    newSprite.height = newSprite.height;
 
     if(player.facingLeft && newSprite.hVelocity > 0) {
       newSprite.hVelocity = newSprite.negHVelocity;
@@ -205,6 +207,13 @@ function init(app) {
       var healthBarY = 20;
       var healthBarHeight = 30;
       var healthBarWidth = 500;
+
+      var spiritBarX = 20;
+      var spiritBarOffset = 38;
+      var spiritBarY = 620;
+      var spiritBarHeight = 30;
+      var spiritBarWidth = 500;
+
       var outline = 3;
 
       var img = getImage("ichigoHealthBarIcon");
@@ -215,8 +224,18 @@ function init(app) {
       app.ctx.fillStyle = "rgba(0, 0, 0)";
       app.ctx.roundRect(healthBarX + healthBarOffset, healthBarY, healthBarWidth, healthBarHeight, 20).fill();
 
+      app.ctx.fillStyle = "rgb(240,230,140)";
+      app.ctx.roundRect(spiritBarX + spiritBarOffset-outline, spiritBarY-outline, spiritBarWidth + outline*2, spiritBarHeight+outline*2, 20).fill();
+      
+      app.ctx.fillStyle = "rgba(0, 0, 0)";
+      app.ctx.roundRect(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth, spiritBarHeight, 20).fill();
+
       app.ctx.fillStyle = "rgb(255, 0, 0)";
       app.ctx.roundRect(healthBarX + healthBarOffset, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight, 20).fill();  
+      
+      app.ctx.fillStyle = "rgb(0, 0, 255)";
+      app.ctx.roundRect(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth*(curPlayer.spiritEnergy / curPlayer.maxSpiritEnergy), spiritBarHeight, 20).fill();
+
       app.ctx.drawImage(img, healthBarX-5, healthBarY-outline, img.naturalWidth*2, healthBarHeight+outline*2);
     }
 	}

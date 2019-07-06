@@ -59,8 +59,10 @@ function updateSprites(app, player, dt) {
         }
 
         if(sprite.playerId == player.playerId && sprite.visible == true && checkCollide(attackingRect, otherPlayerRect) == true) {
-          app.attackPlayer(otherPlayer.playerId, sprite.attack, otherPlayer.facingLeft);
-          sprite.visible = false;
+        	if(otherPlayer.guarding == false) {
+	          app.attackPlayer(otherPlayer.playerId, sprite.attack, otherPlayer.facingLeft);
+	          sprite.visible = false;
+        	}
         }        
       }
     }
