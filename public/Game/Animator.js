@@ -126,6 +126,9 @@ function animate(player, App) {
         player.attacking = false;         // UNCOMMENT THIS!
         //$(".attackBtn").show();
         curFrame = numFrames-1;
+        if(player.runKeyReleased == true)
+          player.hVelocity = 0;
+        player.runKeyReleased = false;
       }
 
       if(player.facingLeft == true) {

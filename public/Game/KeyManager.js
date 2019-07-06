@@ -62,9 +62,11 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
     key = String.fromCharCode(event.keyCode);
 
     if(key == "D" || key == "d") {
+      player.runKeyReleased = false;
       moveRight();
     }
     else if(key == "A" || key == "a") {
+      player.runKeyReleased = false;
       moveLeft();
     }
 
@@ -87,6 +89,7 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
           player.animTimer = currentTime;
         player.hVelocity = 0;
       }
+      player.runKeyReleased = true;
     }
 
     if(key == "A" || key == "a") {
@@ -95,6 +98,7 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
           player.animTimer = currentTime;    
         player.hVelocity = 0;
       }
+      player.runKeyReleased = true;
     }
 
     if(key == "W" || key == "w") {
