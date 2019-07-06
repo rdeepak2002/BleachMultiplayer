@@ -16,6 +16,7 @@ app.get('/play', function(req, res){
 });
 
 var clientId = 0;
+var spriteId = 0;
 var roomNo = 1;
 var numberConnected = 0;
 var playerArr = {};
@@ -90,12 +91,15 @@ io.on('connection', function(socket) {
 
 	socket.on("addSprite", function(data) {
 		console.log("adding sprite!");
-		spriteArr[data.id] = data.sprite;
+		spriteArr[spriteId] = data.sprite;
+		spriteArr[spriteId].spriteId = spriteId;
 
-		socket.broadcast.emit("spriteResponse", {
-			id: data.id,
+		io.emit("spriteResponse", {
+			id: spriteId,
 			sprite: data.sprite
 		});
+
+		spriteId++;
 
     printCurrentSprites();
 	});
@@ -103,12 +107,21 @@ io.on('connection', function(socket) {
 	socket.on('disconnect', function () {
 		console.log("player disconnected");
 		numberConnected--;
+
+    for (var i = 0, keys = Object.keys(spriteArr), ii = keys.length; i < ii; i++) {
+      var id = spriteArr[keys[i]].playerId;
+      if(id == socket.id)
+        delete spriteArr[keys[i]];
+    }
+
 		delete playerArr[socket.id];
+
     socket.broadcast.emit("removePlayer", {
     	id: socket.id
     });
 
     printCurrentPlayers();
+    printCurrentSprites();
   });
 
   function printCurrentPlayers() {

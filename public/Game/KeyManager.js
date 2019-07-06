@@ -106,13 +106,12 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
       }
     }
     if(key == "Q" || key == "q") {
-      if(player.firedShot == false && player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
+      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
         var getsugaXOffset = app.canvas.width/2 + player.centerOffset;
         if(player.facingLeft == false) {
           getsugaXOffset += 100;
         }
         app.createSprite(player.x + getsugaXOffset, player.y, player);
-        player.firedShot = true;
         attack();
       }
     }

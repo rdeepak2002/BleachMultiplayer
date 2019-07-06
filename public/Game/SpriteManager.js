@@ -2,8 +2,10 @@ function updateSprites(app, player, dt) {
   for(var key in app.spriteArr) {
     sprite = app.spriteArr[key];
 
-    sprite.x += sprite.hVelocity*(dt/30);
-  	//sprite.x += sprite.vVelocity*(dt/30);
+    //console.log(sprite.x + ", " + sprite.y);
+
+    //sprite.x += sprite.hVelocity*(dt/30);
+  	sprite.y += sprite.vVelocity*(dt/30);
 
   	if(sprite.height < sprite.maxHeight && sprite.width < sprite.maxWidth) {
 	  	sprite.height += sprite.growthSpeed*(dt/30);
@@ -12,24 +14,25 @@ function updateSprites(app, player, dt) {
   	}
 
   	if(sprite.x > player.maxX+1000) {
+  		app.spriteArr[sprite.spriteId].visible = false;
+
   		delete app.spriteArr[sprite.playerId];
-  		if(sprite.playerId == player.playerId)
-  			player.firedShot = false;
+
   	}
 
   	 if(sprite.x < player.minX-1000) {
+  	 	app.spriteArr[sprite.spriteId].visible = false;
   		delete app.spriteArr[sprite.playerId];
-  		if(sprite.playerId == player.playerId)
-  			player.firedShot = false;
   	}
 
   	if(sprite.visible == true)
     	app.ctx.drawImage(getImage(sprite.img), sprite.x - player.x, sprite.y, sprite.width, sprite.height);
 
-  	app.updateSprite(sprite.playerId, sprite);
+    if(sprite.playerId == player.playerId)
+  		app.updateSprite(sprite.spriteId, sprite);
 
 
-    for(var key in app.playerArr) {			// chec collisions
+    for(var key in app.playerArr) {			// check collisions
       var otherPlayer = app.playerArr[key];
 
       if(key != player.playerId) {
@@ -55,10 +58,9 @@ function updateSprites(app, player, dt) {
           app.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
         }
 
-        if(sprite.playerId == player.playerId && checkCollide(attackingRect, otherPlayerRect) == true && sprite.hasAttacked == false) {
+        if(sprite.playerId == player.playerId && sprite.visible == true && checkCollide(attackingRect, otherPlayerRect) == true) {
           app.attackPlayer(otherPlayer.playerId, sprite.attack, otherPlayer.facingLeft);
           sprite.visible = false;
-          sprite.hasAttacked = true;
           console.log(sprite.visible);
           console.log(sprite.hasAttacked);
         }        

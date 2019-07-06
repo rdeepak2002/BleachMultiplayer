@@ -31,6 +31,5 @@ let Player = class {
 		this.musicPlayed = false;
 		this.teleporting = false;
 		this.guarding = false;
-		this.firedShot = false;
 	}
 }

@@ -1,5 +1,6 @@
 let Sprite = class {
 	constructor(playerId, x, y) {
+		this.spriteId = 0;
 		this.playerId = playerId;
 		this.x = 0;
 		this.y = 0;
@@ -16,7 +17,6 @@ let Sprite = class {
 		this.maxHeight = 250;
 		this.growthSpeed = 3;
 		this.facingLeft = false;
-		this.hasAttacked = false;
 		this.visible = true;
 	}
 }

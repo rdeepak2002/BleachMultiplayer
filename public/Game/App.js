@@ -80,11 +80,10 @@ function init(app) {
     } 
 
     app.socket.emit('addSprite', {
-      id: app.playerId,
       sprite: newSprite
     });
 
-    app.spriteArr[app.playerId] = newSprite;
+    //app.spriteArr[newSprite.spriteId] = newSprite;
   }
 
   app.socket.on("helloPlayer", function(data) {   // emit
@@ -116,8 +115,12 @@ function init(app) {
   });
 
   app.socket.on("removePlayer", function(data) {			// broadcast
+    for (var i = 0, keys = Object.keys(app.spriteArr), ii = keys.length; i < ii; i++) {
+      var id = app.spriteArr[keys[i]].playerId;
+      if(id == data.id)
+        delete app.spriteArr[keys[i]];
+    }
   	delete app.playerArr[data.id];
-    delete app.spriteArr[data.id];
   });
 
   app.socket.on("newPlayer", function(data) {			// broadcast
