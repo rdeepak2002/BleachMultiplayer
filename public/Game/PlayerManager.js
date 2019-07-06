@@ -13,11 +13,64 @@ function updatePlayerState(player, dt) {
     player.spiritEnergy = player.maxSpiritEnergy;
   }
 
-  if(player.dead == false && player.teleporting == false && player.attacking == false && player.guarding == false) {
-    player.x = player.x + player.hVelocity*(dt/30);
+  if(player.impulseX > 0) {
+    player.impulseX-=1*(dt/30);
+  }
+  else if(player.impulseX < 0) {
+    player.impulseX+=1*(dt/30);
   }
 
-  player.y = player.y - player.vVelocity*(dt/30);
+  if(player.impulseY > 0) {
+    player.impulseY-=1*(dt/30);
+  }
+  else if(player.impulseY < 0) {
+    player.impulseY+=1*(dt/30);
+  }
+
+  if(player.y == player.groundY) {
+    player.impulseY = 0;
+    player.impulseX = 0;
+  }
+
+  if(player.dead == false && player.teleporting == false && player.attacking == false && player.guarding == false) {
+    player.x = player.x + player.hVelocity*(dt/30) + player.impulseX*(dt/30);
+  }
+
+  if(player.vVelocity < -1*player.maxVVelocity) {
+    player.vVelocity = -1*player.maxVVelocity;
+  }
+
+  if(player.x <= player.minX) {
+    player.x = player.minX;
+
+    if(player.hVelocity <= 0 && player.y != player.groundY) {
+      player.vVelocity = -0.3*(dt/30);
+      player.facingLeft = false;
+
+      if(player.teleporting == true) {
+        player.impulseX = 50;
+        player.impulseY = 40;
+        player.teleporting = false;
+      }
+    }
+  }
+
+  if(player.x >= player.maxX) {
+    player.x = player.maxX;
+
+    if(player.hVelocity >= 0 && player.y != player.groundY) {
+      player.vVelocity = -0.3*(dt/30);
+      player.facingLeft = true;
+
+      if(player.teleporting == true) {
+        player.impulseX = -50;
+        player.impulseY = 40;
+        player.teleporting = false;
+      }
+    }
+  }
+
+  player.y = player.y - player.vVelocity*(dt/30)- player.impulseY*(dt/30);
 
   if(player.y < player.groundY) {
     player.vVelocity -= player.fallingSpeed;player.fallingSpeed;
@@ -27,14 +80,6 @@ function updatePlayerState(player, dt) {
     player.y = player.groundY;
     player.vVelocity = 0;
     player.fallingSpeed=player.fallingSpeedOrig;
-  }
-
-  if(player.x < player.minX) {
-    player.x = player.minX;
-  }
-
-  if(player.x > player.maxX) {
-    player.x = player.maxX;
   }
 }
 

@@ -20,6 +20,7 @@ function preloadMedia() {
 
 							"level1Bg" : loadImage("resources/level1Bg.png"),
 							"level1Fg" : loadImage("resources/level1Fg.png"),
+							"level1Pillar" : loadImage("resources/level1Pillar.png"),
 
 							"getsuga1" : loadImage("resources/ichigo/getsuga1.png"),
 							"getsuga1Left" : loadImage("resources/ichigo/getsuga1Left.png"),

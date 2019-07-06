@@ -27,6 +27,7 @@ $(function() {
 
         var levelBg = getImage("level1Bg");
         var levelFg = getImage("level1Fg");
+        var levelPillar = getImage("level1Pillar");
 
         var scale = App.canvas.height / getImage("level1Bg").naturalHeight;
 
@@ -39,6 +40,17 @@ $(function() {
         App.ctx.drawImage(levelBg, 2*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
 
         App.ctx.drawImage(levelFg, 0-curPlayer.x-levelFg.naturalWidth/2, -560, levelFg.naturalWidth * scale*1.7, App.canvas.height*1.7);
+
+        var leftPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.minX-curPlayer.x - levelPillar.naturalWidth;
+        var rightPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.maxX-curPlayer.x + levelPillar.naturalWidth+30;
+        var pillarYOffset = 200;
+
+        App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+        App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+
+        App.ctx.drawImage(levelPillar, rightPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+        App.ctx.drawImage(levelPillar, rightPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+
 
         animate(curPlayer, App);
         updatePlayerState(curPlayer, delta);
