@@ -13,9 +13,9 @@ let Sprite = class {
 		this.img = "getsuga1";
 		this.width = 100;
 		this.height = 100;
-		this.maxWidth = 250;
-		this.maxHeight = 250;
-		this.growthSpeed = 3;
+		this.maxWidth = 500;
+		this.maxHeight = 400;
+		this.growthSpeed = 4;
 		this.facingLeft = false;
 		this.visible = true;
 	}

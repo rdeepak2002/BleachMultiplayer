@@ -82,8 +82,6 @@ function init(app) {
     app.socket.emit('addSprite', {
       sprite: newSprite
     });
-
-    //app.spriteArr[newSprite.spriteId] = newSprite;
   }
 
   app.socket.on("helloPlayer", function(data) {   // emit
@@ -106,7 +104,7 @@ function init(app) {
 
   app.socket.on("spriteResponse", function(data) {      // broadcast
     app.spriteArr[data.id] = data.sprite;
-    console.log("got sprite from " + data.id);
+    //console.log("got sprite from " + data.id);
   });
 
   app.socket.on("attackResponse", function(data) {			// broadcast

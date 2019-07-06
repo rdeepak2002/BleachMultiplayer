@@ -1,18 +1,20 @@
+var qCount = 0;
+
 function manageKeyEvents(player, app) {            // wasd to move, arrow keys to attack, shift to teleport
   var currentTime = (new Date()).getTime();
 
   function moveRight() {
     if(player.dead == false)
-        player.hVelocity = player.runningSpeed;
-      else
-        player.hVelocity = 0;
+      player.hVelocity = player.runningSpeed;
+    else
+      player.hVelocity = 0;
   }
 
   function moveLeft() {
     if(player.dead == false)
-        player.hVelocity = -1*player.runningSpeed;
-      else
-        player.hVelocity = 0;
+      player.hVelocity = -1*player.runningSpeed;
+    else
+      player.hVelocity = 0;
   }
 
   function attack() {
@@ -59,16 +61,6 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
     key = String.fromCharCode(event.which);
     key = String.fromCharCode(event.keyCode);
 
-    // if(player.musicPlayed == false) {           // on any key pressed play music
-    //   player.musicPlayed = true;
-
-    //   var sound = new Howl({
-    //     src: ['/resources/battleMusic1.mp3']
-    //   });
-
-    //   sound.play();
-    // }
-
     if(key == "D" || key == "d") {
       moveRight();
     }
@@ -84,13 +76,15 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
 
     if(key == "D" || key == "d") {
       if(player.dead == false && player.attacking == false) {
-        player.animTimer = currentTime;
+        if(player.y == player.groundY)
+          player.animTimer = currentTime;
         player.hVelocity = 0;
       }
     }
     if(key == "A" || key == "a") {
       if(player.dead == false && player.attacking == false) {
-        player.animTimer = currentTime;    
+        if(player.y == player.groundY)
+          player.animTimer = currentTime;    
         player.hVelocity = 0;
       }
     }
@@ -105,16 +99,22 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
         player.guarding = true;
       }
     }
+
     if(key == "Q" || key == "q") {
       if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
         var getsugaXOffset = app.canvas.width/2 + player.centerOffset;
         if(player.facingLeft == false) {
           getsugaXOffset += 100;
         }
-        app.createSprite(player.x + getsugaXOffset, player.y, player);
+
+        console.log(console.log(qCount) + ": creating sprite from " + player.x);
+        if(qCount != 0 && player.x != 0)
+          app.createSprite(player.x + getsugaXOffset, player.y, player)  
+        qCount++;
         attack();
       }
     }
+
     if ((event.keyCode || event.which) == 37) {  
       if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
         player.facingLeft = true;

@@ -2,9 +2,11 @@ function updateSprites(app, player, dt) {
   for(var key in app.spriteArr) {
     sprite = app.spriteArr[key];
 
+    //console.log("sprite from " + sprite.playerId);
+
     //console.log(sprite.x + ", " + sprite.y);
 
-    //sprite.x += sprite.hVelocity*(dt/30);
+    sprite.x += sprite.hVelocity*(dt/30);
   	sprite.y += sprite.vVelocity*(dt/30);
 
   	if(sprite.height < sprite.maxHeight && sprite.width < sprite.maxWidth) {
@@ -15,14 +17,12 @@ function updateSprites(app, player, dt) {
 
   	if(sprite.x > player.maxX+1000) {
   		app.spriteArr[sprite.spriteId].visible = false;
-
-  		delete app.spriteArr[sprite.playerId];
-
+  		delete app.spriteArr[sprite.spriteId];
   	}
 
   	 if(sprite.x < player.minX-1000) {
-  	 	app.spriteArr[sprite.spriteId].visible = false;
-  		delete app.spriteArr[sprite.playerId];
+  		app.spriteArr[sprite.spriteId].visible = false;
+  		delete app.spriteArr[sprite.spriteId];
   	}
 
   	if(sprite.visible == true)
@@ -61,8 +61,6 @@ function updateSprites(app, player, dt) {
         if(sprite.playerId == player.playerId && sprite.visible == true && checkCollide(attackingRect, otherPlayerRect) == true) {
           app.attackPlayer(otherPlayer.playerId, sprite.attack, otherPlayer.facingLeft);
           sprite.visible = false;
-          console.log(sprite.visible);
-          console.log(sprite.hasAttacked);
         }        
       }
     }
