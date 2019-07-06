@@ -1,10 +1,12 @@
-function init(app) {
+function createCanvas(app) {
   app.canvas = document.createElement("canvas");
-  //app.canvas.width = window.innerWidth;
   app.canvas.width = 1200;
   app.canvas.height = 800;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
+}
+
+function init(app) {
   app.playerArr = {};
   app.spriteArr = {};
   app.socket = io();

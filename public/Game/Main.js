@@ -1,9 +1,9 @@
 $(function() {
   var App = {};
-  init(App)
+  createCanvas(App);
 
-  var cw = App.canvas.width;
-  var ch = App.canvas.height;
+  var initialized = false;
+
   var fps = 30;
   var interval = 1000/fps;
   var lastTime = (new Date()).getTime();
@@ -18,54 +18,66 @@ $(function() {
     delta = (currentTime-lastTime);
 
     if(delta > interval) {
-      App.ctx.clearRect(0,0,cw,cw);
+      if(numLoaded == size) {
+        if(initialized == false) {
+          init(App);
+          initialized = true;
+        }
+        
+        if(App.playerArr != undefined) {
+          if(Object.keys(App.playerArr).length > 0) {
+            var cw = App.canvas.width;
+            var ch = App.canvas.height;
 
-      if(Object.keys(App.playerArr).length > 0 && numLoaded == size) {
-        curPlayer = App.playerArr[App.playerId];
+            App.ctx.clearRect(0,0,cw,ch);
 
-        manageKeyEvents(curPlayer, App);
+            curPlayer = App.playerArr[App.playerId];
 
-        var levelBg = getImage("level1Bg");
-        var levelFg = getImage("level1Fg");
-        var levelPillar = getImage("level1Pillar");
+            manageKeyEvents(curPlayer, App);
 
-        var scale = App.canvas.height / getImage("level1Bg").naturalHeight;
+            var levelBg = getImage("level1Bg");
+            var levelFg = getImage("level1Fg");
+            var levelPillar = getImage("level1Pillar");
 
-        var paralaxSpeed = 10;
+            var scale = App.canvas.height / getImage("level1Bg").naturalHeight;
 
-        App.ctx.drawImage(levelBg, 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+            var paralaxSpeed = 10;
 
-        App.ctx.drawImage(levelBg, 1*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+            App.ctx.drawImage(levelBg, 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
 
-        App.ctx.drawImage(levelBg, 2*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
+            App.ctx.drawImage(levelBg, 1*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
 
-        App.ctx.drawImage(levelFg, 0-curPlayer.x-levelFg.naturalWidth/2, -560, levelFg.naturalWidth * scale*1.7, App.canvas.height*1.7);
+            App.ctx.drawImage(levelBg, 2*(levelBg.naturalWidth * scale) + 0-curPlayer.x/paralaxSpeed-levelBg.naturalWidth/2, 0, levelBg.naturalWidth * scale, App.canvas.height);
 
-        var leftPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.minX-curPlayer.x - levelPillar.naturalWidth;
-        var rightPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.maxX-curPlayer.x + levelPillar.naturalWidth+30;
-        var pillarYOffset = 200;
+            App.ctx.drawImage(levelFg, 0-curPlayer.x-levelFg.naturalWidth/2, -560, levelFg.naturalWidth * scale*1.7, App.canvas.height*1.7);
 
-        App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
-        App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+            var leftPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.minX-curPlayer.x - levelPillar.naturalWidth;
+            var rightPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.maxX-curPlayer.x + levelPillar.naturalWidth+30;
+            var pillarYOffset = 200;
 
-        App.ctx.drawImage(levelPillar, rightPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
-        App.ctx.drawImage(levelPillar, rightPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+            App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+            App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+
+            App.ctx.drawImage(levelPillar, rightPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
+            App.ctx.drawImage(levelPillar, rightPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
 
 
-        animate(curPlayer, App);
-        updatePlayerState(curPlayer, delta);
+            animate(curPlayer, App);
+            updatePlayerState(curPlayer, delta);
 
-        if(curPlayer.dead == false)
-          checkPlayerAttack(curPlayer, App.playerArr, App);
+            if(curPlayer.dead == false)
+              checkPlayerAttack(curPlayer, App.playerArr, App);
 
-        updateSprites(App, curPlayer, delta);
+            updateSprites(App, curPlayer, delta);
 
-        App.updatePlayer(App.playerId, curPlayer);
+            App.updatePlayer(App.playerId, curPlayer);
 
-        App.drawSprites(curPlayer);
-        App.drawGui(curPlayer);
+            App.drawSprites(curPlayer);
+            App.drawGui(curPlayer);
 
-        curPlayer.lastPing = (new Date()).getTime();
+            curPlayer.lastPing = (new Date()).getTime();
+          }
+        }
       }
       else {
         App.ctx.font = "5rem Arial";
