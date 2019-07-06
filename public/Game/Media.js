@@ -1,4 +1,5 @@
 var images = {};
+var size = 0;
 var numLoaded = 0;
 var imagesLoaded = false;
 
@@ -6,13 +7,12 @@ function loadImage(path) {
 	var image = new Image();   // Create new img element
 
 	image.onload = function () {
-	  console.log("loaded image");
 	  numLoaded++;
 	}
 
   image.src = path; // Set source path
 
-  if(numLoaded == Object.keys(images).length) {
+  if(numLoaded == size) {
   	imagesLoaded = true;
   }
 
@@ -140,3 +140,5 @@ function getCookie(name) {
 }
 
 preloadMedia();
+
+size = Object.keys(images).length;
