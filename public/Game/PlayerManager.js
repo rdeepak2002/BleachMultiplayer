@@ -112,6 +112,10 @@ function checkPlayerAttack(player, playerArr, App) {
         else {
           attackingRect = {x: playerRealX-90, y: player.y+30, width: 190, height: 150};
         }
+
+        if(player.groundY != player.y) {
+          attackingRect.height = 220;
+        }
         
         // draw collision rectangles:
         if(App.showCollisionBox == true) {

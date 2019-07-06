@@ -91,7 +91,7 @@ function animate(player, App) {
 
     player.img = newImage;
   }
-  else if(player.y != player.groundY) {          // jumping
+  else if(player.y != player.groundY && player.attacking == false) {          // jumping
     player.Attacking = false;
     player.yOffset = -30;
 
@@ -113,57 +113,107 @@ function animate(player, App) {
     player.img = newImage;
   }
   else if(player.attacking == true) {       // attacking
-    player.yOffset = 30;
+    if(player.y == player.groundY) {
+      player.yOffset = 30;
 
-    var numFrames = 10;
-    speed = 50;
-    interval = speed * numFrames;
+      var numFrames = 10;
+      speed = 50;
+      interval = speed * numFrames;
 
-    curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+      curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
-    if(curFrame > numFrames-1) {
-      player.attacking = false;         // UNCOMMENT THIS!
-      //$(".attackBtn").show();
-      curFrame = numFrames-1;
+      if(curFrame > numFrames-1) {
+        player.attacking = false;         // UNCOMMENT THIS!
+        //$(".attackBtn").show();
+        curFrame = numFrames-1;
+      }
+
+      if(player.facingLeft == true) {
+        if(curFrame == 1) {
+          player.xOffset = 30;
+        }
+        else if(curFrame == 2) {
+          player.xOffset = 0;
+        }
+        else if(curFrame == 3) {
+          player.xOffset = -90;
+        }
+        else if(curFrame == 4) {
+          player.xOffset = -100;
+        }
+        else if(curFrame == 5) {
+          player.xOffset = 0;
+        }
+        else if(curFrame == 6) {
+          player.xOffset = 20;
+        }
+        else if(curFrame == 7) {
+          player.xOffset = 20;
+        }
+        else if(curFrame == 8) {
+          player.xOffset = 20;
+        }
+        else if(curFrame == 9) {
+          player.xOffset = 20;
+        }
+      }
+
+      var newImage = "ichigoStrongAttack" + curFrame;
+
+      if(player.facingLeft) {
+        newImage = newImage + "Left";
+      }
+
+      player.img = newImage;
+    }
+    else {
+      player.yOffset = 30;
+
+      var numFrames = 8;
+      speed = 50;
+      interval = speed * numFrames;
+
+      curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+      if(curFrame > numFrames-1) {
+        player.attacking = false;         // UNCOMMENT THIS!
+        //$(".attackBtn").show();
+        curFrame = numFrames-1;
+      }
+
+      if(player.facingLeft == true) {
+        if(curFrame == 1) {
+          player.xOffset = 30;
+        }
+        else if(curFrame == 2) {
+          player.xOffset = 0;
+        }
+        else if(curFrame == 3) {
+          player.xOffset = -90;
+        }
+        else if(curFrame == 4) {
+          player.xOffset = -100;
+        }
+        else if(curFrame == 5) {
+          player.xOffset = 0;
+        }
+        else if(curFrame == 6) {
+          player.xOffset = 20;
+        }
+        else if(curFrame == 7) {
+          player.xOffset = 20;
+        }
+      }
+
+      var newImage = "ichigoStrongAirAttack" + curFrame;
+
+      if(player.facingLeft) {
+        newImage = newImage + "Left";
+      }
+
+      player.img = newImage;
     }
 
-    if(player.facingLeft == true) {
-      if(curFrame == 1) {
-        player.xOffset = 30;
-      }
-      else if(curFrame == 2) {
-        player.xOffset = 0;
-      }
-      else if(curFrame == 3) {
-        player.xOffset = -90;
-      }
-      else if(curFrame == 4) {
-        player.xOffset = -100;
-      }
-      else if(curFrame == 5) {
-        player.xOffset = 0;
-      }
-      else if(curFrame == 6) {
-        player.xOffset = 20;
-      }
-      else if(curFrame == 7) {
-        player.xOffset = 20;
-      }
-      else if(curFrame == 8) {
-        player.xOffset = 20;
-      }
-      else if(curFrame == 9) {
-        player.xOffset = 20;
-      }
-    }
-
-    var newImage = "ichigoStrongAttack" + curFrame;
-
-    if(player.facingLeft) {
-      newImage = newImage + "Left";
-    }
-
-    player.img = newImage;
   }
   else {                                    // standing or running
     if(player.hVelocity == 0) {

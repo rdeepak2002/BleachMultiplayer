@@ -18,11 +18,11 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
   }
 
   function attack() {
-    if(player.y==player.groundY) {
+    //if(player.y==player.groundY) {
       player.attackTimer = currentTime;
       player.animTimer = currentTime; 
       player.attacking = true;
-    }
+    //}
   }
 
   function jump() {
@@ -125,20 +125,20 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
       }
     }
 
-    if ((event.keyCode || event.which) == 37) {  
-      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
+    if ((event.keyCode || event.which) == 37) {           // left arrow
+      if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
         player.facingLeft = true;
         attack();       
       } 
     }
     if ((event.keyCode || event.which) == 39) {           // right arrow
-      if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false && player.y == player.groundY) {
+      if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false) {
         player.facingLeft = false;
         attack();
       }
     }
 
-    if ((event.keyCode || event.which) == 16) {           // right arrow
+    if ((event.keyCode || event.which) == 16) {           // shift
       if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
         player.animTimer = currentTime; 
         player.teleporting = true;     
