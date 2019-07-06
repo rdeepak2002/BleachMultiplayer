@@ -70,7 +70,6 @@ $(function() {
       else {
         App.ctx.font = "5rem Arial";
         App.ctx.fillStyle = "rgb(255, 255, 255)";
-        //var percent = numLoaded + "/" + size;
         var percent = Math.round(100*(1.0*numLoaded/size));
         App.ctx.fillText("LOADING: " + percent + "%", 10, 70);
       }

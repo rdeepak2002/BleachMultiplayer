@@ -50,7 +50,7 @@ io.on('connection', function(socket) {
     for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
       var lastPing = playerArr[keys[i]].lastPing;
       var curTime = (new Date()).getTime();
-      if((curTime - lastPing)/1000 >= 10) {
+      if((curTime - lastPing)/1000 >= 20) {
       	console.log("removing " + playerArr[keys[i]].username + " due to inactivity!");
 
       	console.log(playerArr[keys[i]].playerId);
