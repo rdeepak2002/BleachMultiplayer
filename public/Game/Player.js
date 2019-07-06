@@ -12,6 +12,7 @@ let Player = class {
 		this.yOffset = 0;
 		this.xOffset = 0;
 		this.impulseX = 0;
+		this.groundImpulseX = 0;
 		this.impulseY = 0;
 		this.hVelocity = 0;
 		this.vVelocity = 0;

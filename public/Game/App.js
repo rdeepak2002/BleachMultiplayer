@@ -114,11 +114,13 @@ function init(app) {
   	app.playerArr[data.id].health = data.newHealth;
     if(app.playerArr[data.id].x > data.newX) {
       app.playerArr[data.id].facingLeft = false;
+      app.playerArr[data.id].groundImpulseX = -20;
     }
     else {
       app.playerArr[data.id].facingLeft = true;
+      app.playerArr[data.id].groundImpulseX = 20;
     }
-  	app.playerArr[data.id].x = data.newX;
+  	//app.playerArr[data.id].x = data.newX;
     app.playerArr[data.id].animTimer = (new Date()).getTime();
     app.playerArr[data.id].hurting = true;
   });

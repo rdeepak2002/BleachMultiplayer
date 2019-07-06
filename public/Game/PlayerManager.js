@@ -13,6 +13,17 @@ function updatePlayerState(player, dt) {
     player.spiritEnergy = player.maxSpiritEnergy;
   }
 
+  if(player.groundImpulseX > 0) {
+    player.groundImpulseX--;
+  }
+  else if(player.groundImpulseX < 0) {
+    player.groundImpulseX++;
+  }
+
+  if(player.groundImpulseX > -1 && player.groundImpulseX < 1) {
+    player.groundImpulseX = 0;
+  }
+
   if(player.impulseX > 0) {
     player.impulseX-=1*(dt/30);
   }
@@ -33,7 +44,7 @@ function updatePlayerState(player, dt) {
   }
 
   if(player.hurting==false && player.dead == false && player.teleporting == false && player.attacking == false && player.guarding == false) {
-    player.x = player.x + player.hVelocity*(dt/30) + player.impulseX*(dt/30);
+    player.x = player.x + player.hVelocity*(dt/30) + player.impulseX*(dt/30) + player.groundImpulseX*(dt/30);
   }
 
   if(player.vVelocity < -1*player.maxVVelocity) {
