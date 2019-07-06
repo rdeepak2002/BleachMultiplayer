@@ -59,7 +59,7 @@ function updateSprites(app, player, dt) {
         }
 
         if(sprite.playerId == player.playerId && sprite.visible == true && checkCollide(attackingRect, otherPlayerRect) == true) {
-        	if(otherPlayer.guarding == false) {
+        	if(otherPlayer.guarding == false && otherPlayer.dead == false) {
 	          app.attackPlayer(otherPlayer.playerId, sprite.attack, otherPlayer.facingLeft);
 	          sprite.visible = false;
         	}
