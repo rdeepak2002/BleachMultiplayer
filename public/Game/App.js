@@ -210,7 +210,7 @@ function init(app) {
 
       var spiritBarX = 20;
       var spiritBarOffset = 38;
-      var spiritBarY = 620;
+      var spiritBarY = 50;
       var spiritBarHeight = 30;
       var spiritBarWidth = 500;
 
