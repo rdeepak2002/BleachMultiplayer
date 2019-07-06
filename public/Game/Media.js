@@ -1,7 +1,6 @@
 var images = {};
-var size = 0;
+var size = 100;
 var numLoaded = 0;
-var imagesLoaded = false;
 
 function loadImage(path) {
 	var image = new Image();   // Create new img element
@@ -11,10 +10,6 @@ function loadImage(path) {
 	}
 
   image.src = path; // Set source path
-
-  if(numLoaded == size) {
-  	imagesLoaded = true;
-  }
 
   return image;
 }
