@@ -46,6 +46,21 @@ io.on('connection', function(socket) {
 			id: data.id,
 			player: data.player
 		});
+
+    for (var i = 0, keys = Object.keys(playerArr), ii = keys.length; i < ii; i++) {
+      var lastPing = playerArr[keys[i]].lastPing;
+      var curTime = (new Date()).getTime();
+      if((curTime - lastPing)/1000 >= 10) {
+      	console.log("removing " + playerArr[keys[i]].username + " due to inactivity!");
+
+      	console.log(playerArr[keys[i]].playerId);
+
+        io.emit("removePlayer", {
+		    	id: playerArr[keys[i]].playerId
+		    });
+        delete playerArr[keys[i]];
+      }
+    }
 	});
 
 	socket.on("updateSprite", function(data) {		// add room specific code:  io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
@@ -116,7 +131,7 @@ io.on('connection', function(socket) {
 
 		delete playerArr[socket.id];
 
-    socket.broadcast.emit("removePlayer", {
+    io.emit("removePlayer", {
     	id: socket.id
     });
 

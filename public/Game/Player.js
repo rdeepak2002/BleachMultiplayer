@@ -29,6 +29,7 @@ let Player = class {
 		this.spiritEnergy = 500;
 		this.username = "";
 		this.animTimer = (new Date()).getTime();
+		this.lastPing = (new Date()).getTime();
 		this.img = "ichigoStand1";
 		this.deadImg = "ichigoDead6";
 		this.facingLeft = false;

@@ -115,6 +115,7 @@ function init(app) {
   });
 
   app.socket.on("removePlayer", function(data) {			// broadcast
+    console.log("removing " + data.id);
     for (var i = 0, keys = Object.keys(app.spriteArr), ii = keys.length; i < ii; i++) {
       var id = app.spriteArr[keys[i]].playerId;
       if(id == data.id)

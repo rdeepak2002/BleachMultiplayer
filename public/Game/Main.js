@@ -64,6 +64,8 @@ $(function() {
 
         App.drawSprites(curPlayer);
         App.drawGui(curPlayer);
+
+        curPlayer.lastPing = (new Date()).getTime();
       }
       else {
         App.ctx.font = "5rem Arial";
