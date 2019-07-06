@@ -75,13 +75,22 @@ io.on('connection', function(socket) {
 		damage = data.damage;
 		playerArr[data.id].health -= damage;
 
+		var newX = playerArr[data.id].x;
+
+		if(data.facingLeft == true) {
+			newX = newX - playerArr[data.id].knockbackDist;
+		}
+		else {
+			newX = newX + playerArr[data.id].knockbackDist;
+		}
+
 		if (playerArr[data.id].health < 0) {
 			playerArr[data.id].health = 0;
 		}
 		io.emit("attackResponse", {
 			id: data.id,
 			newHealth: playerArr[data.id].health,
-			newX: playerArr[data.id].x
+			newX: newX
 		});
 	});
 

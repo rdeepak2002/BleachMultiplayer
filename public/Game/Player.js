@@ -39,5 +39,7 @@ let Player = class {
 		this.teleporting = false;
 		this.guarding = false;
 		this.runKeyReleased = false;
+		this.hurting = false;
+		this.knockbackDist = 150;
 	}
 }

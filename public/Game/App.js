@@ -108,12 +108,19 @@ function init(app) {
 
   app.socket.on("spriteResponse", function(data) {      // broadcast
     app.spriteArr[data.id] = data.sprite;
-    //console.log("got sprite from " + data.id);
   });
 
   app.socket.on("attackResponse", function(data) {			// broadcast
   	app.playerArr[data.id].health = data.newHealth;
+    if(app.playerArr[data.id].x > data.newX) {
+      app.playerArr[data.id].facingLeft = false;
+    }
+    else {
+      app.playerArr[data.id].facingLeft = true;
+    }
   	app.playerArr[data.id].x = data.newX;
+    app.playerArr[data.id].animTimer = (new Date()).getTime();
+    app.playerArr[data.id].hurting = true;
   });
 
   app.socket.on("removePlayer", function(data) {			// broadcast

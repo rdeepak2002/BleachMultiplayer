@@ -18,11 +18,11 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
   }
 
   function attack() {
-    //if(player.y==player.groundY) {
+    if(player.hurting==false) {
       player.attackTimer = currentTime;
       player.animTimer = currentTime; 
       player.attacking = true;
-    //}
+    }
   }
 
   function jump() {
@@ -135,6 +135,7 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
         attack();       
       } 
     }
+
     if ((event.keyCode || event.which) == 39) {           // right arrow
       if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false) {
         player.facingLeft = false;

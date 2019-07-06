@@ -36,6 +36,27 @@ function animate(player, App) {
 
     player.img = newImage;
   }
+  else if(player.hurting == true) {
+    player.yOffset = 0;
+
+    var numFrames = 3;
+    speed = 150;
+    interval = speed * numFrames;
+
+    curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+    if(curFrame > numFrames-1) {
+      curFrame = numFrames-1;
+      player.hurting = false;
+    }
+
+    var newImage = "ichigoDamage" + curFrame;
+
+    if(player.facingLeft)
+      newImage = newImage + "Left";
+
+    player.img = newImage;
+  }
   else if(player.guarding == true) {
     player.yOffset = 32;
 
@@ -43,17 +64,6 @@ function animate(player, App) {
       player.xOffset = 40;
     else
       player.xOffset = -50;
-
-    //var numFrames = 2;
-    //speed = 100;
-    //interval = speed * numFrames;
-
-    //curFrame = Math.round((numFrames-1)/(interval/delta))+1;
-
-    // if(curFrame > numFrames-1) {
-    //   curFrame = numFrames-1;
-    //   player.guarding = false;
-    // }
 
     curFrame = 1;
 
