@@ -53,7 +53,7 @@ $(function() {
 
             var leftPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.minX-curPlayer.x - levelPillar.naturalWidth;
             var rightPillarX  = App.canvas.width/2 + player.centerOffset + curPlayer.maxX-curPlayer.x + levelPillar.naturalWidth+30;
-            var pillarYOffset = 200;
+            var pillarYOffset = 150;
 
             App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
             App.ctx.drawImage(levelPillar, leftPillarX, pillarYOffset - levelPillar.naturalHeight, levelPillar.naturalWidth * scale, levelPillar.naturalHeight * scale);
