@@ -54,10 +54,10 @@ $(function() {
         App.drawGui(curPlayer);
       }
       else {
-        var precent = Math.round(100*(1.0*numLoaded/size));
+        //var precent = Math.round(100*(1.0*numLoaded/size));
         App.ctx.font = "5rem Arial";
         App.ctx.fillStyle = "rgb(255, 255, 255)";
-        percent = numLoaded + "/" + size;
+        var percent = numLoaded + "/" + size;
         App.ctx.fillText("LOADING: " + precent + "%", 10, 70);
         console.log("LOADING: " + precent);
       }
