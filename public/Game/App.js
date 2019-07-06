@@ -201,7 +201,9 @@ function init(app) {
       var imgHeight = img.naturalHeight*2;
       app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
     }
-    else {
+    else {      
+      var outline = 3;
+
       var healthBarX = 20;
       var healthBarOffset = 38;
       var healthBarY = 20;
@@ -210,33 +212,38 @@ function init(app) {
 
       var spiritBarX = 20;
       var spiritBarOffset = 38;
-      var spiritBarY = 50;
+      var spiritBarY = 50+outline;
       var spiritBarHeight = 30;
       var spiritBarWidth = 500;
 
-      var outline = 3;
-
       var img = getImage("ichigoHealthBarIcon");
+      var img2 = getImage("getsugaBarIcon");
 
-      app.ctx.fillStyle = "rgb(240,230,140)";
+      var black = "rgb(0,0,0)";
+      var silver = "rgb(240,230,140)";
+      var red = "rgb(255, 0, 0)";
+      var blue = "rgb(0, 0, 255)";
+
+      app.ctx.fillStyle = silver;
       app.ctx.roundRect(healthBarX + healthBarOffset-outline, healthBarY-outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20).fill();
       
-      app.ctx.fillStyle = "rgba(0, 0, 0)";
+      app.ctx.fillStyle = black;
       app.ctx.roundRect(healthBarX + healthBarOffset, healthBarY, healthBarWidth, healthBarHeight, 20).fill();
 
-      app.ctx.fillStyle = "rgb(240,230,140)";
+      app.ctx.fillStyle = silver;
       app.ctx.roundRect(spiritBarX + spiritBarOffset-outline, spiritBarY-outline, spiritBarWidth + outline*2, spiritBarHeight+outline*2, 20).fill();
       
-      app.ctx.fillStyle = "rgba(0, 0, 0)";
+      app.ctx.fillStyle = black;
       app.ctx.roundRect(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth, spiritBarHeight, 20).fill();
 
-      app.ctx.fillStyle = "rgb(255, 0, 0)";
+      app.ctx.fillStyle = red;
       app.ctx.roundRect(healthBarX + healthBarOffset, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight, 20).fill();  
       
-      app.ctx.fillStyle = "rgb(0, 0, 255)";
+      app.ctx.fillStyle = blue;
       app.ctx.roundRect(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth*(curPlayer.spiritEnergy / curPlayer.maxSpiritEnergy), spiritBarHeight, 20).fill();
 
-      app.ctx.drawImage(img, healthBarX-5, healthBarY-outline, img.naturalWidth*2, healthBarHeight+outline*2);
+      app.ctx.drawImage(img, healthBarX-2, healthBarY-outline, img.naturalWidth*2, healthBarHeight+outline*2);
+      app.ctx.drawImage(img2, spiritBarX-2, spiritBarY-outline, img.naturalWidth*2, spiritBarHeight+outline*2);
     }
 	}
 };

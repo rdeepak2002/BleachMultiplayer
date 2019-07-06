@@ -21,6 +21,8 @@ function preloadMedia() {
 							"getsuga1Left" : loadImage("resources/ichigo/getsuga1Left.png"),
 
 							"ichigoHealthBarIcon" : loadImage("resources/ichigo/ichigoHealthBarIcon.png"),
+							"getsugaBarIcon" : loadImage("resources/ichigo/getsugaBarIcon.png"),
+
 
 							"ichigoStand1" : loadImage("resources/ichigo/ichigoStand1.png"),
 							"ichigoStand2" : loadImage("resources/ichigo/ichigoStand2.png"),
