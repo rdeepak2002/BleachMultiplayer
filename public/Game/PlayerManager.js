@@ -43,7 +43,7 @@ function updatePlayerState(player, dt) {
     player.impulseX = 0;
   }
 
-  if(player.hurting==false && player.dead == false && player.teleporting == false && player.attacking == false && player.guarding == false) {
+  if(player.hurting==false && player.dead == false && player.teleporting == false && (player.attacking == false || player.y != player.groundY) && player.guarding == false) {
     player.x = player.x + player.hVelocity*(dt/30) + player.impulseX*(dt/30) + player.groundImpulseX*(dt/30);
   }
 
