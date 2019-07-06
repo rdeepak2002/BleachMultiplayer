@@ -20,7 +20,7 @@ $(function() {
     if(delta > interval) {
       App.ctx.clearRect(0,0,cw,cw);
 
-      if(Object.keys(App.playerArr).length > 0) {
+      if(Object.keys(App.playerArr).length > 0 && imagesLoaded == true) {
         curPlayer = App.playerArr[App.playerId];
 
         manageKeyEvents(curPlayer, App);

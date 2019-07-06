@@ -1,11 +1,20 @@
+var images = {};
+var numLoaded = 0;
+var imagesLoaded = false;
+
 function loadImage(path) {
 	var image = new Image();   // Create new img element
 
 	image.onload = function () {
 	  console.log("loaded image");
+	  numLoaded++;
 	}
 
   image.src = path; // Set source path
+
+  if(numLoaded == Object.keys(images).length) {
+  	imagesLoaded = true;
+  }
 
   return image;
 }
