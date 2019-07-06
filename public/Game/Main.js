@@ -2,6 +2,9 @@ $(function() {
   var App = {};
   createCanvas(App);
 
+  var cw = App.canvas.width;
+  var ch = App.canvas.height;
+
   var initialized = false;
 
   var fps = 30;
@@ -18,19 +21,16 @@ $(function() {
     delta = (currentTime-lastTime);
 
     if(delta > interval) {
+      App.ctx.clearRect(0,0,cw,ch);
+
       if(numLoaded == size) {
         if(initialized == false) {
           init(App);
           initialized = true;
         }
-        
+
         if(App.playerArr != undefined) {
           if(Object.keys(App.playerArr).length > 0) {
-            var cw = App.canvas.width;
-            var ch = App.canvas.height;
-
-            App.ctx.clearRect(0,0,cw,ch);
-
             curPlayer = App.playerArr[App.playerId];
 
             manageKeyEvents(curPlayer, App);
@@ -80,6 +80,7 @@ $(function() {
         }
       }
       else {
+
         App.ctx.font = "5rem Arial";
         App.ctx.fillStyle = "rgb(255, 255, 255)";
         var percent = Math.round(100*(1.0*numLoaded/size));
