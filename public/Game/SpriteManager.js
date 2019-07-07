@@ -25,10 +25,10 @@ function updateSprites(app, player, dt) {
   		delete app.spriteArr[sprite.spriteId];
   	}
 
-  	if(sprite.visible == true)
+  	if(sprite.room == player.room && sprite.visible == true)
     	app.ctx.drawImage(getImage(sprite.img), sprite.x - player.x, sprite.y, sprite.width, sprite.height);
 
-    if(sprite.playerId == player.playerId)
+    if(sprite.room == player.room && sprite.playerId == player.playerId)
   		app.updateSprite(sprite.spriteId, sprite);
 
 
@@ -58,7 +58,7 @@ function updateSprites(app, player, dt) {
           app.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
         }
 
-        if(sprite.playerId == player.playerId && sprite.visible == true && checkCollide(attackingRect, otherPlayerRect) == true) {
+        if(otherPlayer.room == player.room && sprite.playerId == player.playerId && sprite.visible == true && checkCollide(attackingRect, otherPlayerRect) == true) {
         	if(otherPlayer.guarding == false && otherPlayer.dead == false) {
 	          app.attackPlayer(otherPlayer.playerId, sprite.attack, player.facingLeft);
 	          sprite.visible = false;

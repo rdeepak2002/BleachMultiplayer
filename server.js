@@ -25,7 +25,6 @@ app.get('*', function(req, res){
 
 var clientId = 0;
 var spriteId = 0;
-var roomNo = 1;
 var numberConnected = 0;
 var playerArr = {};
 var spriteArr = {};
@@ -33,7 +32,6 @@ io.on('connection', function(socket) {
 	var address = socket.request.connection.remoteAddress;
 	clientId = socket.id;
 	numberConnected++;
-	roomNo++;
 
 	console.log("CLIENT CONNECTED " + clientId);
 
@@ -43,10 +41,6 @@ io.on('connection', function(socket) {
   });
 
 	socket.broadcast.emit('newPlayer');
-
-	socket.join("room-"+roomNo);
-
- 	io.sockets.in("room-"+roomNo).emit('connectToRoom', "You are in room no. "+roomNo);
 
 	socket.on("updatePlayer", function(data) {		// add room specific code:  io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
 		playerArr[data.id] = data.player;
@@ -116,6 +110,8 @@ io.on('connection', function(socket) {
 
 	socket.on("addPlayer", function(data) {
 		console.log("adding player!");
+		socket.join("room-"+parseInt(data.player.room));
+ 		io.sockets.in("room-"+parseInt(data.player.room)).emit('connectToRoom', "You are in room no. "+parseInt(data.player.room));
 		playerArr[data.id] = data.player;
 
     printCurrentPlayers();

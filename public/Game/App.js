@@ -102,12 +102,20 @@ function init(app) {
     console.log("your ip: " + app.ip);
 
   	username = getCookie("username");
+    var room = getCookie("roomNumber");
 
   	if(username == undefined || username == "") {
-  		username = "error getting username";
-  	}
+      document.cookie = "username= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+      window.location.href = "/";  	
+    }
+
+    if(room == undefined || room == "") {
+      document.cookie = "roomNumber= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+      window.location.href = "/lobby";
+    }
 
   	newPlayer.username = username;
+    newPlayer.room = room;
 
     $("#logs").append("<p>set username to: " + username + "</p>");
 
@@ -123,6 +131,7 @@ function init(app) {
     newSprite = new Sprite(app.playerId);
     newSprite.x = x;
     newSprite.y = y;
+    newSprite.room = player.room;
 
     var scale = newSprite.height/getImage(newSprite.img).naturalHeight;
     newSprite.width = getImage(newSprite.img).naturalWidth * scale;
@@ -215,12 +224,12 @@ function init(app) {
         var realX;
         var realY;
 
-        if(curPlayer.playerId != player.playerId) {
+        if(player.room == curPlayer.room && curPlayer.playerId != player.playerId) {
           realX = app.canvas.width/2 + player.x - curPlayer.x + player.centerOffset;
           realY = player.y;
           app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
         }
-        else {
+        else if(player.room == curPlayer.room && curPlayer.playerId == player.playerId){
           realX = app.canvas.width/2 + player.centerOffset;
           realY = player.y;
           app.ctx.drawImage(img, realX + player.xOffset, realY + player.yOffset, img.naturalWidth*2, img.naturalHeight*2)
@@ -240,7 +249,7 @@ function init(app) {
 
   			app.ctx.fillText(username, xOffset + realX, yOffset + realY);
 
-  			if(curPlayer.playerId != player.playerId && player.dead == false && player.health != player.maxHealth) {
+  			if(player.room == curPlayer.room && curPlayer.playerId != player.playerId && player.dead == false && player.health != player.maxHealth) {
           var outline = 2;
           var healthBarWidth = 150;
           var healthBarHeight = 10;

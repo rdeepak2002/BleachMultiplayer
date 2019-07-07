@@ -3,6 +3,7 @@ let Player = class {
 		this.playerId = 0;
 		this.ip = "";
 		this.x = 0;
+		this.room = -1;
 		this.minX = -1000;
 		this.maxX = 1000;
 		this.groundY = 530;

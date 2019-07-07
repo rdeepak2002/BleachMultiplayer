@@ -135,7 +135,7 @@ function checkPlayerAttack(player, playerArr, App) {
           App.ctx.fillRect(attackingRect.x, attackingRect.y, attackingRect.width, attackingRect.height);
         }
 
-        if(checkCollide(attackingRect, otherPlayerRect) == true && otherPlayer.dead == false) {
+        if(otherPlayer.room == player.room && checkCollide(attackingRect, otherPlayerRect) == true && otherPlayer.dead == false) {
           if(otherPlayer.guarding == false || otherPlayer.facingLeft == player.facingLeft) {
             if(player.hasHurt == false) {
               App.attackPlayer(otherPlayer.playerId, player.attack, player.facingLeft);

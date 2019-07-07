@@ -4,6 +4,7 @@ let Sprite = class {
 		this.playerId = playerId;
 		this.x = 0;
 		this.y = 0;
+		this.room = -1;
 		this.yOffset = 200;
 		this.hVelocity = 20;
 		this.negHVelocity = -20;
