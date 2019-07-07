@@ -101,16 +101,16 @@ function init(app) {
 
     console.log("your ip: " + app.ip);
 
-  	username = getCookie("username");
-    var room = getCookie("roomNumber");
+  	username = sessionStorage.getItem("username");
+    var room = sessionStorage.getItem("roomNumber");
 
   	if(username == undefined || username == "") {
-      document.cookie = "username= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+      sessionStorage.setItem("username", "");
       window.location.href = "/";  	
     }
 
     if(room == undefined || room == "") {
-      document.cookie = "roomNumber= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+      sessionStorage.setItem("roomNumber", "");
       window.location.href = "/lobby";
     }
 

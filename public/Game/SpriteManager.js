@@ -32,7 +32,7 @@ function updateSprites(app, player, dt) {
   		app.updateSprite(sprite.spriteId, sprite);
 
 
-    for(var key in app.playerArr) {			// check collisions
+    for(var key in app.playerArr) {			// check collision
       var otherPlayer = app.playerArr[key];
 
       if(key != player.playerId) {
