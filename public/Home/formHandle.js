@@ -6,6 +6,6 @@ function createCookie() {
 
 		document.cookie = "username=" + username;
 
-		window.location.href = "/play";
+		window.location.href = "/lobby";
 	}
 }

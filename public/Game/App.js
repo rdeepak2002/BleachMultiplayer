@@ -264,6 +264,23 @@ function init(app) {
       var imgWidth = img.naturalWidth*2;
       var imgHeight = img.naturalHeight*2;
       app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
+
+      var quitText = "Quit Room"
+      var quitRoomX = app.canvas.width/2 - app.ctx.measureText(quitText).width/2;
+      var quitRoomY = 650;
+      var quitRoomWidth = 500;
+      var quitRoomHeight = 80;
+
+      app.ctx.font = "3rem Arial";
+      app.ctx.fillStyle = "rgb(200, 200, 200)";
+      app.ctx.roundRect(quitRoomX-10, quitRoomY-60, app.ctx.measureText(quitText).width+20, quitRoomHeight, 20).fill();
+      app.ctx.fillStyle = "rgb(20, 20, 20)";
+      app.ctx.fillText(quitText, quitRoomX, quitRoomY);
+
+      if(checkClick(quitRoomX-10, quitRoomY-60, app.ctx.measureText(quitText).width+20, quitRoomHeight)) {
+        window.location.href = "/lobby";
+      }
+
     }
     else {      
       var outline = 3;
@@ -327,9 +344,26 @@ function init(app) {
         app.ctx.fillStyle = "rgba(255, 255, 255)";
         app.ctx.font = "3rem Arial";
         app.ctx.fillStyle = "rgb(255, 255, 255)";
+
         var controls = ["A to Move Left", "D to Move Right", "W to Jump", "Q for Special Move", "E to Guard", "Shift to Teleport / Wall Jump", "Arrow Keys to Slash"]
         for(var i = 0; i < controls.length; i++) {
-          app.ctx.fillText(controls[i], app.canvas.width/2 - app.ctx.measureText(controls[i]).width/2, 200+i*70);
+          app.ctx.fillText(controls[i], app.canvas.width/2 - app.ctx.measureText(controls[i]).width/2, 100+i*70);
+        }
+
+        var quitText = "Quit Room"
+        var quitRoomX = app.canvas.width/2 - app.ctx.measureText(quitText).width/2;
+        var quitRoomY = 650;
+        var quitRoomWidth = 500;
+        var quitRoomHeight = 80;
+
+        app.ctx.font = "3rem Arial";
+        app.ctx.fillStyle = "rgb(200, 200, 200)";
+        app.ctx.roundRect(quitRoomX-10, quitRoomY-60, app.ctx.measureText(quitText).width+20, quitRoomHeight, 20).fill();
+        app.ctx.fillStyle = "rgb(20, 20, 20)";
+        app.ctx.fillText(quitText, quitRoomX, quitRoomY);
+
+        if(checkClick(quitRoomX-10, quitRoomY-60, app.ctx.measureText(quitText).width+20, quitRoomHeight)) {
+          window.location.href = "/lobby";
         }
       }
     }

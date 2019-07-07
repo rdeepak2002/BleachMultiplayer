@@ -15,6 +15,14 @@ app.get('/play', function(req, res){
   res.sendFile(__dirname + '/public/Game/game.html');
 });
 
+app.get('/lobby', function(req, res){
+  res.sendFile(__dirname + '/public/Lobby/lobby.html');
+});
+
+app.get('*', function(req, res){
+  res.sendFile(__dirname + '/public/Home/home.html');
+});
+
 var clientId = 0;
 var spriteId = 0;
 var roomNo = 1;
