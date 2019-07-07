@@ -1,9 +1,59 @@
+var clickX = -1;
+var clickY = -1;
+var pause = false;
+var hScale = 0;
+var vScale = 0;
+var origWidth = 1200;
+var origHeight = 800;
+
+function checkClick(x, y, width, height) {
+  if(clickX <= x + width && clickX >= x) {
+    if(clickY >= y  && clickY <= y  + height) {
+      clickX = -1;
+      clickY = -1;
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+    return false;
+  }
+}
+
+
 function createCanvas(app) {
   app.canvas = document.createElement("canvas");
-  app.canvas.width = 1200;
-  app.canvas.height = 800;
+  app.canvas.width = origWidth;
+  app.canvas.height = origHeight;
   document.getElementsByTagName("article")[0].appendChild(app.canvas);
   app.ctx = app.canvas.getContext("2d");
+
+  var canvas = document.getElementsByTagName("canvas")[0];
+  var rect = canvas.getBoundingClientRect();
+
+  var width = $('canvas').width();
+  var height = $('canvas').height();
+
+  hScale = width / rect.width;
+  vScale = height / rect.height;
+
+  function on_canvas_click(evt) {
+    var width = $('canvas').width();
+    var height = $('canvas').height();
+
+    var canvas = document.getElementsByTagName("canvas")[0];
+    var rect = canvas.getBoundingClientRect();
+
+    hScale = origWidth / rect.width;
+    vScale = origHeight / rect.height;
+
+    clickX = (evt.clientX-rect.left) * hScale ;
+    clickY = (evt.clientY-rect.top) * vScale;
+  }
+
+  app.canvas.addEventListener('click', on_canvas_click, false);
 }
 
 function init(app) {
@@ -181,9 +231,13 @@ function init(app) {
 
         var username = player.username;
 
+        var usernameWidth = app.ctx.measureText(username).width+10;
+
+        console.log(usernameWidth);
+
   	  	app.ctx.font = "1rem Arial";
   	  	app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-      	app.ctx.roundRect(xOffset + realX-5, yOffset + realY-15, 10*username.length+7, 20, 20).fill();
+      	app.ctx.roundRect(xOffset + realX-5, yOffset + realY-15, usernameWidth, 20, 20).fill();
   	  	app.ctx.fillStyle = "rgb(255, 255, 255)";
 
   			app.ctx.fillText(username, xOffset + realX, yOffset + realY);
@@ -256,6 +310,30 @@ function init(app) {
 
       app.ctx.drawImage(img, healthBarX+12, healthBarY-outline, img.naturalWidth, healthBarHeight+outline*2);
       app.ctx.drawImage(img2, spiritBarX+12, spiritBarY-outline, img.naturalWidth, spiritBarHeight+outline*2);
+
+      var pauseBtnImg = getImage("pauseBtn");
+      var pauseWidth = 50;
+      var pauseHeight = 50;
+      var pauseY = 20;
+      var pauseX = app.canvas.width - pauseWidth - pauseY - 40;
+
+      app.ctx.drawImage(pauseBtnImg, pauseX, pauseY, pauseWidth, pauseHeight);
+
+      if(checkClick(pauseX, pauseY, pauseWidth, pauseHeight)) {
+        pause = !(pause);
+      }
+
+      if(pause == true) {
+        app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+        app.ctx.fillRect(0, 0, app.canvas.width, app.canvas.height);
+        app.ctx.fillStyle = "rgba(255, 255, 255)";
+        app.ctx.font = "3rem Arial";
+        app.ctx.fillStyle = "rgb(255, 255, 255)";
+        var controls = ["A to Move Left", "D to Move Right", "W to Jump", "Q for Special Move", "E to Guard", "Shift to Teleport / Wall Jump", "Arrow Keys to Slash"]
+        for(var i = 0; i < controls.length; i++) {
+          app.ctx.fillText(controls[i], app.canvas.width/2 - app.ctx.measureText(controls[i]).width/2, 200+i*70);
+        }
+      }
     }
 	}
 };

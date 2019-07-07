@@ -142,7 +142,9 @@ function preloadMedia() {
 
 							"ichigoGuard1Left" : loadImage("resources/ichigo/ichigoGuard1Left.png"),
 
-							"gameOverText"		: loadImage("resources/gameover.png")
+							"gameOverText"		: loadImage("resources/gameover.png"),
+
+							"pauseBtn"		: loadImage("resources/pauseBtn.png")
 					 };
 }
 

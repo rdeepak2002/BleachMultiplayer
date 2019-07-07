@@ -80,7 +80,6 @@ $(function() {
         }
       }
       else {
-
         App.ctx.font = "5rem Arial";
         App.ctx.fillStyle = "rgb(255, 255, 255)";
         var percent = Math.round(100*(1.0*numLoaded/size));
