@@ -233,8 +233,6 @@ function init(app) {
 
         var usernameWidth = app.ctx.measureText(username).width+10;
 
-        console.log(usernameWidth);
-
   	  	app.ctx.font = "1rem Arial";
   	  	app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
       	app.ctx.roundRect(xOffset + realX-5, yOffset + realY-15, usernameWidth, 20, 20).fill();
