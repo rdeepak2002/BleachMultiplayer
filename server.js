@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 8080;
+var clientCount = [0,0,0,0,0,0,0,0,0,0];
 
 app.use(express.static(__dirname))
 
@@ -17,6 +18,10 @@ app.get('/play', function(req, res){
 
 app.get('/lobby', function(req, res){
   res.sendFile(__dirname + '/public/Lobby/lobby.html');
+});
+
+app.get('/getNumClients', function(req, res) {
+	res.send(clientCount);
 });
 
 app.get('*', function(req, res){
@@ -60,6 +65,8 @@ io.on('connection', function(socket) {
         io.emit("removePlayer", {
 		    	id: playerArr[keys[i]].playerId
 		    });
+
+  			clientCount[playerArr[keys[i]].room-1] = clientCount[playerArr[keys[i]].room-1] - 1;
         delete playerArr[keys[i]];
       }
     }
@@ -113,7 +120,7 @@ io.on('connection', function(socket) {
 		socket.join("room-"+parseInt(data.player.room));
  		io.sockets.in("room-"+parseInt(data.player.room)).emit('connectToRoom', "You are in room no. "+parseInt(data.player.room));
 		playerArr[data.id] = data.player;
-
+		clientCount[parseInt(data.player.room)-1] = clientCount[parseInt(data.player.room)-1] + 1;
     printCurrentPlayers();
 	});
 
@@ -142,6 +149,7 @@ io.on('connection', function(socket) {
         delete spriteArr[keys[i]];
     }
 
+		clientCount[playerArr[socket.id].room-1] = clientCount[playerArr[socket.id].room-1] - 1;
 		delete playerArr[socket.id];
 
     io.emit("removePlayer", {

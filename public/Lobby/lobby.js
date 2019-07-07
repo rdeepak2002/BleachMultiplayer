@@ -1,14 +1,13 @@
-$(function() {
-	var username = sessionStorage.getItem('username');
-
-	if(username == undefined || username=="") {
-		window.location.href = "/";
-	}
-});
+var clientArr;
+var maxRoomNumber = 2;
 
 function join(roomNumber) {
-	sessionStorage.setItem("roomNumber", roomNumber);
-	window.location.href = "/play";
+	if(clientArr != undefined) {
+		if(clientArr[roomNumber-1] < maxRoomNumber) {
+			sessionStorage.setItem("roomNumber", roomNumber);
+			window.location.href = "/play";
+		}
+	}
 }
 
 function signout() {
@@ -16,3 +15,39 @@ function signout() {
 	sessionStorage.setItem("username", "");
 	window.location.href = "/";
 }
+
+function getNumClients() {
+	var response = '';
+
+	$.ajax({ type: "GET",
+     url: "/getNumClients",   
+     async: true,
+     success : function(res)
+     {
+				response = res;
+				for(var i = 1; i < response.length+1; i++) {
+					var numClients = response[i-1];
+					var idTag = "#room"+ i;
+					$(idTag).html(numClients + "/"+maxRoomNumber+" players");
+					if(numClients < maxRoomNumber) {
+						$(idTag).append('<span class="joinBtn" id="' + i + '" onclick="join(this.id)">Join</span>');
+					}
+				}
+				clientArr = response;
+     }
+	});
+}
+
+$(function() {
+	var username = sessionStorage.getItem('username');
+
+	if(username == undefined || username=="") {
+		window.location.href = "/";
+	}
+
+	getNumClients();
+});
+
+window.setInterval(function(){
+	getNumClients();
+}, 1000);
