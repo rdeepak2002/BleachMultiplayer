@@ -263,10 +263,10 @@ function init(app) {
       var img = getImage("gameOverText");
       var imgWidth = img.naturalWidth*2;
       var imgHeight = img.naturalHeight*2;
-      app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
+      app.ctx.drawImage(img, app.canvas.width / 2 - imgWidth / 2-20, app.canvas.height / 2 - imgHeight / 2, imgWidth, imgHeight);
 
       var quitText = "Quit Room"
-      var quitRoomX = app.canvas.width/2 - app.ctx.measureText(quitText).width/2;
+      var quitRoomX = app.canvas.width/2 - app.ctx.measureText(quitText).width/2-80;
       var quitRoomY = 650;
       var quitRoomWidth = 500;
       var quitRoomHeight = 80;
@@ -280,7 +280,6 @@ function init(app) {
       if(checkClick(quitRoomX-10, quitRoomY-60, app.ctx.measureText(quitText).width+20, quitRoomHeight)) {
         window.location.href = "/lobby";
       }
-
     }
     else {      
       var outline = 3;
