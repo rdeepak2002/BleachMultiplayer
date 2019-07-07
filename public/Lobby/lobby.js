@@ -20,7 +20,7 @@ function getNumClients() {
 	var response = '';
 
 	$.ajax({ type: "GET",
-     url: "/getNumClients",   
+     url: "/getNumClients",
      async: true,
      success : function(res)
      {
@@ -28,6 +28,12 @@ function getNumClients() {
 				for(var i = 1; i < response.length+1; i++) {
 					var numClients = response[i-1];
 					var idTag = "#room"+ i;
+					if(i > 5) {
+						maxRoomNumber = 3;
+					}
+					else {
+						maxRoomNumber = 2;
+					}
 					$(idTag).html(numClients + "/"+maxRoomNumber+" players");
 					if(numClients < maxRoomNumber) {
 						$(idTag).append('<span class="joinBtn" id="' + i + '" onclick="join(this.id)">Join</span>');
@@ -45,9 +51,12 @@ $(function() {
 		window.location.href = "/";
 	}
 
+	$(".label").html(username);
+
 	getNumClients();
 });
 
 window.setInterval(function(){
 	getNumClients();
+	//console.log(document.getElementById('picker').value)
 }, 1000);

@@ -24,13 +24,13 @@
     <script type="text/javascript" src="/public/ExternalLibraries/jquery-1.11.1.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/ExternalLibraries/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/ExternalLibraries/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/public/ExternalLibraries/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
@@ -39,7 +39,21 @@
 
   <body>
 
-  <div class="container">
+  <div class="container noSelect">
+    <div class="row">
+          <div class="profile-header-container">   
+          <div class="profile-header-img">
+                  <img class="img-circle" src="/resources/profilePicture.png" />
+                  <!-- badge -->
+                  <div class="rank-label-container">
+                      <span class="label label-default rank-label">username</span>
+                  </div>
+              </div>
+          </div> 
+    </div>
+
+<!--     <input id="picker" type="color" name="">
+ -->
     <div class="row">
       <div class="col-lg-1 col-md-offset-4">
         <!-- Category -->
@@ -51,7 +65,11 @@
             <li><a>Room 3<span id="room3"class="pull-right"></span></a></li>
             <li><a>Room 4<span id="room4"class="pull-right"></span></a></li>
             <li><a>Room 5<span id="room5"class="pull-right"></span></a></li>
-        
+            <li><a>Room 6<span id="room6"class="pull-right"></span></a></li>
+            <li><a>Room 7<span id="room7"class="pull-right"></span></a></li>
+            <li><a>Room 8<span id="room8"class="pull-right"></span></a></li>
+            <li><a>Room 9<span id="room9"class="pull-right"></span></a></li>
+            <li><a>Room 10<span id="room10"class="pull-right"></span></a></li>
             <li><a class="signOutBtn" onclick="signout()">Sign Out</a></li>
           </ul>
          </div>

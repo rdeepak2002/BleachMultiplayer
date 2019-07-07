@@ -149,7 +149,8 @@ io.on('connection', function(socket) {
         delete spriteArr[keys[i]];
     }
 
-		clientCount[playerArr[socket.id].room-1] = clientCount[playerArr[socket.id].room-1] - 1;
+    if(playerArr[socket.id] != undefined)
+			clientCount[playerArr[socket.id].room-1] = clientCount[playerArr[socket.id].room-1] - 1;
 		delete playerArr[socket.id];
 
     io.emit("removePlayer", {
