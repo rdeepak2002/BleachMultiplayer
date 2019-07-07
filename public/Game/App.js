@@ -242,14 +242,16 @@ function init(app) {
 
         var usernameWidth = app.ctx.measureText(username).width+10;
 
-  	  	app.ctx.font = "1rem Arial";
-  	  	app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-      	app.ctx.roundRect(xOffset + realX-5, yOffset + realY-15, usernameWidth, 20, 20).fill();
-  	  	app.ctx.fillStyle = "rgb(255, 255, 255)";
+        if(pause == false) {
+          app.ctx.font = "1rem Arial";
+          app.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+          app.ctx.roundRect(xOffset + realX-5, yOffset + realY-15, usernameWidth, 20, 20).fill();
+          app.ctx.fillStyle = "rgb(255, 255, 255)";
 
-  			app.ctx.fillText(username, xOffset + realX, yOffset + realY);
+          app.ctx.fillText(username, xOffset + realX, yOffset + realY);
+        }
 
-  			if(player.room == curPlayer.room && curPlayer.playerId != player.playerId && player.dead == false && player.health != player.maxHealth) {
+  			if(pause == false && player.room == curPlayer.room && curPlayer.playerId != player.playerId && player.dead == false && player.health != player.maxHealth) {
           var outline = 2;
           var healthBarWidth = 150;
           var healthBarHeight = 10;
@@ -313,26 +315,28 @@ function init(app) {
       var red = "rgb(0, 255, 255)";
       var blue = "rgb(51, 255, 51)";
 
-      app.ctx.fillStyle = outlineColor;
-      app.ctx.sharpRectDown(healthBarX + healthBarOffset-outline, healthBarY-outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20+outline*2).fill();
-      
-      app.ctx.fillStyle = black;
-      app.ctx.sharpRectDown(healthBarX + healthBarOffset, healthBarY, healthBarWidth, healthBarHeight, 20).fill();
+      if(pause == false) {
+        app.ctx.fillStyle = outlineColor;
+        app.ctx.sharpRectDown(healthBarX + healthBarOffset-outline, healthBarY-outline, healthBarWidth + outline*2, healthBarHeight+outline*2, 20+outline*2).fill();
+        
+        app.ctx.fillStyle = black;
+        app.ctx.sharpRectDown(healthBarX + healthBarOffset, healthBarY, healthBarWidth, healthBarHeight, 20).fill();
 
-      app.ctx.fillStyle = outlineColor;
-      app.ctx.sharpRectUp(spiritBarX + spiritBarOffset-outline, spiritBarY-outline, spiritBarWidth + outline*2, spiritBarHeight+outline*2, 20+outline*2).fill();
-      
-      app.ctx.fillStyle = black;
-      app.ctx.sharpRectUp(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth, spiritBarHeight, 20).fill();
+        app.ctx.fillStyle = outlineColor;
+        app.ctx.sharpRectUp(spiritBarX + spiritBarOffset-outline, spiritBarY-outline, spiritBarWidth + outline*2, spiritBarHeight+outline*2, 20+outline*2).fill();
+        
+        app.ctx.fillStyle = black;
+        app.ctx.sharpRectUp(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth, spiritBarHeight, 20).fill();
 
-      app.ctx.fillStyle = red;
-      app.ctx.sharpRectDown(healthBarX + healthBarOffset, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight, 20).fill();  
-      
-      app.ctx.fillStyle = blue;
-      app.ctx.sharpRectUp(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth*(curPlayer.spiritEnergy / curPlayer.maxSpiritEnergy), spiritBarHeight, 20).fill();
+        app.ctx.fillStyle = red;
+        app.ctx.sharpRectDown(healthBarX + healthBarOffset, healthBarY, healthBarWidth*(curPlayer.health / curPlayer.maxHealth), healthBarHeight, 20).fill();  
+        
+        app.ctx.fillStyle = blue;
+        app.ctx.sharpRectUp(spiritBarX + spiritBarOffset, spiritBarY, spiritBarWidth*(curPlayer.spiritEnergy / curPlayer.maxSpiritEnergy), spiritBarHeight, 20).fill();
 
-      app.ctx.drawImage(img, healthBarX+12, healthBarY-outline, img.naturalWidth, healthBarHeight+outline*2);
-      app.ctx.drawImage(img2, spiritBarX+12, spiritBarY-outline, img.naturalWidth, spiritBarHeight+outline*2);
+        app.ctx.drawImage(img, healthBarX+12, healthBarY-outline, img.naturalWidth, healthBarHeight+outline*2);
+        app.ctx.drawImage(img2, spiritBarX+12, spiritBarY-outline, img.naturalWidth, spiritBarHeight+outline*2);
+      }
 
       var pauseBtnImg = getImage("pauseBtn");
       var pauseWidth = 50;

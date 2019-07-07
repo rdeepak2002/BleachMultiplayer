@@ -38,6 +38,8 @@ var isMobile = {
 };
 
 if( isMobile.any() ) {
+  $('#mobileBtns').css('opacity', '1');
+
   joystick = nipplejs.create(sampleJoystick);
 
   joystick.on('start', function(evt, data) {

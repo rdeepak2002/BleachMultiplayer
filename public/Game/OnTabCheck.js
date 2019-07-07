@@ -7,8 +7,3 @@ window.onfocus = function () {
 window.onblur = function () { 
   isTabActive = false; 
 }; 
-
-// // test
-// setInterval(function () { 
-//   console.log(window.isTabActive ? 'active' : 'inactive'); 
-// }, 1000);

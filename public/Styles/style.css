@@ -1,12 +1,21 @@
 html, body {
   overflow: hidden;
-  background: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
   width:100%; 
   height:100%;
 }
 
 input {
 	outline: none;
+}
+
+.text {
+  color: rgb(0, 0, 0);
+}
+
+.home-name-input {
+  color: rgb(0, 0, 0);
+  background-color: rgb(200, 200, 200);
 }
 	
 canvas {
@@ -41,6 +50,10 @@ canvas {
 
 .debug {
   color: rgb(255, 255, 255);
+}
+
+.mobileBtns {
+  opacity: 0;
 }
 
 .mobileBtn {
