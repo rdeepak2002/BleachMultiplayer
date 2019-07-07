@@ -40,11 +40,19 @@
   <body>
 
   <div class="container">
-    <button id="1" onclick="signout()">Sign Out</button>
-
-    <div>
-      <p>Room 1</p>
-      <button id="1" onclick="join(this.id)">Join</button>
+    <div class="row">
+      <div class="col-lg-1 col-md-offset-4">
+        <!-- Category -->
+        <div class="single category">
+          <h3 class="side-title">Rooms</h3>
+          <ul class="list-unstyled">
+            <li><a>Room 1<span class="pull-right">0/2 Players <span class="joinBtn" id="1" onclick="join(this.id)">Join</span></span></a></li>
+<!--             <li><a>Room 2<span class="pull-right">0/2 Players <span class="joinBtn" id="1" onclick="join(this.id)">Join</span></span></a></li>
+ -->            
+            <li><a class="signOutBtn" onclick="signout()">Sign Out</a></li>
+          </ul>
+         </div>
+      </div> 
     </div>
   </div>
 
