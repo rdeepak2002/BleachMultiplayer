@@ -1,5 +1,6 @@
 let Player = class {
 	constructor() {
+		this.type = "ichigo";
 		this.playerId = 0;
 		this.ip = "";
 		this.x = 0;

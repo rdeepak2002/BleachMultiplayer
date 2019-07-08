@@ -7,6 +7,7 @@ function join(roomNumber) {
 	if(clientArr != undefined) {
 		if(clientArr[roomNumber-1] < maxRoomNumber) {
 			sessionStorage.setItem("roomNumber", roomNumber);
+			sessionStorage.setItem("type", characters[curPlayer]);
 			window.location.href = "/play";
 		}
 	}

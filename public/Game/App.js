@@ -103,6 +103,7 @@ function init(app) {
 
   	username = sessionStorage.getItem("username");
     var room = sessionStorage.getItem("roomNumber");
+    var type = sessionStorage.getItem("type");
 
   	if(username == undefined || username == "") {
       sessionStorage.setItem("username", "");
@@ -114,8 +115,14 @@ function init(app) {
       window.location.href = "/lobby";
     }
 
+    if(type == undefined || type == "") {
+      sessionStorage.setItem("type", "");
+      window.location.href = "/lobby";    
+    }
+
   	newPlayer.username = username;
     newPlayer.room = room;
+    newPlayer.type = type;
 
     $("#logs").append("<p>set username to: " + username + "</p>");
 
