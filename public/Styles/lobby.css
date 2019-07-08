@@ -1,3 +1,28 @@
+#prevChar {
+	float: left;
+}
+
+#characterName {
+	text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#nextChar {
+	float: right;
+}
+
+.characterSelect {
+	margin-left: auto;
+	margin-right: auto;
+	width: 45%;
+}
+
 .single {
 	padding: 30px 15px;
 	margin-top: 40px;

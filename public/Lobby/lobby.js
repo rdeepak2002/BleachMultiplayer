@@ -1,5 +1,7 @@
 var clientArr;
 var maxRoomNumber = 2;
+var characters = ["ichigo", "uryu"];
+var curPlayer = 0;
 
 function join(roomNumber) {
 	if(clientArr != undefined) {
@@ -43,6 +45,31 @@ function getNumClients() {
      }
 	});
 }
+
+function updateImageAndText() {
+  $('#img').attr('src','/resources/characters/'+characters[curPlayer]+'Mugshot.png');
+  $("#characterName").html(characters[curPlayer].toUpperCase())
+}
+
+$('#prevChar').on( {
+    'click': function() {
+    	curPlayer--;
+    	if(curPlayer < 0) {
+    		curPlayer = characters.length - 1;
+    	}
+    	updateImageAndText();
+    }
+});
+
+$('#nextChar').on( {
+    'click': function() {
+    	curPlayer++;
+    	if(curPlayer > characters.length-1) {
+    		curPlayer = 0;
+    	}
+    	updateImageAndText();
+    }
+});
 
 $(function() {
 	var username = sessionStorage.getItem('username');
