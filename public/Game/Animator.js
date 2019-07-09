@@ -124,11 +124,15 @@ function animate(player, App) {
   }
   else if(player.attacking == true) {       // attacking
     if(player.y == player.groundY) {
-      player.yOffset = 30;
-
       var numFrames = 10;
       speed = 50;
       interval = speed * numFrames;
+
+      if(player.type=="uryu") {
+        numFrames = 10;
+        speed = 50;
+        interval = speed * numFrames;
+      }
 
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
@@ -141,7 +145,9 @@ function animate(player, App) {
         player.runKeyReleased = false;
       }
 
-      if(player.facingLeft == true) {
+      if(player.type == "ichigo" && player.facingLeft == true) {
+        player.yOffset = 30;
+
         if(curFrame == 1) {
           player.xOffset = 30;
         }
@@ -168,6 +174,35 @@ function animate(player, App) {
         }
         else if(curFrame == 9) {
           player.xOffset = 20;
+        }
+      } 
+      else if(player.type == "uryu") {
+        if(curFrame == 1) {
+          player.yOffset = -70;
+        }
+        else if(curFrame == 2) {
+          player.yOffset = -70;
+        }
+        else if(curFrame == 3) {
+          player.yOffset = -70;
+        }
+        else if(curFrame == 4) {
+          player.yOffset = -70;
+        }
+        else if(curFrame == 5) {
+          player.yOffset = -70;
+        }
+        else if(curFrame == 6) {
+          player.yOffset = -80;
+        }
+        else if(curFrame == 7) {
+          player.yOffset = -79;
+        }
+        else if(curFrame == 8) {
+          player.yOffset = -75;
+        }
+        else if(curFrame == 9) {
+          player.yOffset = -75;
         }
       }
 

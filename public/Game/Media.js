@@ -162,6 +162,26 @@ function preloadMedia() {
 							"uryuRun3Left" : loadImage("resources/uryu/uryuRun3Left.png"),
 							"uryuRun4Left" : loadImage("resources/uryu/uryuRun4Left.png"),
 
+							"uryuStrongAttack1" : loadImage("resources/uryu/uryuStrongAttack1.png"),
+							"uryuStrongAttack2" : loadImage("resources/uryu/uryuStrongAttack2.png"),
+							"uryuStrongAttack3" : loadImage("resources/uryu/uryuStrongAttack3.png"),
+							"uryuStrongAttack4" : loadImage("resources/uryu/uryuStrongAttack4.png"),
+							"uryuStrongAttack5" : loadImage("resources/uryu/uryuStrongAttack5.png"),
+							"uryuStrongAttack6" : loadImage("resources/uryu/uryuStrongAttack6.png"),
+							"uryuStrongAttack7" : loadImage("resources/uryu/uryuStrongAttack7.png"),
+							"uryuStrongAttack8" : loadImage("resources/uryu/uryuStrongAttack8.png"),
+							"uryuStrongAttack9" : loadImage("resources/uryu/uryuStrongAttack9.png"),
+
+							"uryuStrongAttack1Left" : loadImage("resources/uryu/uryuStrongAttack1Left.png"),
+							"uryuStrongAttack2Left" : loadImage("resources/uryu/uryuStrongAttack2Left.png"),
+							"uryuStrongAttack3Left" : loadImage("resources/uryu/uryuStrongAttack3Left.png"),
+							"uryuStrongAttack4Left" : loadImage("resources/uryu/uryuStrongAttack4Left.png"),
+							"uryuStrongAttack5Left" : loadImage("resources/uryu/uryuStrongAttack5Left.png"),
+							"uryuStrongAttack6Left" : loadImage("resources/uryu/uryuStrongAttack6Left.png"),
+							"uryuStrongAttack7Left" : loadImage("resources/uryu/uryuStrongAttack7Left.png"),
+							"uryuStrongAttack8Left" : loadImage("resources/uryu/uryuStrongAttack8Left.png"),
+							"uryuStrongAttack9Left" : loadImage("resources/uryu/uryuStrongAttack9Left.png"),
+
 							"gameOverText"		: loadImage("resources/gameover.png"),
 
 							"pauseBtn"		: loadImage("resources/pauseBtn.png")
