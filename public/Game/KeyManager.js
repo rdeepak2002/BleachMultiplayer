@@ -117,7 +117,7 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
         }
 
         if(player.spiritEnergy >= player.spiritAttackCost) {
-          app.createSprite(player.x + spriteXOffset, player.y, player, "getsuga")  
+          app.createSprite(player.x + spriteXOffset, player.y, player, "getsuga");  
           player.spiritEnergy -= player.spiritAttackCost;
         }
         attack();
@@ -136,7 +136,8 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
           }
 
           if(player.spiritEnergy >= player.spiritAttackCost) {
-            app.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow")  
+            app.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow");
+
             player.spiritEnergy -= player.spiritAttackCost;
           }  
         }     
@@ -156,7 +157,7 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
           }
 
           if(player.spiritEnergy >= player.spiritAttackCost) {
-            app.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow")  
+            app.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow");  
             player.spiritEnergy -= player.spiritAttackCost;
           }  
         }   
