@@ -185,6 +185,73 @@ function preloadMedia() {
 							"uryuStrongAttack8Left" : loadImage("resources/uryu/uryuStrongAttack8Left.png"),
 							"uryuStrongAttack9Left" : loadImage("resources/uryu/uryuStrongAttack9Left.png"),
 
+							"uryuStrongAirAttack1" : loadImage("resources/uryu/uryuStrongAirAttack1.png"),
+							"uryuStrongAirAttack2" : loadImage("resources/uryu/uryuStrongAirAttack2.png"),
+							"uryuStrongAirAttack3" : loadImage("resources/uryu/uryuStrongAirAttack3.png"),
+							"uryuStrongAirAttack4" : loadImage("resources/uryu/uryuStrongAirAttack4.png"),
+							"uryuStrongAirAttack5" : loadImage("resources/uryu/uryuStrongAirAttack5.png"),
+							"uryuStrongAirAttack6" : loadImage("resources/uryu/uryuStrongAirAttack6.png"),
+							"uryuStrongAirAttack7" : loadImage("resources/uryu/uryuStrongAirAttack7.png"),
+							"uryuStrongAirAttack8" : loadImage("resources/uryu/uryuStrongAirAttack8.png"),
+							"uryuStrongAirAttack9" : loadImage("resources/uryu/uryuStrongAirAttack9.png"),
+
+							"uryuStrongAirAttack1Left" : loadImage("resources/uryu/uryuStrongAirAttack1Left.png"),
+							"uryuStrongAirAttack2Left" : loadImage("resources/uryu/uryuStrongAirAttack2Left.png"),
+							"uryuStrongAirAttack3Left" : loadImage("resources/uryu/uryuStrongAirAttack3Left.png"),
+							"uryuStrongAirAttack4Left" : loadImage("resources/uryu/uryuStrongAirAttack4Left.png"),
+							"uryuStrongAirAttack5Left" : loadImage("resources/uryu/uryuStrongAirAttack5Left.png"),
+							"uryuStrongAirAttack6Left" : loadImage("resources/uryu/uryuStrongAirAttack6Left.png"),
+							"uryuStrongAirAttack7Left" : loadImage("resources/uryu/uryuStrongAirAttack7Left.png"),
+							"uryuStrongAirAttack8Left" : loadImage("resources/uryu/uryuStrongAirAttack8Left.png"),
+							"uryuStrongAirAttack9Left" : loadImage("resources/uryu/uryuStrongAirAttack9Left.png"),
+
+							"uryuGuard1" : loadImage("resources/uryu/uryuGuard1.png"),
+
+							"uryuGuard1Left" : loadImage("resources/uryu/uryuGuard1Left.png"),							
+
+							"uryuTeleport1" : loadImage("resources/uryu/uryuTeleport1.png"),
+							"uryuTeleport2" : loadImage("resources/uryu/uryuTeleport2.png"),
+							"uryuTeleport3" : loadImage("resources/uryu/uryuTeleport3.png"),
+
+							"uryuTeleport1Left" : loadImage("resources/uryu/uryuTeleport1Left.png"),
+							"uryuTeleport2Left" : loadImage("resources/uryu/uryuTeleport2Left.png"),
+							"uryuTeleport3Left" : loadImage("resources/uryu/uryuTeleport3Left.png"),
+
+							"uryuJump1" : loadImage("resources/uryu/uryuJump1.png"),
+							"uryuJump2" : loadImage("resources/uryu/uryuJump2.png"),
+							"uryuJump3" : loadImage("resources/uryu/uryuJump3.png"),
+							"uryuJump4" : loadImage("resources/uryu/uryuJump4.png"),
+							"uryuJump5" : loadImage("resources/uryu/uryuJump5.png"),
+							"uryuJump6" : loadImage("resources/uryu/uryuJump6.png"),
+
+							"uryuJump1Left" : loadImage("resources/uryu/uryuJump1Left.png"),
+							"uryuJump2Left" : loadImage("resources/uryu/uryuJump2Left.png"),
+							"uryuJump3Left" : loadImage("resources/uryu/uryuJump3Left.png"),
+							"uryuJump4Left" : loadImage("resources/uryu/uryuJump4Left.png"),
+							"uryuJump5Left" : loadImage("resources/uryu/uryuJump5Left.png"),
+							"uryuJump6Left" : loadImage("resources/uryu/uryuJump6Left.png"),
+
+							"uryuDamage1" : loadImage("resources/uryu/uryuDamage1.png"),
+							"uryuDamage2" : loadImage("resources/uryu/uryuDamage2.png"),
+
+							"uryuDamage1Left" : loadImage("resources/uryu/uryuDamage1Left.png"),
+							"uryuDamage2Left" : loadImage("resources/uryu/uryuDamage2Left.png"),
+
+							"uryuDead1" : loadImage("resources/uryu/uryuDeath1.png"),
+							"uryuDead2" : loadImage("resources/uryu/uryuDeath2.png"),
+							"uryuDead3" : loadImage("resources/uryu/uryuDeath3.png"),
+							"uryuDead4" : loadImage("resources/uryu/uryuDeath4.png"),
+							"uryuDead5" : loadImage("resources/uryu/uryuDeath5.png"),
+							"uryuDead6" : loadImage("resources/uryu/uryuDeath6.png"),
+
+							"uryuDead1Left" : loadImage("resources/uryu/uryuDeath1Left.png"),
+							"uryuDead2Left" : loadImage("resources/uryu/uryuDeath2Left.png"),
+							"uryuDead3Left" : loadImage("resources/uryu/uryuDeath3Left.png"),
+							"uryuDead4Left" : loadImage("resources/uryu/uryuDeath4Left.png"),
+							"uryuDead5Left" : loadImage("resources/uryu/uryuDeath5Left.png"),
+							"uryuDead6Left" : loadImage("resources/uryu/uryuDeath6Left.png"),
+
+
 							"gameOverText"		: loadImage("resources/gameover.png"),
 
 							"pauseBtn"		: loadImage("resources/pauseBtn.png")

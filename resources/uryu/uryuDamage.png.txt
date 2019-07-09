@@ -1,0 +1,1 @@
+uryuDamage1.png.png 7 9, uryuDamage.png.png 80 9, uryuDamage2.png.png 112 9, uryuDamage.png.png 202 9.

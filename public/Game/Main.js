@@ -68,12 +68,12 @@ $(function() {
             if(curPlayer.dead == false)
               checkPlayerAttack(curPlayer, App.playerArr, App);
 
-            updateSprites(App, curPlayer, delta);
-
             App.updatePlayer(App.playerId, curPlayer);
 
             App.drawSprites(curPlayer);
             App.drawGui(curPlayer);
+
+            updateSprites(App, curPlayer, delta);
 
             curPlayer.lastPing = (new Date()).getTime();
           }

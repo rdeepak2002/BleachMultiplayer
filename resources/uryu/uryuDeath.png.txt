@@ -1,0 +1,1 @@
+uryuDeath1.png.png 34 12, uryuDeath2.png.png 131 12, uryuDeath3.png.png 204 12, uryuDeath4.png.png 232 12, uryuDeath5.png.png 322 12, uryuDeath6.png.png 345 12, uryuDeath7.png.png 458 12, uryuDeath8.png.png 606 12.

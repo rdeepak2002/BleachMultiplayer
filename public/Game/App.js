@@ -123,6 +123,7 @@ function init(app) {
   	newPlayer.username = username;
     newPlayer.room = room;
     newPlayer.type = type;
+    newPlayer.deadImg = type + "Dead" + 6;
 
     if(newPlayer.type=="uryu") {
       newPlayer.spiritAttackCost = 100;

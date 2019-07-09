@@ -127,40 +127,14 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
     if ((event.keyCode || event.which) == 37) {           // left arrow
       if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
         player.facingLeft = true;
-        attack(); 
-        if(player.type == "uryu") {
-          var spriteXOffset = app.canvas.width/2 + player.centerOffset;
-          var spriteYOffset = 50;
-          if(player.facingLeft == false) {
-            spriteXOffset += 100;
-          }
-
-          if(player.spiritEnergy >= player.spiritAttackCost) {
-            app.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow");
-
-            player.spiritEnergy -= player.spiritAttackCost;
-          }  
-        }     
+        attack();     
       } 
     }
 
     if ((event.keyCode || event.which) == 39) {           // right arrow
       if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false) {
         player.facingLeft = false;
-        attack();
-
-        if(player.type == "uryu") {
-          var spriteXOffset = app.canvas.width/2 + player.centerOffset;
-          var spriteYOffset = 50;
-          if(player.facingLeft == false) {
-            spriteXOffset += 100;
-          }
-
-          if(player.spiritEnergy >= player.spiritAttackCost) {
-            app.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow");  
-            player.spiritEnergy -= player.spiritAttackCost;
-          }  
-        }   
+        attack();   
       }
     }
 

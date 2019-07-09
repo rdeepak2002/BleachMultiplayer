@@ -21,12 +21,23 @@ function animate(player, App) {
       curFrame = numFrames;
     }
 
-    if(curFrame == 5) {
-      player.yOffset = -30;
-    }
+    if(player.type == "ichigo") {
+      if(curFrame == 5) {
+        player.yOffset = -30;
+      }
 
-    if(curFrame >= 6) {
-      player.yOffset = -50;
+      if(curFrame >= 6) {
+        player.yOffset = -50;
+      }
+    }
+    else if(player.type == "uryu") {
+      if(curFrame == 5) {
+        player.yOffset = 10;
+      }
+
+      if(curFrame >= 6) {
+        player.yOffset = -10;
+      }
     }
 
     var newImage = player.type + "Dead" + curFrame;
@@ -43,6 +54,10 @@ function animate(player, App) {
     speed = 150;
     interval = speed * numFrames;
 
+    if(player.type == "uryu") {
+      player.yOffset = 30;
+    }
+
     curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
     if(curFrame > numFrames-1) {
@@ -58,12 +73,17 @@ function animate(player, App) {
     player.img = newImage;
   }
   else if(player.guarding == true) {
-    player.yOffset = 32;
+    if(player.type=="ichigo") {
+      player.yOffset = 32;
 
-    if(player.facingLeft == true)
-      player.xOffset = 40;
-    else
-      player.xOffset = -50;
+      if(player.facingLeft == true)
+        player.xOffset = 40;
+      else
+        player.xOffset = -50;
+    }
+    else if(player.type == "uryu") {
+      // do nothing cuz its fine
+    }
 
     curFrame = 1;
 
@@ -82,6 +102,21 @@ function animate(player, App) {
     interval = speed * numFrames;
 
     curFrame = Math.round((numFrames-1)/(interval/delta))+1;
+
+    if(player.type == "uryu") {
+      if(curFrame == 1) {
+        player.yOffset = 30;
+        player.xOffset = -30;
+      }
+      else if(curFrame == 2) {
+        player.yOffset = 60;
+        player.xOffset = -30;
+      }
+      else if(curFrame == 3) {
+        player.yOffset = 40;
+        player.xOffset = -30;
+      }
+    }
 
     if(curFrame > numFrames-1) {
       curFrame = numFrames-1;
@@ -130,13 +165,25 @@ function animate(player, App) {
 
       if(player.type=="uryu") {
         numFrames = 10;
-        speed = 50;
+        speed = 60;
         interval = speed * numFrames;
       }
 
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
       if(curFrame > numFrames-1) {
+        if(player.type == "uryu") {
+          var spriteXOffset = App.canvas.width/2 + player.centerOffset;
+          var spriteYOffset = 50;
+          if(player.facingLeft == false) {
+            spriteXOffset += 0;
+          }
+
+          if(player.spiritEnergy >= player.spiritAttackCost) {
+            App.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow");  
+            player.spiritEnergy -= player.spiritAttackCost;
+          }  
+        }
         player.attacking = false;         // UNCOMMENT THIS!
         //$(".attackBtn").show();
         curFrame = numFrames-1;
@@ -227,6 +274,18 @@ function animate(player, App) {
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
       if(curFrame > numFrames-1) {
+        if(player.type == "uryu") {
+          var spriteXOffset = App.canvas.width/2 + player.centerOffset;
+          var spriteYOffset = 100;
+          if(player.facingLeft == false) {
+            spriteXOffset += 0;
+          }
+
+          if(player.spiritEnergy >= player.spiritAttackCost) {
+            App.createSprite(player.x + spriteXOffset, player.y + spriteYOffset, player, "arrow");  
+            player.spiritEnergy -= player.spiritAttackCost;
+          }  
+        }
         player.attacking = false;         // UNCOMMENT THIS!
         //$(".attackBtn").show();
         curFrame = numFrames-1;
