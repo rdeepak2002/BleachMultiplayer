@@ -6,10 +6,11 @@ function updateSprites(app, player, dt) {
 
     //console.log(sprite.x + ", " + sprite.y);
 
+
     sprite.x += sprite.hVelocity*(dt/30);
   	sprite.y += sprite.vVelocity*(dt/30);
 
-  	if(sprite.height < sprite.maxHeight && sprite.width < sprite.maxWidth) {
+  	if(sprite.type=="getsuga" && sprite.height < sprite.maxHeight && sprite.width < sprite.maxWidth) {
 	  	sprite.height += sprite.growthSpeed*(dt/30);
 	  	sprite.width += sprite.growthSpeed*(dt/30);
 	  	sprite.y = player.groundY - sprite.height + sprite.yOffset;

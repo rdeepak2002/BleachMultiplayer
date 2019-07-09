@@ -124,6 +124,10 @@ function init(app) {
     newPlayer.room = room;
     newPlayer.type = type;
 
+    if(newPlayer.type=="uryu") {
+      newPlayer.spiritAttackCost = 100;
+    }
+
     $("#logs").append("<p>set username to: " + username + "</p>");
 
    	app.socket.emit('addPlayer', {
@@ -149,8 +153,8 @@ function init(app) {
     }
 
     if(newSprite.type == "arrow") {
-      newSprite.width = 67;
-      newSprite.height = 20;
+      newSprite.width = 67*2;
+      newSprite.height = 20*2;
     }
 
     if(player.facingLeft && newSprite.hVelocity > 0) {
