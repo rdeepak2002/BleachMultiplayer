@@ -142,6 +142,26 @@ function preloadMedia() {
 
 							"ichigoGuard1Left" : loadImage("resources/ichigo/ichigoGuard1Left.png"),
 
+							"uryuStand1" : loadImage("resources/uryu/uryuStand1.png"),
+							"uryuStand2" : loadImage("resources/uryu/uryuStand2.png"),
+							"uryuStand3" : loadImage("resources/uryu/uryuStand3.png"),
+							"uryuStand4" : loadImage("resources/uryu/uryuStand4.png"),
+
+							"uryuStand1Left" : loadImage("resources/uryu/uryuStand1Left.png"),
+							"uryuStand2Left" : loadImage("resources/uryu/uryuStand2Left.png"),
+							"uryuStand3Left" : loadImage("resources/uryu/uryuStand3Left.png"),
+							"uryuStand4Left" : loadImage("resources/uryu/uryuStand4Left.png"),				
+
+							"uryuRun1" : loadImage("resources/uryu/uryuRun1.png"),
+							"uryuRun2" : loadImage("resources/uryu/uryuRun2.png"),
+							"uryuRun3" : loadImage("resources/uryu/uryuRun3.png"),
+							"uryuRun4" : loadImage("resources/uryu/uryuRun4.png"),
+
+							"uryuRun1Left" : loadImage("resources/uryu/uryuRun1Left.png"),
+							"uryuRun2Left" : loadImage("resources/uryu/uryuRun2Left.png"),
+							"uryuRun3Left" : loadImage("resources/uryu/uryuRun3Left.png"),
+							"uryuRun4Left" : loadImage("resources/uryu/uryuRun4Left.png"),
+
 							"gameOverText"		: loadImage("resources/gameover.png"),
 
 							"pauseBtn"		: loadImage("resources/pauseBtn.png")

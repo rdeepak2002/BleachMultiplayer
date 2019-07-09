@@ -29,7 +29,7 @@ function animate(player, App) {
       player.yOffset = -50;
     }
 
-    var newImage = "ichigoDead" + curFrame;
+    var newImage = player.type + "Dead" + curFrame;
 
     if(player.facingLeft)
       newImage = newImage + "Left";
@@ -50,7 +50,7 @@ function animate(player, App) {
       player.hurting = false;
     }
 
-    var newImage = "ichigoDamage" + curFrame;
+    var newImage = player.type+"Damage" + curFrame;
 
     if(player.facingLeft)
       newImage = newImage + "Left";
@@ -67,7 +67,7 @@ function animate(player, App) {
 
     curFrame = 1;
 
-    var newImage = "ichigoGuard" + curFrame;
+    var newImage = player.type+"Guard" + curFrame;
 
     if(player.facingLeft)
       newImage = newImage + "Left";
@@ -94,7 +94,7 @@ function animate(player, App) {
       player.teleporting = false;
     }
 
-    var newImage = "ichigoTeleport" + curFrame;
+    var newImage = player.type+"Teleport" + curFrame;
 
     if(player.facingLeft)
       newImage = newImage + "Left";
@@ -115,7 +115,7 @@ function animate(player, App) {
       curFrame = 4;
     }
 
-    var newImage = "ichigoJump" + curFrame;
+    var newImage = player.type+"Jump" + curFrame;
 
     if(player.facingLeft)
       newImage = newImage + "Left";
@@ -171,7 +171,7 @@ function animate(player, App) {
         }
       }
 
-      var newImage = "ichigoStrongAttack" + curFrame;
+      var newImage = player.type+"StrongAttack" + curFrame;
 
       if(player.facingLeft) {
         newImage = newImage + "Left";
@@ -222,7 +222,7 @@ function animate(player, App) {
         }
       }
 
-      var newImage = "ichigoStrongAirAttack" + curFrame;
+      var newImage = player.type+"StrongAirAttack" + curFrame;
 
       if(player.facingLeft) {
         newImage = newImage + "Left";
@@ -240,13 +240,19 @@ function animate(player, App) {
       speed = 100;
       interval = speed * numFrames;
 
+      if(player.type == "uryu") {
+        numFrames = 4;
+        speed = 100;
+        interval = speed*numFrames;
+      }
+
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
       if(curFrame > numFrames) {
         curFrame = numFrames;
       }
 
-      var newImage = "ichigoStand" + curFrame;
+      var newImage = player.type+"Stand" + curFrame;
 
       if(player.facingLeft)
         newImage = newImage + "Left";
@@ -261,13 +267,19 @@ function animate(player, App) {
       speed = 100;
       interval = speed * numFrames;
 
+      if(player.type == "uryu") {
+        numFrames = 4;
+        speed = 100;
+        interval = speed*numFrames;
+      }
+
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
       if(curFrame > numFrames) {
         curFrame = numFrames;
       }
 
-      var newImage = "ichigoRun" + curFrame;
+      var newImage = player.type+"Run" + curFrame;
 
       player.img = newImage;
     }
@@ -279,13 +291,19 @@ function animate(player, App) {
       speed = 100;
       interval = speed * numFrames;
 
+      if(player.type == "uryu") {
+        numFrames = 4;
+        speed = 100;
+        interval = speed*numFrames;
+      }
+
       curFrame = Math.round((numFrames-1)/(interval/delta))+1;
 
       if(curFrame > numFrames) {
         curFrame = numFrames;
       }
 
-      var newImage = "ichigoRun" + curFrame + "Left";
+      var newImage = player.type+"Run" + curFrame + "Left";
 
       player.img = newImage;
     }

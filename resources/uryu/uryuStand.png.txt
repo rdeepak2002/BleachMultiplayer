@@ -1,0 +1,1 @@
+uryuStand1.png.png 26 13, uryuStand.png.png 74 13, uryuStand2.png.png 105 13, uryuStand.png.png 153 13, uryuStand3.png.png 177 13, uryuStand.png.png 225 13, uryuStand4.png.png 247 13, uryuStand.png.png 295 13.
