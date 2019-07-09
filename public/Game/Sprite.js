@@ -1,6 +1,7 @@
 let Sprite = class {
-	constructor(playerId, x, y) {
+	constructor(playerId, x, y, type) {
 		this.spriteId = 0;
+		this.type = type;
 		this.playerId = playerId;
 		this.x = 0;
 		this.y = 0;

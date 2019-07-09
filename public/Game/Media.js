@@ -142,6 +142,9 @@ function preloadMedia() {
 
 							"ichigoGuard1Left" : loadImage("resources/ichigo/ichigoGuard1Left.png"),
 
+							"arrow" : loadImage("resources/uryu/arrow.png"),
+							"arrowLeft" : loadImage("resources/uryu/arrowLeft.png"),
+
 							"uryuStand1" : loadImage("resources/uryu/uryuStand1.png"),
 							"uryuStand2" : loadImage("resources/uryu/uryuStand2.png"),
 							"uryuStand3" : loadImage("resources/uryu/uryuStand3.png"),

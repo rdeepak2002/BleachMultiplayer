@@ -1,5 +1,3 @@
-var qCount = 0;
-
 function manageKeyEvents(player, app) {            // wasd to move, arrow keys to attack, shift to teleport
   var currentTime = (new Date()).getTime();
 
@@ -113,18 +111,15 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
 
     if(key == "Q" || key == "q") {
       if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false && player.y == player.groundY) {
-        var getsugaXOffset = app.canvas.width/2 + player.centerOffset;
+        var spriteXOffset = app.canvas.width/2 + player.centerOffset;
         if(player.facingLeft == false) {
-          getsugaXOffset += 100;
+          spriteXOffset += 100;
         }
 
-        if(qCount != 0 && player.x != 0) {
-          if(player.spiritEnergy >= player.spiritAttackCost) {
-            app.createSprite(player.x + getsugaXOffset, player.y, player)  
-            player.spiritEnergy -= player.spiritAttackCost;
-          }
+        if(player.spiritEnergy >= player.spiritAttackCost) {
+          app.createSprite(player.x + spriteXOffset, player.y, player, "getsuga")  
+          player.spiritEnergy -= player.spiritAttackCost;
         }
-        qCount++;
         attack();
       }
     }
@@ -132,7 +127,19 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
     if ((event.keyCode || event.which) == 37) {           // left arrow
       if(player.dead == false && player.attacking == false && player.guarding == false && player.teleporting == false) {
         player.facingLeft = true;
-        attack();       
+        attack(); 
+
+        if(player.type == "uryu") {
+          var spriteXOffset = app.canvas.width/2 + player.centerOffset;
+          if(player.facingLeft == false) {
+            spriteXOffset += 100;
+          }
+
+          if(player.spiritEnergy >= player.spiritAttackCost) {
+            app.createSprite(player.x + spriteXOffset, player.y, player, "arrow")  
+            player.spiritEnergy -= player.spiritAttackCost;
+          }  
+        }    
       } 
     }
 
@@ -140,6 +147,18 @@ function manageKeyEvents(player, app) {            // wasd to move, arrow keys t
       if(player.dead == false && player.attacking == false && player.guarding == false  && player.teleporting == false) {
         player.facingLeft = false;
         attack();
+
+        if(player.type == "uryu") {
+          var spriteXOffset = app.canvas.width/2 + player.centerOffset;
+          if(player.facingLeft == false) {
+            spriteXOffset += 100;
+          }
+
+          if(player.spiritEnergy >= player.spiritAttackCost) {
+            app.createSprite(player.x + spriteXOffset, player.y, player, "arrow")  
+            player.spiritEnergy -= player.spiritAttackCost;
+          }  
+        }   
       }
     }
 

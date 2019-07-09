@@ -101,7 +101,7 @@ function updatePlayerState(player, dt) {
 
 
 function checkPlayerAttack(player, playerArr, App) {
-  if(player.attacking == true) {
+  if(player.attacking == true && player.type != "uryu") {
     for(var key in App.playerArr) {
       otherPlayer = App.playerArr[key];
 

@@ -134,8 +134,8 @@ function init(app) {
     app.playerArr[app.playerId] = newPlayer;
   }
 
-  app.createSprite = function(x, y, player) {
-    newSprite = new Sprite(app.playerId);
+  app.createSprite = function(x, y, player, type) {
+    newSprite = new Sprite(app.playerId, x, y, type);
     newSprite.x = x;
     newSprite.y = y;
     newSprite.room = player.room;
@@ -144,12 +144,21 @@ function init(app) {
     newSprite.width = getImage(newSprite.img).naturalWidth * scale;
     newSprite.height = newSprite.height;
 
+    if(newSprite.type == "arrow") {
+      newSprite.img = "arrow";
+    }
+
+    if(newSprite.type == "arrow") {
+      newSprite.width = 67;
+      newSprite.height = 20;
+    }
+
     if(player.facingLeft && newSprite.hVelocity > 0) {
       newSprite.hVelocity = newSprite.negHVelocity;
-      newSprite.img = "getsuga1Left"
+      newSprite.img = newSprite.img + "Left"
     } 
 
-    app.socket.emit('addSprite', {
+    app.socket.emit("addSprite", {
       sprite: newSprite
     });
   }
