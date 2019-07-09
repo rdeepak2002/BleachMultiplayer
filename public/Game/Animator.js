@@ -145,37 +145,40 @@ function animate(player, App) {
         player.runKeyReleased = false;
       }
 
-      if(player.type == "ichigo" && player.facingLeft == true) {
+      if(player.type == "ichigo") {
         player.yOffset = 30;
+        if(player.facingLeft == true) {
+          player.yOffset = 30;
 
-        if(curFrame == 1) {
-          player.xOffset = 30;
-        }
-        else if(curFrame == 2) {
-          player.xOffset = 0;
-        }
-        else if(curFrame == 3) {
-          player.xOffset = -90;
-        }
-        else if(curFrame == 4) {
-          player.xOffset = -100;
-        }
-        else if(curFrame == 5) {
-          player.xOffset = 0;
-        }
-        else if(curFrame == 6) {
-          player.xOffset = 20;
-        }
-        else if(curFrame == 7) {
-          player.xOffset = 20;
-        }
-        else if(curFrame == 8) {
-          player.xOffset = 20;
-        }
-        else if(curFrame == 9) {
-          player.xOffset = 20;
-        }
-      } 
+          if(curFrame == 1) {
+            player.xOffset = 30;
+          }
+          else if(curFrame == 2) {
+            player.xOffset = 0;
+          }
+          else if(curFrame == 3) {
+            player.xOffset = -90;
+          }
+          else if(curFrame == 4) {
+            player.xOffset = -100;
+          }
+          else if(curFrame == 5) {
+            player.xOffset = 0;
+          }
+          else if(curFrame == 6) {
+            player.xOffset = 20;
+          }
+          else if(curFrame == 7) {
+            player.xOffset = 20;
+          }
+          else if(curFrame == 8) {
+            player.xOffset = 20;
+          }
+          else if(curFrame == 9) {
+            player.xOffset = 20;
+          }
+        } 
+      }
       else if(player.type == "uryu") {
         if(curFrame == 1) {
           player.yOffset = -70;

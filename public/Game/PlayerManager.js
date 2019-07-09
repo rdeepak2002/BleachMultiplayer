@@ -3,10 +3,15 @@ function updatePlayerState(player, dt) {
     player.dead = true;
   }
 
-  player.spiritEnergy += 8;
+  if(player.guarding == false) {
+    player.spiritEnergy += 8;
+  }
+  else {
+    player.spiritEnergy -= 8;
+  }
 
   if(player.spiritEnergy < 0) {
-    player.spritEnergy = 0;
+    player.spiritEnergy = 0;
   }
 
   if(player.spiritEnergy > player.maxSpiritEnergy) {
