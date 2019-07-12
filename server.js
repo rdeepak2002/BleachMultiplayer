@@ -66,7 +66,7 @@ io.on('connection', function(socket) {
 		    	id: playerArr[keys[i]].playerId
 		    });
 
-  			clientCount[playerArr[keys[i]].room-1] = clientCount[playerArr[keys[i]].room-1] - 1;
+        updateClientCount();
         delete playerArr[keys[i]];
       }
     }
@@ -120,7 +120,7 @@ io.on('connection', function(socket) {
 		socket.join("room-"+parseInt(data.player.room));
  		io.sockets.in("room-"+parseInt(data.player.room)).emit('connectToRoom', "You are in room no. "+parseInt(data.player.room));
 		playerArr[data.id] = data.player;
-		clientCount[parseInt(data.player.room)-1] = clientCount[parseInt(data.player.room)-1] + 1;
+	  updateClientCount();
     printCurrentPlayers();
 	});
 
@@ -149,9 +149,10 @@ io.on('connection', function(socket) {
         delete spriteArr[keys[i]];
     }
 
-    if(playerArr[socket.id] != undefined)
-			clientCount[playerArr[socket.id].room-1] = clientCount[playerArr[socket.id].room-1] - 1;
-		delete playerArr[socket.id];
+    if(playerArr[socket.id] != undefined) {
+    	updateClientCount();
+			delete playerArr[socket.id];
+    }
 
     io.emit("removePlayer", {
     	id: socket.id
@@ -160,6 +161,16 @@ io.on('connection', function(socket) {
     printCurrentPlayers();
     printCurrentSprites();
   });
+
+	function updateClientCount() {
+		for(var z = 0; z < clientCount.length; z++) {
+			var room = io.sockets.adapter.rooms["room-" + (z+1)];
+			if(room != undefined) {
+				clientCount[z] = room.length;
+				console.log(clientCount);
+			}
+		}
+	}
 
   function printCurrentPlayers() {
   	console.log("Current players:");
